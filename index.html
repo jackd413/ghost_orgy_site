@@ -13,7 +13,7 @@
   <link
     rel="alternate"
     type="application/rss+xml"
-    title="Ghost Orgy — RSS"
+    title="Ghost Orgy RSS"
     href="https://feeds.soundcloud.com/users/soundcloud:users:12663938/sounds.rss"
   />
 
@@ -229,56 +229,58 @@
       transform: rotate(-45deg);
     }
 
-      /* -------------------------------
-   Floating Watcher (Ghost Orgy)
-   A barely-visible entity that flickers
-   and drifts as the user scrolls.
---------------------------------- */
+    /* Floating Watcher (Ghost Orgy)
+       A barely-visible entity that flickers
+       and drifts as the user scrolls. */
 
-.watcher {
-  position: fixed;
-  right: 2vw;
-  top: 20vh;
-  width: 380px;
-  height: auto;
-  pointer-events: none;
-  z-index: 5;
-  opacity: 0.06;
-  mix-blend-mode: lighten;
-  filter: grayscale(1) contrast(1.4) brightness(0.25);
-  animation: watcherFloat 8s ease-in-out infinite alternate;
-}
+    .watcher {
+      position: fixed;
+      right: 2vw;
+      top: 20vh;
+      width: 320px;
+      height: auto;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0.06;
+      mix-blend-mode: lighten;
+      filter: grayscale(1) contrast(1.4) brightness(0.25);
+      animation: watcherFloat 8s ease-in-out infinite alternate;
+    }
 
-/* Image sizing */
-.watcher img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+    .watcher img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-/* Soft vertical drift */
-@keyframes watcherFloat {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(-25px);
-  }
-}
+    @keyframes watcherFloat {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(-25px);
+      }
+    }
 
-/* Scroll-based flicker */
-@keyframes watcherFlicker {
-  0%, 100% { opacity: 0.05; }
-  40% { opacity: 0.09; }
-  60% { opacity: 0.03; }
-}
+    @keyframes watcherFlicker {
+      0%, 100% { opacity: 0.05; }
+      40% { opacity: 0.09; }
+      60% { opacity: 0.03; }
+    }
 
-/* Flicker on scroll */
-html.scrolling .watcher {
-  animation: watcherFloat 8s ease-in-out infinite alternate,
-             watcherFlicker 0.3s steps(2) 1;
-}
-    
+    html.scrolling .watcher {
+      animation:
+        watcherFloat 8s ease-in-out infinite alternate,
+        watcherFlicker 0.3s steps(2) 1;
+    }
+
+    /* hide watcher on small screens if needed */
+    @media (max-width: 800px) {
+      .watcher {
+        display: none;
+      }
+    }
+
     /* Mobile nav hidden by default so it does not show on desktop */
     .mobile-nav {
       display: none;
@@ -461,7 +463,7 @@ html.scrolling .watcher {
       background: #05070a;
     }
 
-    /* Hero creepy image panel */
+    /* Hero image panel */
 
     .hero-panel {
       border: 1px solid var(--border);
@@ -474,14 +476,13 @@ html.scrolling .watcher {
     }
 
     .hero-image {
-  position: relative;
-  flex: 1;
-  background-image: url("images/hero-sister.jpg?v=2");
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(1) contrast(1.2) brightness(0.9);
-}
-
+      position: relative;
+      flex: 1;
+      background-image: url("images/hero-sister.jpg?v=2");
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(1) contrast(1.2) brightness(0.9);
+    }
 
     .hero-image::after {
       content: "";
@@ -641,104 +642,89 @@ html.scrolling .watcher {
       max-width: 46rem;
     }
 
-    /* MUSIC SECTION  ---------------------------------------- */
+    /* MUSIC SECTION */
 
-.music-layout {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 2.6rem;
-  align-items: flex-start;
-}
+    .music-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 2.6rem;
+      align-items: flex-start;
+    }
 
-.player-shell {
-  background: #050608;
-  border: 1px solid #0a0d0f;
-  border-left: 3px solid var(--accent);  /* accent spine */
-  padding: 1.25rem 1.4rem;
-  border-radius: 0;                      /* matches the rest of the site */
-}
+    .player-shell {
+      background: #050608;
+      border: 1px solid #0a0d0f;
+      border-left: 3px solid var(--accent);
+      padding: 1.25rem 1.4rem;
+      border-radius: 0;
+    }
 
+    .player-note {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
 
-.player-note {
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
-}
+    .player-embed iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      display: block;
+      filter: grayscale(0.6) brightness(0.88) contrast(0.95);
+    }
 
-.player-embed iframe {
-  width: 100%;
-  height: 200px;              /* shorter so it doesn’t dominate */
-  border: none;
-  display: block;
-  filter: grayscale(0.6) brightness(0.88) contrast(0.95);
-}
+    .music-copy-wrap {
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+      padding-left: 1.4rem;
+    }
 
-.music-copy-wrap {
-  border-left: 1px solid rgba(255, 255, 255, 0.06);
-  padding-left: 1.4rem;
-}
+    .music-copy {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
 
-.music-copy {
-  color: var(--muted);
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-}
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.7rem;
+    }
 
-.platforms {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-top: 0.7rem;
-}
+    .platform-pill {
+      border-radius: 2px;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.9rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #050608;
+      opacity: 0.9;
+      transition:
+        background-color var(--speed),
+        border-color var(--speed),
+        opacity var(--speed),
+        transform var(--speed);
+    }
 
-.platform-pill {
-  border-radius: 2px;
-  border: 1px solid var(--border);
-  padding: 0.35rem 0.9rem;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: #050608;
-  opacity: 0.9;
-  transition:
-    background-color var(--speed),
-    border-color var(--speed),
-    opacity var(--speed),
-    transform var(--speed);
-}
+    .platform-pill span:first-child {
+      color: var(--fg);
+    }
 
-.platform-pill span:first-child {
-  color: var(--fg);
-}
-
-.platform-pill:hover {
-  border-color: var(--accent);
-  background: #090d0b;
-  opacity: 1;
-  transform: translateY(-1px);
-}
-
-/* keep it clean on mobile */
-@media (max-width: 800px) {
-  .music-layout {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
-  }
-
-  .music-copy-wrap {
-    border-left: none;
-    padding-left: 0;
-  }
-}
-
+    .platform-pill:hover {
+      border-color: var(--accent);
+      background: #090d0b;
+      opacity: 1;
+      transform: translateY(-1px);
+    }
 
     /* Contact */
 
@@ -778,13 +764,13 @@ html.scrolling .watcher {
     }
 
     .social-block {
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);  /* same spine as Sisters / Music */
-  background: #050608;
-  padding: 0.9rem 1rem;
-  font-size: 0.86rem;
-  color: var(--muted);
-}
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      background: #050608;
+      padding: 0.9rem 1rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
 
     .social-title {
       font-family: "IBM Plex Mono", monospace;
@@ -1160,78 +1146,78 @@ html.scrolling .watcher {
     </section>
 
     <section id="music">
-  <div class="section-head">
-    <h2 class="section-title">Music</h2>
-    <p class="section-sub">
-      Built for headphones and systems that can move air. Detail forward, effect heavy,
-      but not polished into something safe.
-    </p>
-  </div>
-
-  <div class="music-layout">
-    <!-- LEFT: PLAYER ----------------------------------- -->
-    <div class="player-shell">
-      <div class="player-note">
-        Ghost Orgy on SoundCloud &mdash; latest ritual cuts
+      <div class="section-head">
+        <h2 class="section-title">Music</h2>
+        <p class="section-sub">
+          Built for headphones and systems that can move air. Detail forward, effect heavy,
+          but not polished into something safe.
+        </p>
       </div>
-      <div class="player-embed">
-        <iframe
-          title="Ghost Orgy on SoundCloud"
-          scrolling="no"
-          frameborder="no"
-          allow="autoplay"
-          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ghostorgymusic&color=%23050608&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-        ></iframe>
+
+      <div class="music-layout">
+        <!-- LEFT: PLAYER -->
+        <div class="player-shell">
+          <div class="player-note">
+            Ghost Orgy on SoundCloud - latest ritual cuts
+          </div>
+          <div class="player-embed">
+            <iframe
+              title="Ghost Orgy on SoundCloud"
+              scrolling="no"
+              frameborder="no"
+              allow="autoplay"
+              src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ghostorgymusic&color=%23050608&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- RIGHT: COPY + LINKS -->
+        <div class="music-copy-wrap">
+          <p class="music-copy">
+            The signal chain is set up to keep texture intact instead of sanding it down.
+            Close dynamic vocals, heavy modulation, and enough headroom for the quiet parts
+            to stay dangerous.
+          </p>
+          <p class="music-copy">
+            The term <strong>die-fi</strong> is a working rule: high production value and
+            lossless detail kept in service of something damaged and uncomfortable instead
+            of comforting.
+          </p>
+
+          <div class="platforms">
+            <a
+              href="https://soundcloud.com/ghostorgymusic"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="platform-pill"
+            >
+              <span>SoundCloud</span>
+              <span>↗</span>
+            </a>
+
+            <a
+              href="https://ghostorgy.bandcamp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="platform-pill"
+            >
+              <span>Bandcamp</span>
+              <span>↗</span>
+            </a>
+
+            <a
+              href="https://feeds.soundcloud.com/users/soundcloud:users:12663938/sounds.rss"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="platform-pill"
+            >
+              <span>RSS Feed</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- RIGHT: COPY + LINKS ---------------------------- -->
-    <div class="music-copy-wrap">
-      <p class="music-copy">
-        The signal chain is set up to keep texture intact instead of sanding it down.
-        Close dynamic vocals, heavy modulation, and enough headroom for the quiet parts
-        to stay dangerous.
-      </p>
-      <p class="music-copy">
-        The term <strong>die-fi</strong> is a working rule: high production value and
-        lossless detail kept in service of something damaged and uncomfortable instead
-        of comforting.
-      </p>
-
-      <div class="platforms">
-        <a
-          href="https://soundcloud.com/ghostorgymusic"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="platform-pill"
-        >
-          <span>SoundCloud</span>
-          <span>↗</span>
-        </a>
-
-        <a
-          href="https://ghostorgy.bandcamp.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="platform-pill"
-        >
-          <span>Bandcamp</span>
-          <span>↗</span>
-        </a>
-
-        <a
-          href="https://feeds.soundcloud.com/users/soundcloud:users:12663938/sounds.rss"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="platform-pill"
-        >
-          <span>RSS Feed</span>
-          <span>↗</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <section id="contact">
       <div class="section-head">
@@ -1316,6 +1302,11 @@ html.scrolling .watcher {
     </div>
   </footer>
 
+  <!-- Floating Watcher -->
+  <div class="watcher">
+    <img src="images/watcher-face.png" alt="">
+  </div>
+
   <script>
     // year
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -1337,33 +1328,16 @@ html.scrolling .watcher {
         });
       });
     }
-  </script>
-  <!-- Floating Watcher (Ghost Orgy) -->
-<div class="watcher">
-  <img src="images/watcher-face.png" alt="">
-</div>
-  <script>
-let scrollTimer;
-window.addEventListener("scroll", () => {
-  document.documentElement.classList.add("scrolling");
-  clearTimeout(scrollTimer);
-  scrollTimer = setTimeout(() => {
-    document.documentElement.classList.remove("scrolling");
-  }, 150);
-});
-</script>
 
+    // watcher scroll flicker
+    let scrollTimer;
+    window.addEventListener("scroll", () => {
+      document.documentElement.classList.add("scrolling");
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        document.documentElement.classList.remove("scrolling");
+      }, 150);
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
