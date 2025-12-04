@@ -603,9 +603,11 @@
 .player-shell {
   background: #050608;
   border: 1px solid #0a0d0f;
+  border-left: 3px solid var(--accent);  /* accent spine */
   padding: 1.25rem 1.4rem;
-  border-radius: 4px;
+  border-radius: 0;                      /* matches the rest of the site */
 }
+
 
 .player-note {
   font-family: "IBM Plex Mono", monospace;
@@ -726,12 +728,13 @@
     }
 
     .social-block {
-      border: 1px solid var(--border);
-      background: #050608;
-      padding: 0.9rem 1rem;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);  /* same spine as Sisters / Music */
+  background: #050608;
+  padding: 0.9rem 1rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
 
     .social-title {
       font-family: "IBM Plex Mono", monospace;
@@ -1287,6 +1290,7 @@
   </script>
 </body>
 </html>
+
 
 
 
