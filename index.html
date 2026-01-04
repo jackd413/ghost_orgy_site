@@ -18,11 +18,14 @@
   <meta property="og:description" content="Unforgiving die-fi ritual audio. Experimental horror sound that hits the body first, then the mind." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.unholyghost.org/" />
-  <!-- OG image: keep this EXACT path valid on your site -->
+
+  <!-- IMPORTANT: this must be a 1200x630 image (or larger with same ratio) -->
   <meta property="og:image" content="https://www.unholyghost.org/images/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.unholyghost.org/images/og-card.jpg" />
 
   <!-- Favicons (add these files if you want custom icons) -->
   <link rel="icon" href="images/favicon.ico" />
@@ -30,7 +33,7 @@
 
   <!-- Preload key images (helps avoid late pop-in) -->
   <link rel="preload" as="image" href="images/hero-sister.jpg?v=2" />
-  <link rel="preload" as="image" href="images/watcher-face.png?v=2" />
+  <link rel="preload" as="image" href="images/watcher-face.png" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R946B19QCY"></script>
@@ -92,8 +95,6 @@
       font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       font-size: 15px;
       line-height: 1.6;
-      position: relative; /* helps stacking contexts behave */
-      overflow-x: hidden; /* prevents off-canvas watcher causing horizontal scroll */
     }
 
     a {
@@ -112,7 +113,7 @@
       margin: 0 auto;
       padding: 0 1.5rem 4rem;
       position: relative;
-      z-index: 2; /* ensure content always sits above watcher */
+      z-index: 2; /* ensure content stays above watcher */
     }
 
     /* Header */
@@ -248,47 +249,45 @@
     /* Ensure sticky header doesn't hide section headings when jumping */
     section { scroll-margin-top: 92px; }
 
-    /* Floating Watcher (re-tuned: harder to resolve, no clean silhouette, behind content) */
+    /* Floating Watcher (tuned for BIG displays: never the subject) */
 
     .watcher {
       position: fixed;
 
-      /* push it off-canvas so it can’t “frame” the page cleanly */
-      right: -8vw;
+      /* Keep it mostly off-screen even on huge displays */
+      right: clamp(-220px, -14vw, -120px);
       top: 18vh;
 
-      width: 360px;
+      /* Scale with viewport so it doesn't become a readable face on big monitors */
+      width: clamp(220px, 18vw, 320px);
+
       pointer-events: none;
 
-      /* KEY: keep it behind actual content */
-      z-index: 0;
+      /* behind content but above background */
+      z-index: 1;
 
-      /* make it deniable */
-      opacity: 0.12;
+      /* Make it harder to "read" */
+      opacity: 0.10;
       mix-blend-mode: soft-light;
+      filter: grayscale(1) blur(1.9px) contrast(0.82) brightness(0.88);
 
-      /* kill silhouette recognition */
-      filter: grayscale(1) blur(2.2px) contrast(0.78) brightness(0.85);
-
-      /* scroll/parallax owns transform on OUTER wrapper */
       will-change: transform;
     }
 
     .watcher-inner {
-      /* float animation owns transform on INNER wrapper */
       animation: watcherFloat 7s ease-in-out infinite alternate;
       will-change: transform;
 
-      /* break edges so it never resolves fully */
-      -webkit-mask-image: radial-gradient(circle at 35% 50%,
-        rgba(0,0,0,0.95) 0%,
-        rgba(0,0,0,0.55) 45%,
-        rgba(0,0,0,0.12) 70%,
+      /* Mask it so only suggestion survives */
+      -webkit-mask-image: radial-gradient(circle at 30% 52%,
+        rgba(0,0,0,0.85) 0%,
+        rgba(0,0,0,0.55) 40%,
+        rgba(0,0,0,0.18) 68%,
         rgba(0,0,0,0.00) 100%);
-      mask-image: radial-gradient(circle at 35% 50%,
-        rgba(0,0,0,0.95) 0%,
-        rgba(0,0,0,0.55) 45%,
-        rgba(0,0,0,0.12) 70%,
+      mask-image: radial-gradient(circle at 30% 52%,
+        rgba(0,0,0,0.85) 0%,
+        rgba(0,0,0,0.55) 40%,
+        rgba(0,0,0,0.18) 68%,
         rgba(0,0,0,0.00) 100%);
     }
 
@@ -296,26 +295,32 @@
       width: 100%;
       height: auto;
       display: block;
-      /* mild extra softness; doesn’t move layout */
-      transform: translateZ(0);
     }
 
     @keyframes watcherFloat {
       0%   { transform: translate3d(0, 0, 0); }
-      50%  { transform: translate3d(-10px, -55px, 0); }
-      100% { transform: translate3d(0, -95px, 0); }
+      50%  { transform: translate3d(-6px, -42px, 0); }
+      100% { transform: translate3d(0, -72px, 0); }
     }
 
     @keyframes watcherFlicker {
-      0%, 100% { opacity: 0.12; }
-      40%      { opacity: 0.16; }
-      60%      { opacity: 0.09; }
+      0%, 100% { opacity: 0.10; }
+      40%      { opacity: 0.14; }
+      60%      { opacity: 0.08; }
     }
 
     html.scrolling .watcher-inner {
       animation:
         watcherFloat 7s ease-in-out infinite alternate,
-        watcherFlicker 0.25s steps(2) 1;
+        watcherFlicker 0.22s steps(2) 1;
+    }
+
+    /* If you ever feel it's still too present on ultrawide, soften further */
+    @media (min-width: 1600px) {
+      .watcher {
+        opacity: 0.08;
+        filter: grayscale(1) blur(2.2px) contrast(0.78) brightness(0.86);
+      }
     }
 
     @media (max-width: 800px) {
@@ -836,6 +841,8 @@
       border-top: 1px solid var(--border);
       font-size: 0.75rem;
       color: var(--muted);
+      position: relative;
+      z-index: 2;
     }
 
     .footer-inner {
@@ -1321,7 +1328,7 @@
   <!-- Floating Watcher -->
   <div class="watcher" aria-hidden="true">
     <div class="watcher-inner">
-      <img src="images/watcher-face.png?v=2" alt="" loading="lazy" decoding="async">
+      <img src="images/watcher-face.png" alt="" loading="lazy" decoding="async">
     </div>
   </div>
 
@@ -1349,7 +1356,7 @@
       });
     }
 
-    // watcher parallax + scroll flicker
+    // watcher parallax + scroll flicker (capped so it never "enters" the page)
     const watcher = document.querySelector(".watcher");
     let scrollTimer;
     let watcherRaf = null;
@@ -1358,8 +1365,8 @@
       if (!watcher) return;
       const y = window.scrollY || window.pageYOffset || 0;
 
-      // subtle drift; clamped so it never runs away
-      const drift = Math.min(120, y * 0.08);
+      // cap drift HARD so it stays a peripheral hint
+      const drift = Math.min(70, y * 0.05);
       watcher.style.transform = `translate3d(0, ${drift}px, 0)`;
     }
 
@@ -1372,7 +1379,6 @@
         document.documentElement.classList.remove("scrolling");
       }, 150);
 
-      // smooth parallax without hammering layout
       if (!watcherRaf) {
         watcherRaf = requestAnimationFrame(() => {
           watcherRaf = null;
