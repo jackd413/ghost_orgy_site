@@ -457,7 +457,7 @@
     .hero {
       min-height: 68vh;
       display: grid;
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
       gap: 3rem;
       align-items: stretch;
       padding-top: 3rem;
@@ -466,7 +466,7 @@
     }
 
     .hero-inner {
-      max-width: 640px;
+      max-width: 600px;
       align-self: center;
     }
 
@@ -662,12 +662,79 @@
       background: #05070a;
     }
 
+    .hero-route-box {
+      margin-top: 1.35rem;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-warm);
+      background: linear-gradient(180deg, rgba(12, 13, 15, 0.92) 0%, rgba(5, 6, 8, 0.98) 100%);
+      padding: 0.95rem 1rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-route-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(138, 255, 193, 0.04), transparent 38%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(255, 255, 255, 0.015) 3px,
+          rgba(255, 255, 255, 0.015) 4px
+        );
+      opacity: 0.65;
+    }
+
+    .hero-route-label {
+      position: relative;
+      z-index: 1;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-warm);
+      margin-bottom: 0.55rem;
+    }
+
+    .hero-route-copy {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      max-width: 34rem;
+    }
+
+    .hero-route-link {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.85rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+    }
+
+    .hero-route-link:hover { color: var(--fg); }
+
     /* Current transmission */
 
     .transmission-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-      gap: 2rem;
+      grid-template-areas:
+        "signal archive"
+        "faces archive";
+      gap: 1rem;
       align-items: stretch;
     }
 
@@ -677,6 +744,10 @@
       background: linear-gradient(180deg, #07090b 0%, #050608 100%);
       padding: 1.2rem 1.25rem 1.3rem;
     }
+
+    .route-primary { grid-area: signal; }
+    .route-secondary { grid-area: faces; }
+    .route-side { grid-area: archive; }
 
     .transmission-kicker {
       font-family: "IBM Plex Mono", monospace;
@@ -706,6 +777,95 @@
       color: var(--muted);
       font-size: 0.82rem;
       margin-top: 0.9rem;
+    }
+
+    .route-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(8, 10, 12, 0.96) 0%, rgba(5, 6, 8, 1) 100%);
+      padding: 1.15rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      min-height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .route-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(145deg, rgba(196, 149, 106, 0.05), transparent 44%);
+      opacity: 0.8;
+    }
+
+    .route-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .route-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .route-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .route-strip img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #1b1e23;
+      filter: brightness(0.58) contrast(1.08) grayscale(0.18);
+    }
+
+    .route-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .route-list li {
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .route-list li::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-warm);
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .route-note {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .route-quote {
+      border-left: 2px solid rgba(138, 255, 193, 0.35);
+      padding-left: 0.85rem;
+      color: var(--fg);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0;
     }
 
     .transmission-art {
@@ -741,50 +901,141 @@
 
     .hero-panel {
       border: 1px solid var(--border);
-      background: radial-gradient(circle at top, #151821 0, #050608 65%);
+      background: radial-gradient(circle at top, #14171b 0, #050608 72%);
       position: relative;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      min-height: 640px;
     }
 
-    .hero-image {
+    .hero-stage {
+      margin: 0;
       position: relative;
-      flex: 1;
-      background-image: url("images/ritual-watcher-woods.jpg");
-      background-size: cover;
-      background-position: center;
-      filter: grayscale(0.75) contrast(1.08) brightness(0.82);
+      min-height: 420px;
+      overflow: hidden;
     }
 
-    .hero-image::after {
+    .hero-stage::after {
       content: "";
       position: absolute;
       inset: 0;
+      pointer-events: none;
       background:
+        linear-gradient(to top, rgba(5, 6, 8, 0.86), transparent 36%),
+        linear-gradient(to bottom, rgba(5, 6, 8, 0.08), rgba(5, 6, 8, 0.18)),
         repeating-linear-gradient(
           to bottom,
-          rgba(0, 0, 0, 0.45),
-          rgba(0, 0, 0, 0.45) 1px,
-          rgba(0, 0, 0, 0.6) 2px
+          rgba(0, 0, 0, 0.34),
+          rgba(0, 0, 0, 0.34) 1px,
+          rgba(0, 0, 0, 0.5) 2px
         );
-      opacity: 0.15;
-      pointer-events: none;
+      opacity: 0.34;
+    }
+
+    .hero-stage-image {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.62) contrast(1.08) saturate(0.82);
+      transition: opacity 220ms ease, transform 360ms ease, filter 220ms ease;
+    }
+
+    .hero-panel.is-switching .hero-stage-image {
+      opacity: 0.45;
+      transform: scale(1.018);
+      filter: brightness(0.44) contrast(1.18) saturate(0.72);
     }
 
     .hero-panel-caption {
-      padding: 0.7rem 0.9rem;
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      color: var(--muted);
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 1rem 1rem 1.05rem;
+      background: linear-gradient(to top, rgba(5, 6, 8, 0.95), rgba(5, 6, 8, 0.15));
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      background: #050608;
+      letter-spacing: 0.16em;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
     }
 
-    .hero-panel-caption span { color: var(--accent-warm); }
+    .hero-panel-caption span {
+      color: var(--accent-warm);
+      font-size: 0.78rem;
+    }
+
+    .hero-panel-caption small {
+      color: var(--muted);
+      font-size: 0.62rem;
+    }
+
+    .hero-incidents {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .hero-incident {
+      border: none;
+      background: #050608;
+      color: var(--muted);
+      padding: 0.7rem;
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 0.75rem;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color var(--speed), color var(--speed), transform var(--speed);
+    }
+
+    .hero-incident:hover {
+      background: #0a0d10;
+      color: var(--fg);
+    }
+
+    .hero-incident.is-active {
+      background: linear-gradient(180deg, rgba(196, 149, 106, 0.1), rgba(10, 12, 14, 0.98));
+      color: var(--fg);
+    }
+
+    .hero-incident img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #1a1d21;
+      filter: brightness(0.7) contrast(1.08);
+    }
+
+    .hero-incident-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .hero-incident-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-warm);
+      line-height: 1.4;
+    }
+
+    .hero-incident-note {
+      font-size: 0.76rem;
+      color: inherit;
+      line-height: 1.35;
+    }
 
     /* Section layout */
 
@@ -1041,6 +1292,42 @@
     }
 
     .lore-box li { margin-bottom: 0.4rem; }
+
+    .lore-details,
+    .route-details {
+      margin-top: 0.95rem;
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+    }
+
+    .lore-details summary,
+    .route-details summary {
+      list-style: none;
+      cursor: pointer;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+    }
+
+    .lore-details summary::-webkit-details-marker,
+    .route-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .lore-details-body,
+    .route-details-body {
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.65;
+    }
+
+    .lore-details[open] summary,
+    .route-details[open] summary {
+      color: var(--fg);
+    }
 
     .artifact-grid {
       display: grid;
@@ -1442,13 +1729,19 @@
       }
 
       .hero-panel { min-height: 260px; }
+      .hero-incidents { grid-template-columns: minmax(0, 1fr); }
 
       .lore-layout,
       .transmission-layout,
       .music-layout,
       .contact-grid {
         grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: none;
       }
+
+      .route-primary,
+      .route-secondary,
+      .route-side { grid-area: auto; }
 
       .sisters-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1458,6 +1751,7 @@
 
     @media (max-width: 520px) {
       .evidence-grid { grid-template-columns: minmax(0, 1fr); }
+      .route-strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .hero-title { letter-spacing: 0.03em; }
       .sisters-grid { grid-template-columns: 1fr; }
     }
@@ -1526,13 +1820,12 @@
         <h1 class="hero-title">Ghost Orgy</h1>
 
         <p class="hero-note">
-          Nine sisters. One orchard. No clean exit.
+          Not an atmosphere. An intrusion.
         </p>
 
         <p class="hero-subtitle">
-          Close-mic breath, sub pressure, and distortion shaped into something that
-          hits the body before the mind has time to name it. This is not music that
-          wants to be understood. It wants to be felt wrong.
+          Close-mic breath, sub pressure, and distortion wired into a canon that keeps
+          leaking into the room. Start with whichever image unsettles you and follow it inward.
         </p>
 
         <div class="hero-actions">
@@ -1557,43 +1850,146 @@
             <span>SoundCloud</span>
           </a>
 
-          <a class="btn btn-text" href="#music">
-            <span>Skip to a ritual cut ↓</span>
+          <a class="btn btn-ghost" href="artifacts/index.html">
+            <span>Field artifacts</span>
           </a>
         </div>
 
         <div class="hero-meta">
-          <div class="meta-pill">headphones mandatory</div>
-          <div class="meta-pill">close-mic dread • sub pressure • ritual noise</div>
+          <div class="meta-pill">sound first</div>
+          <div class="meta-pill">choose a breach</div>
+        </div>
+
+        <div class="hero-route-box">
+          <div class="hero-route-label">Active breach</div>
+          <p class="hero-route-copy" data-breach-copy>
+            Single Orchard frame captured before the path went dark. Multiple silhouettes
+            in one pass. Fewer in the next. Nothing else changed.
+          </p>
+          <a class="hero-route-link" href="lore/index.html" data-breach-link>
+            <span>enter the orchard →</span>
+          </a>
         </div>
       </div>
 
-      <figure class="hero-panel">
-        <div class="hero-image"></div>
-        <figcaption class="hero-panel-caption">
-          <span>Orchard of Unmaking</span> · one path in, no safe exit
-        </figcaption>
-      </figure>
+      <aside class="hero-panel" data-breach-browser>
+        <figure class="hero-stage">
+          <img
+            class="hero-stage-image"
+            src="images/evidence-03.jpg?v=1"
+            alt="Recovered orchard frame — a hooded figure standing at a distance among skull-lined trees"
+            loading="eager"
+            decoding="async"
+            data-breach-image
+          />
+          <figcaption class="hero-panel-caption">
+            <span data-breach-title>Orchard Procession</span>
+            <small data-breach-caption>Perimeter frame · orchard ingress · source unverified</small>
+          </figcaption>
+        </figure>
+
+        <div class="hero-incidents">
+          <button
+            class="hero-incident is-active"
+            type="button"
+            data-breach-item
+            data-src="images/evidence-03.jpg?v=1"
+            data-alt="Recovered orchard frame — a hooded figure standing at a distance among skull-lined trees"
+            data-title="Orchard Procession"
+            data-caption="Perimeter frame · orchard ingress · source unverified"
+            data-copy="Single Orchard frame captured before the path went dark. Multiple silhouettes in one pass. Fewer in the next. Nothing else changed."
+            data-link="lore/index.html"
+            data-link-label="enter the orchard"
+            aria-pressed="true"
+          >
+            <img src="images/evidence-03.jpg?v=1" alt="" loading="lazy" decoding="async" />
+            <span class="hero-incident-copy">
+              <span class="hero-incident-label">Perimeter Frame</span>
+              <span class="hero-incident-note">The Orchard holding still just long enough to be seen.</span>
+            </span>
+          </button>
+
+          <button
+            class="hero-incident"
+            type="button"
+            data-breach-item
+            data-src="images/evidence-02.jpg?v=2"
+            data-alt="Recovered hall image — pale woman standing motionless in a dark corridor"
+            data-title="Hallway Capture"
+            data-caption="Device still · limbo corridor event · source retained"
+            data-copy="Corridor should end twelve feet behind the subject. It does not. Audio on the original device arrives three seconds late and repeats itself once."
+            data-link="sisters/limbo.html"
+            data-link-label="open limbo dossier"
+            aria-pressed="false"
+          >
+            <img src="images/evidence-02.jpg?v=2" alt="" loading="lazy" decoding="async" />
+            <span class="hero-incident-copy">
+              <span class="hero-incident-label">Limbo Event</span>
+              <span class="hero-incident-note">Motionless figure, impossible depth, corridor with no agreement.</span>
+            </span>
+          </button>
+
+          <button
+            class="hero-incident"
+            type="button"
+            data-breach-item
+            data-src="images/evidence-04.jpg?v=1"
+            data-alt="Recovered portrait — blood-marked veiled face with one burning eye"
+            data-title="Catechism Violation"
+            data-caption="Redacted portrait · liturgical anomaly · eyes not stable"
+            data-copy="Portrait retained after the bells rang without sound. One eye burns in some copies, both in others. No stable version has been recovered."
+            data-link="sisters/heresy.html"
+            data-link-label="read heresy dossier"
+            aria-pressed="false"
+          >
+            <img src="images/evidence-04.jpg?v=1" alt="" loading="lazy" decoding="async" />
+            <span class="hero-incident-copy">
+              <span class="hero-incident-label">Liturgical Breach</span>
+              <span class="hero-incident-note">Faith not broken, just turned the wrong way.</span>
+            </span>
+          </button>
+
+          <button
+            class="hero-incident"
+            type="button"
+            data-breach-item
+            data-src="images/evidence-01.jpg?v=2"
+            data-alt="Recovered field photo — skull-strewn ravine with a distant watcher figure"
+            data-title="Approach Ravine"
+            data-caption="Watcher sighting · skull-bed ravine · recovered 2024"
+            data-copy="The figure was only noticed after the print was enlarged. The skulls were counted twice. The total came back different both times."
+            data-link="artifacts/index.html"
+            data-link-label="review field artifacts"
+            aria-pressed="false"
+          >
+            <img src="images/evidence-01.jpg?v=2" alt="" loading="lazy" decoding="async" />
+            <span class="hero-incident-copy">
+              <span class="hero-incident-label">Watcher Sighting</span>
+              <span class="hero-incident-note">A depth reading the camera should not have held.</span>
+            </span>
+          </button>
+        </div>
+      </aside>
     </section>
 
     <section id="transmission">
       <div class="section-head">
-        <h2 class="section-title">Current Signal</h2>
+        <h2 class="section-title">Choose an Entry Point</h2>
         <p class="section-sub">
-          <strong>Salt and Suffering</strong> — the latest transmission from the Orchard.
+          Do not start with explanation. Start with the wound that opens first.
         </p>
       </div>
 
       <div class="transmission-layout">
-        <div class="transmission-shell">
-          <div class="transmission-kicker">Now active</div>
+        <article class="transmission-shell route-primary">
+          <div class="transmission-kicker">Sound route</div>
           <h3 class="transmission-title">Salt and Suffering</h3>
           <p class="transmission-copy">
-            Breath pressed too close to the capsule. Sub weight that doesn't resolve.
-            A voice that sounds like it's confessing to a room that already knows.
+            Breath pushed into the capsule until it stops sounding human. Low end that
+            never resolves. A voice confessing to a room that already knew.
           </p>
-          <p class="transmission-copy">
-            Start here. Follow the residue outward.
+          <p class="route-quote">
+            Start with the track if you want the body hit first and the meaning later.
           </p>
 
           <div class="hero-actions">
@@ -1615,24 +2011,67 @@
             >
               <span>SoundCloud</span>
             </a>
+            <a class="btn btn-text" href="#music">
+              <span>open the player ↓</span>
+            </a>
           </div>
 
           <p class="transmission-note">
-            What surfaces here is only what should travel in daylight.
+            The clean explanation does not exist. Only the signal does.
           </p>
-        </div>
+        </article>
 
-        <figure class="transmission-art">
-          <img
-            src="images/ritual-orchard.jpg"
-            alt="The Orchard of Unmaking — a bleak ritual grove of bone and root"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption class="transmission-caption">
-            <span>Orchard of Unmaking</span> · public trace
-          </figcaption>
-        </figure>
+        <article class="route-card route-secondary">
+          <div class="transmission-kicker">Face route</div>
+          <h3 class="transmission-title">Nine Sisters Dossiers</h3>
+          <p class="route-note">
+            Every Sister has a domain, a symptom pattern, and a residue trail. Choose a face and let it tell you what kind of damage you are looking at.
+          </p>
+          <div class="route-strip">
+            <img src="images/sister-limbo.jpg" alt="Limbo dossier preview" loading="lazy" decoding="async" />
+            <img src="images/sister-heresy.jpg" alt="Heresy dossier preview" loading="lazy" decoding="async" />
+            <img src="images/sister-fraud.jpg" alt="Fraud dossier preview" loading="lazy" decoding="async" />
+          </div>
+          <div class="route-links">
+            <a class="btn btn-ghost" href="sisters/limbo.html">
+              <span>Open Limbo</span>
+            </a>
+            <a class="btn btn-ghost" href="sisters/heresy.html">
+              <span>Open Heresy</span>
+            </a>
+            <a class="btn btn-text" href="#sisters">
+              <span>view all nine →</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="route-card route-side">
+          <div class="transmission-kicker">Archive route</div>
+          <h3 class="transmission-title">Recovered Evidence</h3>
+          <ul class="route-list">
+            <li>DOT #L-770: vehicle recorded at 85 mph while stationary.</li>
+            <li>Inquiry #H-331: bells ringing without sound, scripture rewriting itself.</li>
+            <li>Transcript #F-882: caller replaced mid-sentence by a woman in the victim's face.</li>
+          </ul>
+          <p class="route-note">
+            The archive is less explanatory than the music, but more dangerous. It gives shape to the wound without closing it.
+          </p>
+          <details class="route-details">
+            <summary>Open sealed appendix</summary>
+            <div class="route-details-body">
+              Witnesses disagree on the number of figures present, but the changes are always backwards:
+              fewer mouths, fewer shadows, fewer exits than there were a moment before.
+            </div>
+          </details>
+          <div class="route-links">
+            <a class="btn btn-primary" href="artifacts/index.html">
+              <span>Review artifacts</span>
+            </a>
+            <a class="btn btn-text" href="lore/index.html">
+              <span>enter orchard record →</span>
+            </a>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -1937,6 +2376,13 @@
               <li>Desire, hunger, damage, and betrayal each wear a face.</li>
               <li>There is one path in. There is no safe exit.</li>
             </ul>
+            <details class="lore-details">
+              <summary>open redacted appendix</summary>
+              <div class="lore-details-body">
+                The same sentence appears in separate files written by people who never met:
+                <em>It did not follow us home. It was already there.</em>
+              </div>
+            </details>
             <p style="margin-top: 0.9rem;">
               <a href="lore/index.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em;">Enter the Orchard →</a>
             </p>
@@ -2250,6 +2696,54 @@
       element.dataset.text = text;
       element.classList.add("glitch-text");
     });
+
+    const breachBrowser = document.querySelector("[data-breach-browser]");
+    const breachItems = Array.from(document.querySelectorAll("[data-breach-item]"));
+    const breachImage = document.querySelector("[data-breach-image]");
+    const breachTitle = document.querySelector("[data-breach-title]");
+    const breachCaption = document.querySelector("[data-breach-caption]");
+    const breachCopy = document.querySelector("[data-breach-copy]");
+    const breachLink = document.querySelector("[data-breach-link]");
+    let activeBreachIndex = breachItems.findIndex((item) => item.classList.contains("is-active"));
+    if (activeBreachIndex < 0) activeBreachIndex = 0;
+
+    function setBreach(index) {
+      if (!breachBrowser || !breachImage || !breachTitle || !breachCaption || !breachCopy || !breachLink) return;
+      const item = breachItems[index];
+      if (!item) return;
+
+      breachBrowser.classList.add("is-switching");
+      window.setTimeout(() => {
+        breachImage.src = item.dataset.src;
+        breachImage.alt = item.dataset.alt;
+        breachTitle.textContent = item.dataset.title;
+        breachCaption.textContent = item.dataset.caption;
+        breachCopy.textContent = item.dataset.copy;
+        breachLink.href = item.dataset.link;
+        breachLink.innerHTML = `<span>${item.dataset.linkLabel} →</span>`;
+        breachBrowser.classList.remove("is-switching");
+      }, 120);
+
+      breachItems.forEach((button, buttonIndex) => {
+        const isActive = buttonIndex === index;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      activeBreachIndex = index;
+    }
+
+    if (breachItems.length) {
+      breachItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          setBreach(index);
+          trackEvent("select_content", {
+            content_type: "hero_breach",
+            item_id: item.dataset.title
+          });
+        });
+      });
+    }
 
     const evidenceBrowser = document.querySelector("[data-evidence-browser]");
     const evidenceItems = Array.from(document.querySelectorAll("[data-evidence-item]"));
