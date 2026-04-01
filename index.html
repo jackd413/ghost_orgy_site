@@ -837,27 +837,185 @@
       gap: 1rem;
     }
 
-    .evidence-photo {
-      margin: 0;
+    .evidence-browser {
       border: 1px solid var(--border);
       background: #050608;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      position: relative;
       overflow: hidden;
+    }
+
+    .evidence-browser::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-warm), transparent 70%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .evidence-intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .evidence-photo {
+      margin: 0;
+      border: 1px solid #171a1f;
+      background: #040506;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .evidence-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(to top, rgba(5, 6, 8, 0.72), rgba(5, 6, 8, 0.06) 38%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 3px,
+          rgba(255, 255, 255, 0.025) 3px,
+          rgba(255, 255, 255, 0.025) 4px
+        );
+      mix-blend-mode: screen;
     }
 
     .evidence-photo img {
       width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
       display: block;
-      filter: brightness(0.5) contrast(1.1) sepia(0.15);
+      filter: brightness(0.52) contrast(1.12) saturate(0.78) sepia(0.12);
+      transition: opacity 220ms ease, transform 360ms ease, filter 240ms ease;
+    }
+
+    .evidence-browser.is-switching .evidence-photo img {
+      opacity: 0.42;
+      transform: scale(1.02);
+      filter: brightness(0.4) contrast(1.22) saturate(0.68) sepia(0.18);
+    }
+
+    .evidence-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .evidence-title {
+      font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
+      font-size: 1rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--fg);
     }
 
     .evidence-caption {
-      padding: 0.55rem 0.8rem;
-      border-top: 1px solid var(--border);
       font-family: "IBM Plex Mono", monospace;
       font-size: 0.62rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--accent-warm);
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .evidence-thumb {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #07090b;
+      color: var(--muted);
+      padding: 0.45rem;
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 0.65rem;
+      align-items: center;
+      text-align: left;
+      cursor: pointer;
+      transition:
+        border-color var(--speed),
+        background-color var(--speed),
+        color var(--speed),
+        transform var(--speed);
+    }
+
+    .evidence-thumb:hover {
+      border-color: #4a4139;
+      color: var(--fg);
+      transform: translateY(-1px);
+    }
+
+    .evidence-thumb.is-active {
+      border-color: var(--accent-warm);
+      background: rgba(196, 149, 106, 0.08);
+      color: var(--fg);
+    }
+
+    .evidence-thumb img {
+      width: 54px;
+      height: 54px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.68) contrast(1.12);
+    }
+
+    .evidence-thumb-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .evidence-thumb-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-warm);
+      line-height: 1.4;
+    }
+
+    .evidence-thumb-note {
+      font-size: 0.72rem;
+      line-height: 1.35;
+      color: inherit;
+    }
+
+    .evidence-random {
+      align-self: flex-start;
+      border: 1px solid var(--border);
+      background: #050608;
+      color: var(--muted);
+      padding: 0.42rem 0.8rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      transition:
+        border-color var(--speed),
+        color var(--speed),
+        background-color var(--speed);
+    }
+
+    .evidence-random:hover {
+      border-color: var(--accent);
+      color: var(--fg);
+      background: rgba(138, 255, 193, 0.06);
     }
 
     .lore-box {
@@ -1299,6 +1457,7 @@
     }
 
     @media (max-width: 520px) {
+      .evidence-grid { grid-template-columns: minmax(0, 1fr); }
       .hero-title { letter-spacing: 0.03em; }
       .sisters-grid { grid-template-columns: 1fr; }
     }
@@ -1670,25 +1829,101 @@
         </div>
 
         <aside class="lore-sidebar">
-          <figure class="evidence-photo">
-            <img
-              src="images/evidence-01.jpg?v=2"
-              alt="Recovered field photo — skull-strewn ravine with a distant watcher figure"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption class="evidence-caption">Photo evidence · approach ravine · recovered 2024</figcaption>
-          </figure>
+          <div class="evidence-browser" data-evidence-browser>
+            <div class="lore-label">Evidence Browser</div>
+            <p class="evidence-intro">
+              Choose a finding. Each frame points to a different break in the Orchard.
+            </p>
 
-          <figure class="evidence-photo">
-            <img
-              src="images/evidence-02.jpg"
-              alt="Recovered photo — environmental anomaly"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption class="evidence-caption">Photo evidence · environmental anomaly · unverified</figcaption>
-          </figure>
+            <figure class="evidence-photo">
+              <img
+                src="images/evidence-01.jpg?v=2"
+                alt="Recovered field photo — skull-strewn ravine with a distant watcher figure"
+                loading="lazy"
+                decoding="async"
+                data-evidence-image
+              />
+            </figure>
+
+            <div class="evidence-meta">
+              <div class="evidence-title" data-evidence-title>Approach Ravine</div>
+              <div class="evidence-caption" data-evidence-caption>Photo evidence · watcher sighting · recovered 2024</div>
+            </div>
+
+            <div class="evidence-grid" role="list">
+              <button
+                class="evidence-thumb is-active"
+                type="button"
+                data-evidence-item
+                data-src="images/evidence-01.jpg?v=2"
+                data-alt="Recovered field photo — skull-strewn ravine with a distant watcher figure"
+                data-title="Approach Ravine"
+                data-caption="Photo evidence · watcher sighting · recovered 2024"
+                aria-pressed="true"
+              >
+                <img src="images/evidence-01.jpg?v=2" alt="" loading="lazy" decoding="async" />
+                <span class="evidence-thumb-copy">
+                  <span class="evidence-thumb-label">Watcher Sighting</span>
+                  <span class="evidence-thumb-note">Skull-bed ravine, subject visible at depth.</span>
+                </span>
+              </button>
+
+              <button
+                class="evidence-thumb"
+                type="button"
+                data-evidence-item
+                data-src="images/evidence-02.jpg?v=2"
+                data-alt="Recovered hall image — pale woman standing motionless in a dark corridor"
+                data-title="Hallway Capture"
+                data-caption="Device still · limbo corridor event · source retained"
+                aria-pressed="false"
+              >
+                <img src="images/evidence-02.jpg?v=2" alt="" loading="lazy" decoding="async" />
+                <span class="evidence-thumb-copy">
+                  <span class="evidence-thumb-label">Limbo Event</span>
+                  <span class="evidence-thumb-note">Motionless figure recorded where the hall should end.</span>
+                </span>
+              </button>
+
+              <button
+                class="evidence-thumb"
+                type="button"
+                data-evidence-item
+                data-src="images/evidence-03.jpg?v=1"
+                data-alt="Recovered orchard frame — a hooded figure standing at a distance among skull-lined trees"
+                data-title="Orchard Procession"
+                data-caption="Perimeter frame · orchard ingress · source unverified"
+                aria-pressed="false"
+              >
+                <img src="images/evidence-03.jpg?v=1" alt="" loading="lazy" decoding="async" />
+                <span class="evidence-thumb-copy">
+                  <span class="evidence-thumb-label">Perimeter Frame</span>
+                  <span class="evidence-thumb-note">Single figure on the path before the trail disappears.</span>
+                </span>
+              </button>
+
+              <button
+                class="evidence-thumb"
+                type="button"
+                data-evidence-item
+                data-src="images/evidence-04.jpg?v=1"
+                data-alt="Recovered portrait — blood-marked veiled face with one burning eye"
+                data-title="Catechism Violation"
+                data-caption="Redacted portrait · liturgical anomaly · eyes not stable"
+                aria-pressed="false"
+              >
+                <img src="images/evidence-04.jpg?v=1" alt="" loading="lazy" decoding="async" />
+                <span class="evidence-thumb-copy">
+                  <span class="evidence-thumb-label">Liturgical Breach</span>
+                  <span class="evidence-thumb-note">Portrait evidence recovered after a silent-bell incident.</span>
+                </span>
+              </button>
+            </div>
+
+            <button class="evidence-random" type="button" data-evidence-random>
+              another finding
+            </button>
+          </div>
 
           <div class="lore-box">
             <div class="lore-label">Recovered Fragment</div>
@@ -2015,6 +2250,64 @@
       element.dataset.text = text;
       element.classList.add("glitch-text");
     });
+
+    const evidenceBrowser = document.querySelector("[data-evidence-browser]");
+    const evidenceItems = Array.from(document.querySelectorAll("[data-evidence-item]"));
+    const evidenceImage = document.querySelector("[data-evidence-image]");
+    const evidenceTitle = document.querySelector("[data-evidence-title]");
+    const evidenceCaption = document.querySelector("[data-evidence-caption]");
+    const evidenceRandom = document.querySelector("[data-evidence-random]");
+    let activeEvidenceIndex = evidenceItems.findIndex((item) => item.classList.contains("is-active"));
+    if (activeEvidenceIndex < 0) activeEvidenceIndex = 0;
+
+    function setEvidence(index) {
+      if (!evidenceBrowser || !evidenceImage || !evidenceTitle || !evidenceCaption) return;
+      const item = evidenceItems[index];
+      if (!item) return;
+
+      evidenceBrowser.classList.add("is-switching");
+      window.setTimeout(() => {
+        evidenceImage.src = item.dataset.src;
+        evidenceImage.alt = item.dataset.alt;
+        evidenceTitle.textContent = item.dataset.title;
+        evidenceCaption.textContent = item.dataset.caption;
+        evidenceBrowser.classList.remove("is-switching");
+      }, 140);
+
+      evidenceItems.forEach((button, buttonIndex) => {
+        const isActive = buttonIndex === index;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      activeEvidenceIndex = index;
+    }
+
+    if (evidenceItems.length) {
+      evidenceItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          setEvidence(index);
+          trackEvent("select_content", {
+            content_type: "evidence",
+            item_id: item.dataset.title
+          });
+        });
+      });
+    }
+
+    if (evidenceRandom && evidenceItems.length > 1) {
+      evidenceRandom.addEventListener("click", () => {
+        let nextIndex = activeEvidenceIndex;
+        while (nextIndex === activeEvidenceIndex) {
+          nextIndex = Math.floor(Math.random() * evidenceItems.length);
+        }
+        setEvidence(nextIndex);
+        trackEvent("select_content", {
+          content_type: "evidence_shuffle",
+          item_id: evidenceItems[nextIndex].dataset.title
+        });
+      });
+    }
 
     // music player toggle (Spotify / SoundCloud)
     const playerTabs = document.querySelectorAll(".player-tab[data-player]");
