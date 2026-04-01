@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ghost Orgy — Press / EPK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Ghost Orgy press kit. Die-fi ritual audio for film, games, installations, and anything that needs horror to feel physical."
+  />
+  <link rel="canonical" href="https://www.unholyghost.org/press/" />
+  <meta name="theme-color" content="#050608" />
+  <link rel="icon" type="image/png" href="../images/go-sigil-white.png" />
+  <link rel="apple-touch-icon" href="../images/go-sigil-white.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link href="https://db.onlinewebfonts.com/c/1d065bbebe505e76388da924c9cdd356?family=They+Perished" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/1c29c34b645c849dc0c4558ce3074ec3?family=Crimes+Times+Six" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-alt: #090a0c;
+      --fg: #f0ece6;
+      --muted: #9a978f;
+      --accent: #8affc1;
+      --accent-soft: rgba(138, 255, 193, 0.08);
+      --accent-warm: #c4956a;
+      --accent-warm-soft: rgba(196, 149, 106, 0.1);
+      --border: #2a2826;
+      --radius: 4px;
+      --speed: 180ms ease-out;
+      --site-max: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    body {
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* --- Header --- */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-header-inner {
+      max-width: var(--site-max);
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .site-title {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--muted);
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .site-nav a:hover { color: var(--fg); }
+
+    /* --- Shell --- */
+
+    .shell {
+      max-width: var(--site-max);
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* --- Sections --- */
+
+    section {
+      padding: 2.6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      margin: 0 0 0.5rem;
+      font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-family: "They Perished", "IBM Plex Mono", monospace;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      letter-spacing: 0.05em;
+      line-height: 1.04;
+    }
+
+    /* --- Bio --- */
+
+    .bio {
+      padding-top: 2.8rem;
+    }
+
+    .bio-body {
+      max-width: 38rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .bio-body p {
+      margin: 0 0 0.8rem;
+    }
+
+    .bio-body strong {
+      color: var(--fg);
+      font-weight: 400;
+    }
+
+    /* --- Facts grid --- */
+
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.6rem;
+    }
+
+    .fact-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
+      padding: 1rem 1.1rem;
+    }
+
+    .fact-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .fact-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    /* --- RIYL --- */
+
+    .riyl-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .riyl-tag {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.38rem 0.8rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      background: var(--accent-warm-soft);
+      white-space: nowrap;
+    }
+
+    /* --- Channels --- */
+
+    .channels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.8rem;
+    }
+
+    .channel-pill {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.48rem 1rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      transition: color var(--speed), border-color var(--speed);
+    }
+
+    .channel-pill:hover {
+      color: var(--fg);
+      border-color: var(--accent);
+    }
+
+    /* --- Visual strip --- */
+
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.8rem;
+    }
+
+    .strip-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .strip-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      filter: contrast(1.02) brightness(0.88);
+    }
+
+    .strip-caption {
+      padding: 0.7rem 0.85rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    /* --- Contact --- */
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--fg);
+      padding: 0.65rem 1.1rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      transition: background-color var(--speed), border-color var(--speed), color var(--speed);
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .btn-primary {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .btn-warm {
+      border-color: var(--accent-warm);
+      color: var(--accent-warm);
+      background: var(--accent-warm-soft);
+    }
+
+    .btn-warm:hover {
+      border-color: var(--accent-warm);
+      background: rgba(196, 149, 106, 0.18);
+    }
+
+    /* --- Footer --- */
+
+    footer {
+      padding: 1.8rem 0 1rem;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    /* --- Responsive --- */
+
+    @media (max-width: 820px) {
+      .site-header-inner,
+      .shell { padding-inline: 1.2rem; }
+      .strip { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-title">Ghost Orgy / Press</div>
+      <nav class="site-nav">
+        <a href="../index.html">Main Site</a>
+        <a href="mailto:info@unholyghost.org">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+
+    <!-- BIO -->
+    <section class="bio">
+      <div class="kicker">Electronic Press Kit</div>
+      <h1>Ghost Orgy</h1>
+      <div class="bio-body">
+        <p>
+          Die-fi ritual audio. An occult chorus summoned at the seam of hunger and echo.
+        </p>
+        <p>
+          Nine Sisters. One Orchard. Sound built to hit the body before the mind catches up.
+        </p>
+        <p>
+          Not a band. A canon wired into a signal chain.
+        </p>
+      </div>
+    </section>
+
+    <!-- QUICK FACTS -->
+    <section>
+      <h2 class="section-title">Quick Facts</h2>
+      <div class="facts-grid">
+        <article class="fact-card">
+          <div class="fact-label">Form</div>
+          <p>Experimental horror / ritual audio / die-fi</p>
+        </article>
+        <article class="fact-card">
+          <div class="fact-label">Sound</div>
+          <p>Close-mic dread. Sub pressure. Heavy modulation. Lossless detail kept damaged.</p>
+        </article>
+        <article class="fact-card">
+          <div class="fact-label">Built For</div>
+          <p>Games, film, installations, trailers, anything that needs horror to feel physical.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- RIYL -->
+    <section>
+      <h2 class="section-title">RIYL</h2>
+      <div class="riyl-list">
+        <span class="riyl-tag">Burial</span>
+        <span class="riyl-tag">Godspeed You! Black Emperor</span>
+        <span class="riyl-tag">Sunn O)))</span>
+        <span class="riyl-tag">The Caretaker</span>
+        <span class="riyl-tag">Lingua Ignota</span>
+        <span class="riyl-tag">Dark Ambient</span>
+        <span class="riyl-tag">Ritual Noise</span>
+      </div>
+    </section>
+
+    <!-- CHANNELS -->
+    <section>
+      <h2 class="section-title">Public Channels</h2>
+      <div class="channels">
+        <a class="channel-pill" href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer">Spotify</a>
+        <a class="channel-pill" href="https://soundcloud.com/ghostorgymusic" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+        <a class="channel-pill" href="https://www.tiktok.com/@ghostorgy.music" target="_blank" rel="noopener noreferrer">TikTok</a>
+        <a class="channel-pill" href="https://www.instagram.com/ghostorgy.music/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </section>
+
+    <!-- VISUAL STRIP -->
+    <section>
+      <h2 class="section-title">Visual Strip</h2>
+      <div class="strip">
+        <article class="strip-card">
+          <img src="../images/ritual-watcher-woods.jpg" alt="Watcher figure on a narrow forest path" />
+          <div class="strip-caption">Watcher trace / wrong path</div>
+        </article>
+        <article class="strip-card">
+          <img src="../images/ritual-orchard.jpg" alt="The Orchard of Unmaking" />
+          <div class="strip-caption">Orchard residue / public fragment</div>
+        </article>
+        <article class="strip-card">
+          <img src="../images/hero-sister.jpg" alt="Sister figure from the Nine" />
+          <div class="strip-caption">Sister signal / field capture</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section>
+      <h2 class="section-title">Contact</h2>
+      <p style="color: var(--muted); font-size: 0.9rem; margin: 0 0 0.6rem;">
+        Licensing. Commissions. Placements.
+      </p>
+      <div class="contact-row">
+        <a class="btn btn-primary" href="mailto:info@unholyghost.org">info@unholyghost.org</a>
+        <a class="btn btn-warm" href="../index.html">Back to Main Site</a>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2026 Ghost Orgy, LLC
+    </footer>
+
+  </main>
+
+</body>
+</html>

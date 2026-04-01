@@ -1,0 +1,7 @@
+# Local-only sync config for this machine
+canon-sync.local.json
+
+# Local-only canon/context imports. These stay available in the workspace
+# but must never be committed to the public website repo.
+canon/
+source-assets/

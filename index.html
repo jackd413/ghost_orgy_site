@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Ghost Orgy</title>
+  <title>Ghost Orgy — Nine Sisters. One Orchard. No clean exit.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Ghost Orgy is unforgiving die-fi ritual audio. Experimental horror sound that hits the body first, then the mind."
+    content="Ghost Orgy is die-fi ritual audio. Nine Sisters, one Orchard, and sound built to hit the body before the mind catches up."
   />
 
    <!-- Google tag (gtag.js) -->
@@ -23,8 +23,8 @@
   <meta name="theme-color" content="#050608" />
 
   <!-- Social previews (Open Graph / Twitter) -->
-  <meta property="og:title" content="Ghost Orgy — Die-fi ritual audio" />
-  <meta property="og:description" content="Unforgiving die-fi ritual audio. Experimental horror sound that hits the body first, then the mind." />
+  <meta property="og:title" content="Ghost Orgy — Nine Sisters. One Orchard. No clean exit." />
+  <meta property="og:description" content="Die-fi ritual audio. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.unholyghost.org/" />
 
@@ -34,14 +34,19 @@
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ghost Orgy — Nine Sisters. One Orchard. No clean exit." />
+  <meta
+    name="twitter:description"
+    content="Die-fi ritual audio. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up."
+  />
   <meta name="twitter:image" content="https://www.unholyghost.org/images/og-card.jpg" />
 
   <!-- Favicons (add these files if you want custom icons) -->
-  <link rel="icon" href="images/favicon.ico" />
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" href="images/go-sigil-white.png" />
+  <link rel="apple-touch-icon" href="images/go-sigil-white.png" />
 
   <!-- Preload key images (helps avoid late pop-in) -->
-  <link rel="preload" as="image" href="images/hero-sister.jpg?v=2" />
+  <link rel="preload" as="image" href="images/ritual-watcher-woods.jpg" />
   <link rel="preload" as="image" href="images/watcher-face.png" />
 
   <!-- RSS FEED -->
@@ -51,6 +56,23 @@
     title="Ghost Orgy RSS"
     href="https://feeds.soundcloud.com/users/soundcloud:users:12663938/sounds.rss"
   />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "name": "Ghost Orgy",
+      "url": "https://www.unholyghost.org/",
+      "description": "Die-fi ritual audio. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up.",
+      "genre": ["Experimental horror", "Ritual audio", "Dark ambient"],
+      "sameAs": [
+        "https://soundcloud.com/ghostorgymusic",
+        "https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB",
+        "https://www.tiktok.com/@ghostorgy.music",
+        "https://www.instagram.com/ghostorgy.music/"
+      ]
+    }
+  </script>
 
   <!-- Base fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -70,13 +92,16 @@
     :root {
       --bg: #050608;
       --bg-alt: #090a0c;
-      --fg: #f5f5f5;
-      --muted: #a0a4aa;
+      --fg: #f0ece6;
+      --muted: #9a978f;
       --accent: #8affc1;
       --accent-soft: rgba(138, 255, 193, 0.08);
-      --border: #2a2d33;
+      --accent-warm: #c4956a;
+      --accent-warm-soft: rgba(196, 149, 106, 0.1);
+      --border: #2a2826;
       --radius: 4px;
       --speed: 180ms ease-out;
+      --site-max: 1240px;
     }
 
     * { box-sizing: border-box; }
@@ -97,6 +122,11 @@
       line-height: 1.6;
     }
 
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -109,7 +139,7 @@
     }
 
     .shell {
-      max-width: 960px;
+      max-width: var(--site-max);
       margin: 0 auto;
       padding: 0 1.5rem 4rem;
       position: relative;
@@ -127,7 +157,7 @@
     }
 
     .site-header-inner {
-      max-width: 960px;
+      max-width: var(--site-max);
       margin: 0 auto;
       padding: 0.8rem 1.5rem;
       display: flex;
@@ -253,73 +283,132 @@
 
     .watcher {
       position: fixed;
-
-      /* Keep it mostly off-screen even on huge displays */
-      right: clamp(-220px, -14vw, -120px);
-      top: 18vh;
-
-      /* Scale with viewport so it doesn't become a readable face on big monitors */
-      width: clamp(220px, 18vw, 320px);
-
+      inset: 0;
       pointer-events: none;
-
-      /* behind content but above background */
       z-index: 1;
-
-      /* Make it harder to "read" */
-      opacity: 0.10;
-      mix-blend-mode: soft-light;
-      filter: grayscale(1) blur(1.9px) contrast(0.82) brightness(0.88);
-
-      will-change: transform;
+      overflow: clip;
+      --watcher-x: 76vw;
+      --watcher-y: 12vh;
+      --watcher-scale: 1;
+      --watcher-rotate: -4deg;
+      --watcher-size: clamp(260px, 20vw, 420px);
+      --scroll-drift: 0px;
     }
 
     .watcher-inner {
-      animation: watcherFloat 7s ease-in-out infinite alternate;
-      will-change: transform;
-
-      /* Mask it so only suggestion survives */
-      -webkit-mask-image: radial-gradient(circle at 30% 52%,
-        rgba(0,0,0,0.85) 0%,
-        rgba(0,0,0,0.55) 40%,
-        rgba(0,0,0,0.18) 68%,
-        rgba(0,0,0,0.00) 100%);
-      mask-image: radial-gradient(circle at 30% 52%,
-        rgba(0,0,0,0.85) 0%,
-        rgba(0,0,0,0.55) 40%,
-        rgba(0,0,0,0.18) 68%,
-        rgba(0,0,0,0.00) 100%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--watcher-size);
+      opacity: 0;
+      mix-blend-mode: screen;
+      filter: grayscale(1) blur(2.2px) contrast(1.06) brightness(0.72);
+      transform:
+        translate3d(var(--watcher-x), calc(var(--watcher-y) + var(--scroll-drift)), 0)
+        scale(var(--watcher-scale))
+        rotate(var(--watcher-rotate));
+      transition:
+        opacity 1400ms ease,
+        transform 4000ms cubic-bezier(0.16, 0.8, 0.1, 1),
+        filter 300ms ease;
+      will-change: transform, opacity, filter;
     }
 
-    .watcher img {
+    .watcher.is-haunting .watcher-inner {
+      opacity: 0.16;
+    }
+
+    .watcher.is-flash .watcher-inner {
+      opacity: 0.38;
+      filter: grayscale(1) blur(0.8px) contrast(1.22) brightness(0.98);
+    }
+
+    .watcher-glitch {
+      position: relative;
+      animation:
+        watcherFloat 14s ease-in-out infinite alternate,
+        watcherIdleFlicker 16s steps(2, end) infinite;
+      will-change: transform, opacity;
+      -webkit-mask-image: radial-gradient(circle farthest-side at 50% 48%,
+        rgba(0,0,0,0.96) 0%,
+        rgba(0,0,0,0.68) 30%,
+        rgba(0,0,0,0.2) 58%,
+        rgba(0,0,0,0.0) 85%);
+      mask-image: radial-gradient(circle farthest-side at 50% 48%,
+        rgba(0,0,0,0.96) 0%,
+        rgba(0,0,0,0.68) 30%,
+        rgba(0,0,0,0.2) 58%,
+        rgba(0,0,0,0.0) 85%);
+    }
+
+    .watcher-base,
+    .watcher-echo {
       width: 100%;
       height: auto;
       display: block;
     }
 
+    .watcher-echo {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .watcher.is-flash .watcher-glitch {
+      animation:
+        watcherSurge 220ms steps(2, end) 2,
+        watcherIdleFlicker 0.24s steps(3, end) 2;
+    }
+
+    .watcher.is-flash .watcher-echo-a {
+      opacity: 0.22;
+      transform: translate3d(-12px, 1px, 0);
+      filter: hue-rotate(-18deg) brightness(1.15);
+    }
+
+    .watcher.is-flash .watcher-echo-b {
+      opacity: 0.16;
+      transform: translate3d(9px, -4px, 0);
+      filter: hue-rotate(14deg) brightness(0.92);
+    }
+
     @keyframes watcherFloat {
       0%   { transform: translate3d(0, 0, 0); }
-      50%  { transform: translate3d(-6px, -42px, 0); }
-      100% { transform: translate3d(0, -72px, 0); }
+      50%  { transform: translate3d(-6px, -18px, 0); }
+      100% { transform: translate3d(3px, -34px, 0); }
     }
 
-    @keyframes watcherFlicker {
-      0%, 100% { opacity: 0.10; }
-      40%      { opacity: 0.14; }
-      60%      { opacity: 0.08; }
+    @keyframes watcherIdleFlicker {
+      0%, 100% { opacity: 0.98; }
+      8%  { opacity: 0.84; }
+      9%  { opacity: 0.34; }
+      10% { opacity: 0.96; }
+      44% { opacity: 0.88; }
+      45% { opacity: 0.52; }
+      46% { opacity: 0.94; }
+      82% { opacity: 0.9; }
+      83% { opacity: 0.4; }
+      84% { opacity: 1; }
     }
 
-    html.scrolling .watcher-inner {
-      animation:
-        watcherFloat 7s ease-in-out infinite alternate,
-        watcherFlicker 0.22s steps(2) 1;
+    @keyframes watcherSurge {
+      0%   { transform: translate3d(0, 0, 0) skewX(0deg); }
+      25%  { transform: translate3d(-6px, -14px, 0) skewX(-4deg); }
+      50%  { transform: translate3d(7px, 4px, 0) skewX(3deg); }
+      75%  { transform: translate3d(-4px, -3px, 0) skewX(-2deg); }
+      100% { transform: translate3d(0, 0, 0) skewX(0deg); }
+    }
+
+    html.scrolling .watcher.is-haunting .watcher-inner {
+      filter: grayscale(1) blur(1.8px) contrast(1.12) brightness(0.82);
     }
 
     /* If you ever feel it's still too present on ultrawide, soften further */
     @media (min-width: 1600px) {
       .watcher {
-        opacity: 0.08;
-        filter: grayscale(1) blur(2.2px) contrast(0.78) brightness(0.86);
+        --watcher-size: clamp(220px, 16vw, 320px);
       }
     }
 
@@ -342,7 +431,7 @@
     }
 
     .mobile-nav-inner {
-      max-width: 960px;
+      max-width: var(--site-max);
       margin: 0 auto;
       padding: 0.6rem 1.5rem 0.9rem;
       display: flex;
@@ -369,7 +458,7 @@
       min-height: 68vh;
       display: grid;
       grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
-      gap: 2.4rem;
+      gap: 3rem;
       align-items: stretch;
       padding-top: 3rem;
       padding-bottom: 2.5rem;
@@ -377,7 +466,7 @@
     }
 
     .hero-inner {
-      max-width: 580px;
+      max-width: 640px;
       align-self: center;
     }
 
@@ -406,14 +495,80 @@
       letter-spacing: 0.05em;
       line-height: 1.1;
       margin: 0 0 0.8rem;
-      animation: go-flicker 7s infinite steps(70);
     }
 
-    @keyframes go-flicker {
+    .glitch-text {
+      position: relative;
+      display: inline-block;
+      animation: textFlicker 8.5s steps(2, end) infinite;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .glitch-text::before {
+      color: rgba(138, 255, 193, 0.38);
+      text-shadow: 0 0 8px rgba(138, 255, 193, 0.25);
+      animation: textGlitchA 7.8s steps(2, end) infinite;
+    }
+
+    .glitch-text::after {
+      color: rgba(255, 110, 110, 0.24);
+      text-shadow: 0 0 6px rgba(255, 110, 110, 0.22);
+      animation: textGlitchB 10.7s steps(2, end) infinite;
+    }
+
+    @keyframes textFlicker {
       0%, 100% { opacity: 1; }
-      92% { opacity: 0.9; }
-      95% { opacity: 0.75; transform: translateX(-1px); }
-      97% { opacity: 0.95; transform: translateX(1px); }
+      84% { opacity: 1; }
+      85% { opacity: 0.8; }
+      86% { opacity: 0.98; }
+      87% { opacity: 0.72; }
+      88% { opacity: 1; }
+    }
+
+    @keyframes textGlitchA {
+      0%, 89%, 100% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+      }
+      90% {
+        opacity: 0.7;
+        transform: translate3d(2px, 0, 0);
+      }
+      91% {
+        opacity: 0.25;
+        transform: translate3d(-2px, 1px, 0);
+      }
+      92% {
+        opacity: 0.55;
+        transform: translate3d(1px, -1px, 0);
+      }
+    }
+
+    @keyframes textGlitchB {
+      0%, 92%, 100% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0);
+      }
+      93% {
+        opacity: 0.55;
+        transform: translate3d(-3px, 0, 0);
+      }
+      94% {
+        opacity: 0.18;
+        transform: translate3d(2px, -1px, 0);
+      }
+      95% {
+        opacity: 0.42;
+        transform: translate3d(-1px, 1px, 0);
+      }
     }
 
     .hero-note {
@@ -507,6 +662,81 @@
       background: #05070a;
     }
 
+    /* Current transmission */
+
+    .transmission-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .transmission-shell {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      background: linear-gradient(180deg, #07090b 0%, #050608 100%);
+      padding: 1.2rem 1.25rem 1.3rem;
+    }
+
+    .transmission-kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-warm);
+      margin-bottom: 0.8rem;
+    }
+
+    .transmission-title {
+      margin: 0 0 0.8rem;
+      font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
+      font-size: 1.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .transmission-copy {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 1rem;
+      max-width: 42rem;
+    }
+
+    .transmission-note {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 0.9rem;
+    }
+
+    .transmission-art {
+      border: 1px solid var(--border);
+      background: #050608;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .transmission-art img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.04) brightness(0.62);
+    }
+
+    .transmission-caption {
+      padding: 0.8rem 0.95rem;
+      border-top: 1px solid var(--border);
+      background: #050608;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .transmission-caption span { color: var(--fg); }
+
     /* Hero image panel */
 
     .hero-panel {
@@ -522,10 +752,10 @@
     .hero-image {
       position: relative;
       flex: 1;
-      background-image: url("images/hero-sister.jpg?v=2");
+      background-image: url("images/ritual-watcher-woods.jpg");
       background-size: cover;
       background-position: center;
-      filter: grayscale(1) contrast(1.2) brightness(0.9);
+      filter: grayscale(0.75) contrast(1.08) brightness(0.82);
     }
 
     .hero-image::after {
@@ -554,7 +784,7 @@
       background: #050608;
     }
 
-    .hero-panel-caption span { color: var(--accent); }
+    .hero-panel-caption span { color: var(--accent-warm); }
 
     /* Section layout */
 
@@ -601,6 +831,35 @@
       font-weight: 500;
     }
 
+    .lore-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .evidence-photo {
+      margin: 0;
+      border: 1px solid var(--border);
+      background: #050608;
+      overflow: hidden;
+    }
+
+    .evidence-photo img {
+      width: 100%;
+      display: block;
+      filter: brightness(0.5) contrast(1.1) sepia(0.15);
+    }
+
+    .evidence-caption {
+      padding: 0.55rem 0.8rem;
+      border-top: 1px solid var(--border);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-warm);
+    }
+
     .lore-box {
       border: 1px solid var(--border);
       padding: 1rem 1.1rem;
@@ -615,7 +874,7 @@
       text-transform: uppercase;
       letter-spacing: 0.2em;
       margin-bottom: 0.7rem;
-      color: var(--accent);
+      color: var(--accent-warm);
     }
 
     .lore-box ul {
@@ -625,28 +884,86 @@
 
     .lore-box li { margin-bottom: 0.4rem; }
 
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.3rem;
+    }
+
+    .artifact-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #06080a 0%, #050608 100%);
+      padding: 0.95rem 1rem 1rem;
+      min-height: 100%;
+    }
+
+    .artifact-kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.67rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-warm);
+      margin-bottom: 0.5rem;
+    }
+
+    .artifact-title {
+      margin: 0 0 0.4rem;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .artifact-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
     /* Sisters */
 
-    .sisters-list {
+    .sisters-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.95rem;
+    }
+
+    .sister-card {
+      position: relative;
+      overflow: hidden;
       border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      padding: 0.6rem 1rem 0.8rem;
-      background: #050608;
+      background: linear-gradient(180deg, #07090b 0%, #050608 100%);
+      display: flex;
+      flex-direction: column;
     }
 
-    .sister {
-      padding: 0.7rem 0;
-      border-bottom: 1px solid #13151a;
+    .sister-img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.55) contrast(1.08) grayscale(0.3);
+      transition: filter 400ms ease;
     }
 
-    .sister:last-child { border-bottom: none; }
+    .sister-card:hover .sister-img {
+      filter: brightness(0.7) contrast(1.05) grayscale(0.1);
+    }
 
-    .sister-header {
+    .sister-card-body {
+      padding: 0.9rem 1rem 1.05rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;
+    }
+
+    .sister-card-top {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem 1.2rem;
       align-items: baseline;
-      margin-bottom: 0.2rem;
     }
 
     .sister-circle {
@@ -658,10 +975,18 @@
     }
 
     .sister-name {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.86rem;
+      font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
+      font-size: 1.1rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.08em;
+      margin: 0;
+    }
+    .sister-name a {
+      color: var(--accent-warm);
+      text-decoration: none;
+    }
+    .sister-name a:hover {
+      text-decoration: underline;
     }
 
     .sister-aspect {
@@ -675,7 +1000,16 @@
     .sister-body {
       color: var(--muted);
       font-size: 0.86rem;
-      max-width: 46rem;
+      margin: 0;
+    }
+
+    .sister-cue {
+      margin-top: auto;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
     }
 
     /* MUSIC SECTION */
@@ -844,6 +1178,31 @@
 
     .contact-email a:hover { color: var(--fg); }
 
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.1rem 0 1rem;
+    }
+
+    .contact-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .contact-tag {
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem;
+      background: #06080a;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
     .social-block {
       border: 1px solid var(--border);
       border-left: 3px solid var(--accent);
@@ -895,7 +1254,7 @@
     }
 
     .footer-inner {
-      max-width: 960px;
+      max-width: var(--site-max);
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
@@ -927,14 +1286,21 @@
       .hero-panel { min-height: 260px; }
 
       .lore-layout,
+      .transmission-layout,
       .music-layout,
       .contact-grid {
         grid-template-columns: minmax(0, 1fr);
       }
+
+      .sisters-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
     }
 
     @media (max-width: 520px) {
       .hero-title { letter-spacing: 0.03em; }
+      .sisters-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -952,13 +1318,17 @@
       <div class="nav-main">
         <nav>
           <a href="#top">Home</a>
+          <a href="#transmission">Signal</a>
+          <a href="#music">Music</a>
           <a href="#lore">Lore</a>
           <a href="#sisters">Sisters</a>
-          <a href="#music">Music</a>
+          <a href="lore/index.html">Orchard</a>
+          <a href="artifacts/index.html">Artifacts</a>
+          <a href="press/index.html">Press</a>
           <a href="#contact">Contact</a>
         </nav>
         <div class="nav-flag">
-          <span>New:</span> album "Salt and Suffering" coming soon!
+          <a href="#transmission"><span>Current:</span> salt and suffering signal path</a>
         </div>
         <button
           class="nav-toggle"
@@ -976,9 +1346,11 @@
     <div class="mobile-nav" id="mobileNav">
       <div class="mobile-nav-inner">
         <a href="#top">Home</a>
+        <a href="#transmission">Signal</a>
+        <a href="#music">Music</a>
         <a href="#lore">Lore</a>
         <a href="#sisters">Sisters</a>
-        <a href="#music">Music</a>
+        <a href="press/index.html">Press</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -989,221 +1361,119 @@
       <div class="hero-inner">
         <div class="hero-label">
           <div class="hero-label-dot"></div>
-          <span>Experimental. Horror. Unforgiving.</span>
+          <span>Die-fi ritual audio</span>
         </div>
 
         <h1 class="hero-title">Ghost Orgy</h1>
 
         <p class="hero-note">
-          not a band. a canon wired into a signal chain.
+          Nine sisters. One orchard. No clean exit.
         </p>
 
         <p class="hero-subtitle">
-          Ghost Orgy is <strong>unforgiving die-fi</strong>: ritual audio built from breath,
-          noise, and distortion. It is meant to hit the body first and explain itself later,
-          if at all.
+          Close-mic breath, sub pressure, and distortion shaped into something that
+          hits the body before the mind has time to name it. This is not music that
+          wants to be understood. It wants to be felt wrong.
         </p>
 
         <div class="hero-actions">
           <a
             class="btn btn-primary"
-            href="https://soundcloud.com/ghostorgymusic"
+            href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB"
             target="_blank"
             rel="noopener noreferrer"
+            data-track="hero_spotify"
           >
-            <span>Listen on soundcloud</span>
+            <span>Listen now</span>
             <span>▶</span>
           </a>
 
           <a
             class="btn btn-ghost"
-            href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB"
+            href="https://soundcloud.com/ghostorgymusic"
             target="_blank"
             rel="noopener noreferrer"
+            data-track="hero_soundcloud"
           >
-            <span>Stream on spotify</span>
+            <span>SoundCloud</span>
           </a>
 
           <a class="btn btn-text" href="#music">
-            <span>skip to a ritual cut ↓</span>
+            <span>Skip to a ritual cut ↓</span>
           </a>
         </div>
 
         <div class="hero-meta">
-          <div class="meta-pill">Nine sisters • one orchard</div>
-          <div class="meta-pill">asmr • bass weight • narrative horror</div>
+          <div class="meta-pill">headphones mandatory</div>
+          <div class="meta-pill">close-mic dread • sub pressure • ritual noise</div>
         </div>
       </div>
 
       <figure class="hero-panel">
         <div class="hero-image"></div>
         <figcaption class="hero-panel-caption">
-          <span>Orchard of Unmaking</span> · field record, visual residue only
+          <span>Orchard of Unmaking</span> · one path in, no safe exit
         </figcaption>
       </figure>
     </section>
 
-    <section id="lore">
+    <section id="transmission">
       <div class="section-head">
-        <h2 class="section-title">Lore</h2>
+        <h2 class="section-title">Current Signal</h2>
         <p class="section-sub">
-          The project lives between experimental audio, horror fiction, and obsessive
-          production. The Nine Sisters and the Orchard of Unmaking thread through everything.
+          <strong>Salt and Suffering</strong> — the latest transmission from the Orchard.
         </p>
       </div>
 
-      <div class="lore-layout">
-        <div class="lore-text">
-          <p>
-            Ghost Orgy is not a touring act or a live band. It is a <strong>canon</strong>,
-            a <strong>ritual system</strong>, and a set of haunted rules that keep showing up
-            in sound, text, and image.
+      <div class="transmission-layout">
+        <div class="transmission-shell">
+          <div class="transmission-kicker">Now active</div>
+          <h3 class="transmission-title">Salt and Suffering</h3>
+          <p class="transmission-copy">
+            Breath pressed too close to the capsule. Sub weight that doesn't resolve.
+            A voice that sounds like it's confessing to a room that already knows.
           </p>
-          <p>
-            Each piece is treated as an encounter. Close-mic whispers that feel too near.
-            Detail rich atmospheres. Low end that does not stay in the speakers. Structures
-            that follow the Sisters more than safe song templates.
+          <p class="transmission-copy">
+            Start here. Follow the residue outward.
           </p>
-          <p>
-            At the core are the <strong>Nine Sisters</strong> human in origin, taken by Hell,
-            then expelled when they destabilized its structure. They move through the
-            <strong>Orchard of Unmaking</strong> and pull people in through obsession, hunger,
-            wrong motion, and fracture.
+
+          <div class="hero-actions">
+            <a
+              class="btn btn-primary"
+              href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="transmission_spotify"
+            >
+              <span>Listen on Spotify</span>
+            </a>
+            <a
+              class="btn btn-ghost"
+              href="https://soundcloud.com/ghostorgymusic"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="transmission_soundcloud"
+            >
+              <span>SoundCloud</span>
+            </a>
+          </div>
+
+          <p class="transmission-note">
+            What surfaces here is only what should travel in daylight.
           </p>
         </div>
 
-        <aside class="lore-box">
-          <div class="lore-label">Operating constraints</div>
-          <p>
-            The work has a few hard rules. If a track does not hit these, it does not belong here.
-          </p>
-          <ul>
-            <li>No safe background music.</li>
-            <li>High density, lossless friendly sound design.</li>
-            <li>Narratives that reward repeat listening.</li>
-            <li>Canon coherence across tracks, art, and text.</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section id="sisters">
-      <div class="section-head">
-        <h2 class="section-title">The Nine Sisters</h2>
-        <p class="section-sub">
-          Expelled archetypes. Each with her own law, voice, and ritual. Together they mark the
-          cracks Heaven tried to name out of existence.
-        </p>
-      </div>
-
-      <div class="sisters-list">
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle I • Limbo</div>
-            <div class="sister-name">Limbo</div>
-            <div class="sister-aspect">Annihilation of anchor</div>
-          </div>
-          <div class="sister-body">
-            Acceleration without arrival. Pace without center. She breaks clocks, sequences,
-            and the idea that a present moment can ever hold still.
-          </div>
-        </div>
-
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle II • Lust</div>
-            <div class="sister-name">Lust</div>
-            <div class="sister-aspect">Desire that overwrites self</div>
-          </div>
-          <div class="sister-body">
-            Obsession turned cannibal. She amplifies want until memory and motive collapse and
-            only the object remains.
-          </div>
-        </div>
-
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle III • Gluttony</div>
-            <div class="sister-name">Gluttony</div>
-            <div class="sister-aspect">Starvation of meaning</div>
-          </div>
-          <div class="sister-body">
-            Not hunger for food. Hunger for significance. She drains color, joy, and purpose
-            until only the ache and the need to fill it are left.
-          </div>
-        </div>
-
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle IV • Greed</div>
-            <div class="sister-name">Greed</div>
-            <div class="sister-aspect">Wealth as disease</div>
-          </div>
-          <div class="sister-body">
-            Gold fused to flesh. Every grasping instinct ritualized. Thrones built out of other
-            people and called success.
-          </div>
-        </div>
-
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle V • Wrath</div>
-            <div class="sister-name">Wrath</div>
-            <div class="sister-aspect">Force without repair</div>
-          </div>
-          <div class="sister-body">
-            Impact as language. She speaks in breaks, shatters, and blows that all say the same thing:
-            nothing is going back how it was.
-          </div>
-        </div>
-
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle VI • Heresy</div>
-            <div class="sister-name">Heresy</div>
-            <div class="sister-aspect">Speech against structure</div>
-          </div>
-          <div class="sister-body">
-            She talks in loopholes and misalignments. Doctrine melts around her. Systems forget how
-            to hold their own weight.
-          </div>
-        </div>
-
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle VII • Violence</div>
-            <div class="sister-name">Violence</div>
-            <div class="sister-aspect">Cruelty as grammar</div>
-          </div>
-          <div class="sister-body">
-            Harm repeated until it becomes structure. Wounds multiplied in stone, glass, and mirrored
-            surfaces that never quite stop reflecting.
-          </div>
-        </div>
-
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle VIII • Fraud</div>
-            <div class="sister-name">Fraud</div>
-            <div class="sister-aspect">False faces</div>
-          </div>
-          <div class="sister-body">
-            Porcelain reflections and mirrored eyes. She does not argue with truth. She replaces it
-            with whatever performs better in the moment.
-          </div>
-        </div>
-
-        <div class="sister">
-          <div class="sister-header">
-            <div class="sister-circle">Circle IX • Treachery</div>
-            <div class="sister-name">Treachery</div>
-            <div class="sister-aspect">Betrayal as architecture</div>
-          </div>
-          <div class="sister-body">
-            Mechanical stillness. Leathery husk mask. The quiet realization that the floor under you
-            was traded away a long time ago.
-          </div>
-        </div>
+        <figure class="transmission-art">
+          <img
+            src="images/ritual-orchard.jpg"
+            alt="The Orchard of Unmaking — a bleak ritual grove of bone and root"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption class="transmission-caption">
+            <span>Orchard of Unmaking</span> · public trace
+          </figcaption>
+        </figure>
       </div>
     </section>
 
@@ -1211,13 +1481,11 @@
       <div class="section-head">
         <h2 class="section-title">Music</h2>
         <p class="section-sub">
-          Built for headphones and systems that can move air. Detail forward, effect heavy,
-          but not polished into something safe.
+          Headphones or speakers that move air. Nothing in between.
         </p>
       </div>
 
       <div class="music-layout">
-        <!-- LEFT: PLAYER -->
         <div class="player-shell">
           <div class="player-note">
             Choose a channel
@@ -1225,22 +1493,22 @@
 
           <div class="player-toggle" role="tablist" aria-label="Music player selection">
             <button
-              class="player-tab is-active"
+              class="player-tab"
               type="button"
               role="tab"
               id="tabSpotify"
-              aria-selected="true"
+              aria-selected="false"
               aria-controls="playerSpotify"
               data-player="spotify"
             >
               Spotify
             </button>
             <button
-              class="player-tab"
+              class="player-tab is-active"
               type="button"
               role="tab"
               id="tabSoundcloud"
-              aria-selected="false"
+              aria-selected="true"
               aria-controls="playerSoundcloud"
               data-player="soundcloud"
             >
@@ -1249,16 +1517,17 @@
           </div>
 
           <div
-            class="player-embed is-active"
+            class="player-embed"
             id="playerSpotify"
             role="tabpanel"
             aria-labelledby="tabSpotify"
             data-player="spotify"
-            aria-hidden="false"
+            hidden
+            aria-hidden="true"
           >
             <iframe
               title="Ghost Orgy on Spotify"
-              src="https://open.spotify.com/embed/artist/1SslPfozi6GhP2JbSNoLTB?utm_source=generator"
+              data-src="https://open.spotify.com/embed/artist/1SslPfozi6GhP2JbSNoLTB?utm_source=generator"
               width="100%"
               height="352"
               frameborder="0"
@@ -1268,13 +1537,12 @@
           </div>
 
           <div
-            class="player-embed"
+            class="player-embed is-active"
             id="playerSoundcloud"
             role="tabpanel"
             aria-labelledby="tabSoundcloud"
             data-player="soundcloud"
-            hidden
-            aria-hidden="true"
+            aria-hidden="false"
           >
             <iframe
               title="Ghost Orgy on SoundCloud"
@@ -1282,22 +1550,16 @@
               frameborder="no"
               allow="autoplay"
               loading="lazy"
-              src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ghostorgymusic&color=%23050608&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+              data-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ghostorgymusic&color=%23050608&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
             ></iframe>
           </div>
         </div>
 
-        <!-- RIGHT: COPY + LINKS -->
         <div class="music-copy-wrap">
           <p class="music-copy">
-            The signal chain is set up to keep texture intact instead of sanding it down.
-            Close dynamic vocals, heavy modulation, and enough headroom for the quiet parts
-            to stay dangerous.
-          </p>
-          <p class="music-copy">
-            The term <strong>die-fi</strong> is a working rule: high production value and
-            lossless detail kept in service of something damaged and uncomfortable instead
-            of comforting.
+            <strong>Die-fi</strong> means the detail stays in — lossless, close-mic,
+            high production value — but in service of something damaged. Not polished
+            into comfort. Polished into dread.
           </p>
 
           <div class="platforms">
@@ -1306,6 +1568,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="platform-pill"
+              data-track="music_soundcloud"
             >
               <span>SoundCloud</span>
               <span>↗</span>
@@ -1316,18 +1579,9 @@
               target="_blank"
               rel="noopener noreferrer"
               class="platform-pill"
+              data-track="music_spotify"
             >
               <span>Spotify</span>
-              <span>↗</span>
-            </a>
-
-            <a
-              href="https://ghostorgy.bandcamp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="platform-pill"
-            >
-              <span>Bandcamp</span>
               <span>↗</span>
             </a>
 
@@ -1336,6 +1590,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="platform-pill"
+              data-track="music_rss"
             >
               <span>RSS Feed</span>
               <span>↗</span>
@@ -1345,63 +1600,353 @@
       </div>
     </section>
 
+    <section id="lore">
+      <div class="section-head">
+        <h2 class="section-title">Lore</h2>
+        <p class="section-sub">
+          The music is a surface. Underneath it is a world with laws, entities, and
+          recovered evidence.
+        </p>
+      </div>
+
+      <div class="lore-layout">
+        <div class="lore-text">
+          <p>
+            The <strong>Nine Sisters</strong> were human once. Taken by Hell, they were
+            cast back out when even Hell could not contain what they became. Now they move
+            through the <strong>Orchard of Unmaking</strong> — a place where devotion rots
+            into landscape and every path was chosen for you before you arrived.
+          </p>
+          <p>
+            Each sister governs a domain: desire, starvation, wrath, betrayal, fraud.
+            They do not tempt. They <em>manifest</em> — warping environments, rewriting
+            perception, and leaving physical evidence that institutional investigators
+            cannot explain.
+          </p>
+
+          <div class="artifact-grid">
+            <article class="artifact-card">
+              <div class="artifact-kicker">Recovered · DOT Incident #L-770</div>
+              <h3 class="artifact-title">The Infinite Mile</h3>
+              <p>
+                Driver clocked at 85 mph. Vehicle stationary. Dashboard clock returns to
+                the same minute. Sound arrives three seconds late and echoes twice. Woman
+                in a grey habit visible in the rearview mirror. Limbo's domain.
+              </p>
+            </article>
+            <article class="artifact-card">
+              <div class="artifact-kicker">Recovered · Ecclesiastical Inquiry #H-331</div>
+              <h3 class="artifact-title">The Silent Mass</h3>
+              <p>
+                Bell rings with no sound. Scripture reorders itself on the page:
+                <em>"THE FIRST SIN WAS NAMING IT HOLY."</em> Priest's eye burns inside
+                the socket. A nun with no right eye appears at the altar. Heresy's domain.
+              </p>
+            </article>
+            <article class="artifact-card">
+              <div class="artifact-kicker">Recovered · Case File #V-909</div>
+              <h3 class="artifact-title">The Mirror Break Incident</h3>
+              <p>
+                Victim's skeleton fractures mirror the cracks in the walls. Symmetrical
+                breaks across every bone. Photographs show wood grain where marrow should be.
+                Violence's domain.
+              </p>
+            </article>
+            <article class="artifact-card">
+              <div class="artifact-kicker">Recovered · Emergency Transcript #F-882</div>
+              <h3 class="artifact-title">The Overwrite Call</h3>
+              <p>
+                911 caller's identity shifts mid-sentence. Memories invert. A woman wearing
+                the victim's face answers the door. Sound of a mirror shattering, sustained
+                for twelve seconds. Only one identity remains. Fraud's domain.
+              </p>
+            </article>
+          </div>
+          <p style="margin-top: 1.2rem;">
+            <a href="artifacts/index.html" class="btn btn-text" style="padding: 0;">
+              <span>View all 11 recovered artifacts →</span>
+            </a>
+          </p>
+        </div>
+
+        <aside class="lore-sidebar">
+          <figure class="evidence-photo">
+            <img
+              src="images/evidence-01.jpg"
+              alt="Recovered photo — ritual site, origin unclear"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="evidence-caption">Photo evidence · site unknown · recovered 2024</figcaption>
+          </figure>
+
+          <figure class="evidence-photo">
+            <img
+              src="images/evidence-02.jpg"
+              alt="Recovered photo — environmental anomaly"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="evidence-caption">Photo evidence · environmental anomaly · unverified</figcaption>
+          </figure>
+
+          <div class="lore-box">
+            <div class="lore-label">Recovered Fragment</div>
+            <p>
+              Extracted from Orchard-adjacent site. Origin unclear. Repeats across
+              multiple contact events.
+            </p>
+            <ul>
+              <li>The Sisters are not metaphor. They manifest.</li>
+              <li>The Orchard does not invite. It recognizes.</li>
+              <li>Desire, hunger, damage, and betrayal each wear a face.</li>
+              <li>There is one path in. There is no safe exit.</li>
+            </ul>
+            <p style="margin-top: 0.9rem;">
+              <a href="lore/index.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em;">Enter the Orchard →</a>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="sisters">
+      <div class="section-head">
+        <h2 class="section-title">The Nine Sisters</h2>
+        <p class="section-sub">
+          Human once. Taken by Hell. Cast out when Hell couldn't hold them.
+          Each one governs a domain. Each one leaves evidence.
+        </p>
+      </div>
+
+      <div class="sisters-grid">
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-limbo.jpg" alt="Limbo" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">I</div>
+              <div class="sister-aspect">Annihilation of anchor</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/limbo.html">Limbo</a></h3>
+            <p class="sister-body">
+              Motion without landing. Unsealed eyes that never close. She breaks clocks,
+              loops corridors, and removes the feeling that a present moment can hold still.
+              Witnesses report delayed sound, vestibular collapse, and a woman in grey who
+              appears only in reflections.
+            </p>
+            <div class="sister-cue">Trace · clock stutter / grey habit / wind like sideways breath</div>
+          </div>
+        </article>
+
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-lust.jpg" alt="Lust" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">II</div>
+              <div class="sister-aspect">Desire that overwrites self</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/lust.html">Lust</a></h3>
+            <p class="sister-body">
+              Consumptive wanting. She dissolves identity into pursuit until the subject
+              becomes pure desire with no one left inside it. Thermal blooms independent
+              of temperature. Violet condensation on mirrors. A voice described as slow,
+              coiling, and impossible to stop listening to.
+            </p>
+            <div class="sister-cue">Trace · ozone scent / bruise-purple shadow / pulse as pursuit</div>
+          </div>
+        </article>
+
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-gluttony.jpg" alt="Gluttony" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">III</div>
+              <div class="sister-aspect">Starvation of meaning</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/gluttony.html">Gluttony</a></h3>
+            <p class="sister-body">
+              Not hunger for food. Hunger for significance. She drains color, joy, and
+              purpose from achievement until the ache itself is all that remains. Subjects
+              inhale the essence of their awards. Objects turn grey. A pit-shaped shadow
+              opens in the floor.
+            </p>
+            <div class="sister-cue">Trace · thin gravity / oxygen-starved air / the pit that never fills</div>
+          </div>
+        </article>
+
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-greed.jpg" alt="Greed" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">IV</div>
+              <div class="sister-aspect">Value extraction</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/greed.html">Greed</a></h3>
+            <p class="sister-body">
+              She audits souls like a cosmic ledger. Worthless objects marked as millions.
+              Real gold marked as decoy. Officers at the scene develop compulsive hoarding
+              behavior from proximity alone. Copper taste. Involuntary hand-clenching.
+              Hunger becomes the only appreciating asset.
+            </p>
+            <div class="sister-cue">Trace · copper mouth / clutching hands / hollowed worth</div>
+          </div>
+        </article>
+
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-wrath.jpg" alt="Wrath" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">V</div>
+              <div class="sister-aspect">Judgment as fire</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/wrath.html">Wrath</a></h3>
+            <p class="sister-body">
+              Selective thermal execution. Victims burn from the inside while bedding
+              stays cold. Ash falls from nothing. A layered female voice speaks through
+              the bodies of those nearby. Hands measured at 600 degrees. Reaction time
+              of 0.4 seconds — faster than human perception allows.
+            </p>
+            <div class="sister-cue">Trace · internal heat / ash without source / scorched voice</div>
+          </div>
+        </article>
+
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-heresy.jpg" alt="Heresy" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">VI</div>
+              <div class="sister-aspect">Counter-doctrine</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/heresy.html">Heresy</a></h3>
+            <p class="sister-body">
+              Stitched mouth. One eye socket holds a contained ember; the other is empty.
+              Charred black habit. She does not argue with faith — she makes it forget its
+              own words. Bells ring silently. Scripture reorders on the page. Prayer becomes
+              fuel for the manifestation instead of defense against it.
+            </p>
+            <div class="sister-cue">Trace · silent bells / burning socket / rewritten text</div>
+          </div>
+        </article>
+
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-violence.jpg" alt="Violence" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">VII</div>
+              <div class="sister-aspect">Structural resonance</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/violence.html">Violence</a></h3>
+            <p class="sister-body">
+              Harm that mirrors itself across bodies and rooms. Victim's skeleton fractures
+              match the cracks in the walls. Symmetrical breaks across every bone. Phantom
+              healing — tissue behaves as though the wound happened years ago. Photographs
+              show wood grain where marrow should be.
+            </p>
+            <div class="sister-cue">Trace · mirrored fractures / bone as architecture / pressure in the ribs</div>
+          </div>
+        </article>
+
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-fraud.jpg" alt="Fraud" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">VIII</div>
+              <div class="sister-aspect">Identity replacement</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/fraud.html">Fraud</a></h3>
+            <p class="sister-body">
+              Porcelain mask over frantic eyes. She wears the victim's face and walks like
+              she lives there. Caller IDs shift mid-sentence. Memories invert. Two voices
+              speak in unison. A sound like a mirror shattering, sustained for twelve
+              seconds. When it stops, only one identity remains.
+            </p>
+            <div class="sister-cue">Trace · stolen face / sustained shatter / edited memory</div>
+          </div>
+        </article>
+
+        <article class="sister-card">
+          <img class="sister-img" src="images/sister-treachery.jpg" alt="Treachery" loading="lazy" decoding="async" />
+          <div class="sister-card-body">
+            <div class="sister-card-top">
+              <div class="sister-circle">IX</div>
+              <div class="sister-aspect">Weaponized trust</div>
+            </div>
+            <h3 class="sister-name"><a href="sisters/treachery.html">Treachery</a></h3>
+            <p class="sister-body">
+              Stitched-flesh face. Broken rings. She rewires perception so that love reads
+              as threat. Smart home recordings show the victim saying "rest and be free" —
+              the subject heard "confess and bleed." A 19-hertz hum. Forty-degree temperature
+              drop. Frost on the weapon in a tropical climate.
+            </p>
+            <div class="sister-cue">Trace · inverted meaning / frost where there shouldn't be / 19 Hz hum</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="section-head">
         <h2 class="section-title">Contact</h2>
         <p class="section-sub">
-          Collabs, placements, long form narrative work, or people who feel wired for this kind
-          of thing.
+          Licensing, placements, and projects that need horror to feel physical.
         </p>
       </div>
 
       <div class="contact-grid">
         <div class="contact-copy">
           <p>
-            The project was built with worlds in mind. Games, film, narrative audio, liminal
-            visuals, installations. Anywhere that needs horror and high end sound design in the
-            same body.
-          </p>
-          <p>
-            If you want to build something specific with Ghost Orgy instead of just dropping a
-            track into a playlist, reach out and say what you have in mind.
+            Games, film, installations, and anything else that needs intimate dread
+            with real production behind it. Send the brief and the shape of the world
+            you're building.
           </p>
 
-          <div class="contact-email">
-            Email:
-            <a href="mailto:info@unholyghost.org">info@unholyghost.org</a>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="mailto:info@unholyghost.org" data-track="contact_email">
+              <span>info@unholyghost.org</span>
+            </a>
+            <a class="btn btn-ghost" href="press/index.html">
+              <span>Press kit</span>
+            </a>
+          </div>
+
+          <div class="contact-tags">
+            <div class="contact-tag">Licensing</div>
+            <div class="contact-tag">Commissions</div>
+            <div class="contact-tag">Games</div>
+            <div class="contact-tag">Film</div>
+            <div class="contact-tag">Installations</div>
           </div>
         </div>
 
         <aside class="social-block">
           <div class="social-title">Channels</div>
-          <p>
-            Social presence is light by design. Expect fewer posts and more intent when something
-            does show up.
-          </p>
           <div class="social-links">
             <a
               href="https://www.tiktok.com/@ghostorgy.music"
               target="_blank"
               rel="noopener noreferrer"
               class="social-link"
+              data-track="social_tiktok"
             >
               <span>♬</span>
-              <span>Ghost Orgy on TikTok</span>
+              <span>TikTok</span>
             </a>
             <a
               href="https://www.instagram.com/ghostorgy.music/"
               target="_blank"
               rel="noopener noreferrer"
               class="social-link"
+              data-track="social_instagram"
             >
               <span>◎</span>
-              <span>@ghostorgy.music on Instagram</span>
+              <span>Instagram</span>
             </a>
             <a
               href="https://www.facebook.com/9ghostlysisters"
               target="_blank"
               rel="noopener noreferrer"
               class="social-link"
+              data-track="social_facebook"
             >
               <span>✚</span>
               <span>Facebook</span>
@@ -1411,9 +1956,10 @@
               target="_blank"
               rel="noopener noreferrer"
               class="social-link"
+              data-track="social_soundcloud"
             >
               <span>☁</span>
-              <span>Soundcloud</span>
+              <span>SoundCloud</span>
             </a>
           </div>
         </aside>
@@ -1423,15 +1969,19 @@
 
   <footer>
     <div class="footer-inner">
-      <div>Ghost Orgy</div>
-      <div>© <span id="year"></span> all rights reserved</div>
+      <div>Ghost Orgy, LLC</div>
+      <div>© <span id="year"></span></div>
     </div>
   </footer>
 
   <!-- Floating Watcher -->
   <div class="watcher" aria-hidden="true">
     <div class="watcher-inner">
-      <img src="images/watcher-face.png" alt="" loading="lazy" decoding="async">
+      <div class="watcher-glitch">
+        <img class="watcher-base" src="images/watcher-face.png" alt="" loading="lazy" decoding="async">
+        <img class="watcher-echo watcher-echo-a" src="images/watcher-face.png" alt="" loading="lazy" decoding="async">
+        <img class="watcher-echo watcher-echo-b" src="images/watcher-face.png" alt="" loading="lazy" decoding="async">
+      </div>
     </div>
   </div>
 
@@ -1459,11 +2009,35 @@
       });
     }
 
+    document.querySelectorAll(".hero-title, .section-title, .transmission-title").forEach((element) => {
+      const text = element.textContent.trim();
+      if (!text) return;
+      element.dataset.text = text;
+      element.classList.add("glitch-text");
+    });
+
     // music player toggle (Spotify / SoundCloud)
     const playerTabs = document.querySelectorAll(".player-tab[data-player]");
     const playerPanels = document.querySelectorAll(".player-embed[data-player]");
 
+    function trackEvent(name, params = {}) {
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", name, params);
+    }
+
+    function ensurePlayerLoaded(playerName) {
+      const panel = Array.from(playerPanels).find((item) => item.dataset.player === playerName);
+      if (!panel) return;
+
+      const frame = panel.querySelector("iframe[data-src]");
+      if (frame && !frame.src) {
+        frame.src = frame.dataset.src;
+      }
+    }
+
     function setActivePlayer(playerName) {
+      ensurePlayerLoaded(playerName);
+
       playerTabs.forEach((btn) => {
         const isActive = btn.dataset.player === playerName;
         btn.classList.toggle("is-active", isActive);
@@ -1483,7 +2057,13 @@
 
     if (playerTabs.length && playerPanels.length) {
       playerTabs.forEach((btn) => {
-        btn.addEventListener("click", () => setActivePlayer(btn.dataset.player));
+        btn.addEventListener("click", () => {
+          setActivePlayer(btn.dataset.player);
+          trackEvent("select_content", {
+            content_type: "music_player",
+            item_id: btn.dataset.player
+          });
+        });
 
         // keyboard support: left/right arrows to switch tabs
         btn.addEventListener("keydown", (e) => {
@@ -1503,21 +2083,110 @@
       setActivePlayer("spotify");
     }
 
-    // watcher parallax + scroll flicker (capped so it never "enters" the page)
+    // watcher haunt behavior
     const watcher = document.querySelector(".watcher");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const smallScreen = window.matchMedia("(max-width: 800px)");
     let scrollTimer;
     let watcherRaf = null;
+    let watcherTimer = 0;
+    let watcherHideTimer = 0;
+    let watcherCount = 0;
+    let lastWatcherFlash = 0;
+
+    const watcherPoses = [
+      { x: "74vw", y: "10vh", scale: "1.02", rotate: "-5deg", size: "clamp(250px, 19vw, 390px)" },
+      { x: "7vw", y: "18vh", scale: "0.92", rotate: "4deg", size: "clamp(220px, 16vw, 320px)" },
+      { x: "68vw", y: "46vh", scale: "1.14", rotate: "-2deg", size: "clamp(280px, 21vw, 430px)" },
+      { x: "10vw", y: "54vh", scale: "1.03", rotate: "5deg", size: "clamp(240px, 18vw, 360px)" },
+      { x: "56vw", y: "12vh", scale: "0.82", rotate: "-8deg", size: "clamp(170px, 13vw, 250px)" }
+    ];
+
+    const watcherFlashPoses = [
+      { x: "60vw", y: "14vh", scale: "1.16", rotate: "-3deg", size: "clamp(300px, 22vw, 450px)" },
+      { x: "18vw", y: "22vh", scale: "1.24", rotate: "5deg", size: "clamp(320px, 24vw, 470px)" },
+      { x: "44vw", y: "8vh", scale: "0.96", rotate: "-6deg", size: "clamp(240px, 17vw, 340px)" }
+    ];
+
+    function setWatcherPose(pose) {
+      if (!watcher) return;
+      watcher.style.setProperty("--watcher-x", pose.x);
+      watcher.style.setProperty("--watcher-y", pose.y);
+      watcher.style.setProperty("--watcher-scale", pose.scale);
+      watcher.style.setProperty("--watcher-rotate", pose.rotate);
+      watcher.style.setProperty("--watcher-size", pose.size);
+    }
 
     function updateWatcherParallax() {
       if (!watcher) return;
       const y = window.scrollY || window.pageYOffset || 0;
-
-      // cap drift HARD so it stays a peripheral hint
-      const drift = Math.min(70, y * 0.05);
-      watcher.style.transform = `translate3d(0, ${drift}px, 0)`;
+      const drift = Math.min(48, y * 0.045);
+      watcher.style.setProperty("--scroll-drift", `${drift}px`);
     }
 
-    updateWatcherParallax();
+    function hideWatcher() {
+      if (!watcher) return;
+      watcher.classList.remove("is-haunting", "is-flash");
+    }
+
+    function clearWatcherTimers() {
+      window.clearTimeout(watcherTimer);
+      window.clearTimeout(watcherHideTimer);
+    }
+
+    function canHaunt() {
+      return watcher && !prefersReducedMotion.matches && !smallScreen.matches;
+    }
+
+    function scheduleWatcher(initial = false) {
+      window.clearTimeout(watcherTimer);
+      if (!canHaunt()) return;
+
+      const delay = initial ? 3200 : 8000 + Math.random() * 9000;
+      watcherTimer = window.setTimeout(() => {
+        watcherCount += 1;
+        const isFlash = watcherCount % 5 === 0 || Math.random() < 0.16;
+        const poses = isFlash ? watcherFlashPoses : watcherPoses;
+        const pose = poses[Math.floor(Math.random() * poses.length)];
+
+        setWatcherPose(pose);
+        hideWatcher();
+        void watcher.offsetWidth;
+        watcher.classList.add("is-haunting");
+
+        if (isFlash) {
+          watcher.classList.add("is-flash");
+        }
+
+        watcherHideTimer = window.setTimeout(() => {
+          hideWatcher();
+        }, isFlash ? 400 : 2400 + Math.random() * 1800);
+
+        scheduleWatcher();
+      }, delay);
+    }
+
+    function syncWatcherAvailability() {
+      if (!watcher) return;
+      hideWatcher();
+      clearWatcherTimers();
+      if (!canHaunt()) return;
+      updateWatcherParallax();
+      setWatcherPose(watcherPoses[0]);
+      scheduleWatcher(true);
+    }
+
+    syncWatcherAvailability();
+
+    document.querySelectorAll("a[data-track]").forEach((link) => {
+      link.addEventListener("click", () => {
+        trackEvent("click", {
+          event_category: "outbound",
+          event_label: link.dataset.track,
+          destination: link.href
+        });
+      });
+    });
 
     window.addEventListener("scroll", () => {
       document.documentElement.classList.add("scrolling");
@@ -1526,6 +2195,20 @@
         document.documentElement.classList.remove("scrolling");
       }, 150);
 
+      const now = window.performance ? performance.now() : Date.now();
+      if (canHaunt() && now - lastWatcherFlash > 5200 && Math.random() < 0.025) {
+        lastWatcherFlash = now;
+        const pose = watcherFlashPoses[Math.floor(Math.random() * watcherFlashPoses.length)];
+        setWatcherPose(pose);
+        hideWatcher();
+        watcher.classList.add("is-haunting", "is-flash");
+        window.clearTimeout(watcherHideTimer);
+        watcherHideTimer = window.setTimeout(() => {
+          hideWatcher();
+        }, 220);
+        scheduleWatcher();
+      }
+
       if (!watcherRaf) {
         watcherRaf = requestAnimationFrame(() => {
           watcherRaf = null;
@@ -1533,6 +2216,23 @@
         });
       }
     }, { passive: true });
+
+    document.addEventListener("visibilitychange", () => {
+      if (!watcher) return;
+      if (document.hidden) {
+        hideWatcher();
+        clearWatcherTimers();
+        return;
+      }
+      syncWatcherAvailability();
+    });
+
+    if (prefersReducedMotion.addEventListener) {
+      prefersReducedMotion.addEventListener("change", syncWatcherAvailability);
+    }
+    if (smallScreen.addEventListener) {
+      smallScreen.addEventListener("change", syncWatcherAvailability);
+    }
   </script>
 </body>
 </html>

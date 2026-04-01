@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Field Artifacts — Ghost Orgy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Recovered institutional documentation from contact events. Origins verified. Explanations pending." />
+  <meta name="theme-color" content="#050608" />
+
+  <link rel="icon" type="image/png" href="../images/go-sigil-white.png" />
+  <link rel="apple-touch-icon" href="../images/go-sigil-white.png" />
+
+  <!-- Base fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Display fonts -->
+  <link href="https://db.onlinewebfonts.com/c/1d065bbebe505e76388da924c9cdd356?family=They+Perished" rel="stylesheet">
+  <link href="https://db.onlinewebfonts.com/c/1c29c34b645c849dc0c4558ce3074ec3?family=Crimes+Times+Six" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-alt: #090a0c;
+      --fg: #f0ece6;
+      --muted: #9a978f;
+      --accent: #8affc1;
+      --accent-soft: rgba(138, 255, 193, 0.08);
+      --accent-warm: #c4956a;
+      --accent-warm-soft: rgba(196, 149, 106, 0.1);
+      --border: #2a2826;
+      --radius: 4px;
+      --speed: 180ms ease-out;
+      --site-max: 860px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    html, body {
+      background-color: var(--bg);
+      color: var(--fg);
+    }
+
+    body {
+      font-family: "IBM Plex Mono", "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Scanline overlay ── */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.04) 2px,
+        rgba(0, 0, 0, 0.04) 4px
+      );
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .topbar a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--speed);
+    }
+
+    .topbar a:hover {
+      color: var(--fg);
+    }
+
+    .topbar .classification {
+      color: var(--accent-warm);
+      animation: pulse-warn 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-warn {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: var(--site-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      padding: 60px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-family: "They Perished", "Crimes Times Six", serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 400;
+      color: var(--fg);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .page-header .subtitle {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+      letter-spacing: 0.03em;
+    }
+
+    .page-header .db-info {
+      margin-top: 20px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent-warm);
+      opacity: 0.7;
+    }
+
+    /* ── Artifact cards ── */
+    .artifact {
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-warm);
+      background: var(--bg-alt);
+      padding: 28px 28px 24px;
+      margin-bottom: 24px;
+      position: relative;
+      transition: border-color var(--speed), background var(--speed);
+    }
+
+    .artifact:hover {
+      border-color: rgba(196, 149, 106, 0.4);
+      background: rgba(9, 10, 12, 0.95);
+    }
+
+    .artifact::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-warm) 0%, transparent 60%);
+      opacity: 0.3;
+    }
+
+    .artifact-case {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-warm);
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .artifact-source {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 300;
+    }
+
+    .artifact-title {
+      font-family: "They Perished", "Crimes Times Six", serif;
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 400;
+      color: var(--fg);
+      margin: 10px 0 14px;
+      line-height: 1.3;
+    }
+
+    .artifact-body {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .artifact-domain {
+      display: inline-block;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      border: 1px solid rgba(138, 255, 193, 0.2);
+      padding: 3px 10px;
+      background: var(--accent-soft);
+    }
+
+    /* ── Redacted bar decoration ── */
+    .redacted-bar {
+      display: inline-block;
+      background: var(--muted);
+      color: transparent;
+      user-select: none;
+      padding: 0 2px;
+      margin: 0 2px;
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    /* ── Separator ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      padding: 40px 0 60px;
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    .page-footer span {
+      opacity: 0.5;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .artifact {
+        padding: 20px 18px 18px;
+      }
+
+      .page-header {
+        padding: 40px 0 28px;
+        margin-bottom: 32px;
+      }
+
+      .artifact-case {
+        flex-direction: column;
+        gap: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top navigation bar -->
+  <div class="topbar">
+    <a href="../index.html">&larr; Return to main site</a>
+    <span class="classification">Restricted Access &mdash; Level III</span>
+  </div>
+
+  <div class="container">
+
+    <!-- Page header -->
+    <header class="page-header">
+      <h1>Field Artifacts &mdash; Recovered Documentation</h1>
+      <p class="subtitle">
+        Institutional reports recovered from contact events. Origins verified. Explanations pending.
+        <span class="redacted-bar">CLASSIFIED MATERIAL</span> documents have been partially redacted per
+        <span class="redacted-bar">AUTHORITY REMOVED</span> directive.
+      </p>
+      <div class="db-info">Database index &mdash; 11 records found &mdash; Last sync: <span class="redacted-bar">DATE EXPUNGED</span></div>
+    </header>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 1 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Arson Investigation Unit Log #W-110</span>
+        <span class="artifact-source">Arson Investigation Unit</span>
+      </div>
+      <h2 class="artifact-title">"The Cold Burn"</h2>
+      <p class="artifact-body">
+        Victim burns from internal heat while bedding stays cold. Ash falls from nothing. Shadows flicker against steady light.
+      </p>
+      <span class="artifact-domain">Sister Domain: Wrath</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 2 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Asset Forfeiture Log #G-204</span>
+        <span class="artifact-source">Asset Forfeiture Division</span>
+      </div>
+      <h2 class="artifact-title">"The Zero-Point Audit"</h2>
+      <p class="artifact-body">
+        Worthless items marked as millions. Real gold marked as decoy. Officers develop compulsive hoarding from proximity alone.
+      </p>
+      <span class="artifact-domain">Sister Domain: Greed</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 3 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Case File #V-909</span>
+        <span class="artifact-source">Forensic Investigation</span>
+      </div>
+      <h2 class="artifact-title">"The Mirror Break Incident"</h2>
+      <p class="artifact-body">
+        Victim's skeleton fractures mirror cracks in the walls. Symmetrical breaks across every bone. Photographs show wood grain where marrow should be.
+      </p>
+      <span class="artifact-domain">Sister Domain: Violence</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 4 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Clinical Session Log #GL-889</span>
+        <span class="artifact-source">Clinical Psychology Division</span>
+      </div>
+      <h2 class="artifact-title">"The Zero-Point Success"</h2>
+      <p class="artifact-body">
+        CEO enters depressive anhedonia after peak success. Colors drain from the room. Awards consumed symbolically. A pit-shaped shadow opens in the floor.
+      </p>
+      <span class="artifact-domain">Sister Domain: Gluttony</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 5 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Critical Incident Review #W-991</span>
+        <span class="artifact-source">Internal Affairs</span>
+      </div>
+      <h2 class="artifact-title">"The Zero-Gap Event"</h2>
+      <p class="artifact-body">
+        Officer's lethal response in 0.4 seconds &mdash; faster than human perception. Force generation of 1000+ lbs from standing. Hands measured at 600&deg;F. A layered female voice speaks through the officer's body.
+      </p>
+      <span class="artifact-domain">Sister Domain: Wrath</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 6 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Digital Forensics Report #L-212</span>
+        <span class="artifact-source">Digital Forensics Lab</span>
+      </div>
+      <h2 class="artifact-title">"The Recursive Muse"</h2>
+      <p class="artifact-body">
+        Architect vanishes into design obsession. Thermal blooms independent of temperature. Violet condensation on mirrors. Subject steps into a bruise-colored shadow; floor warps to forest.
+      </p>
+      <span class="artifact-domain">Sister Domain: Lust</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 7 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>DOT Incident Report #L-770</span>
+        <span class="artifact-source">Department of Transportation</span>
+      </div>
+      <h2 class="artifact-title">"The Infinite Mile"</h2>
+      <p class="artifact-body">
+        Driver clocked at 85 mph. Vehicle stationary. Clock returns to the same minute. Sound arrives three seconds late and echoes twice. Woman in grey habit in the rearview mirror.
+      </p>
+      <span class="artifact-domain">Sister Domain: Limbo</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 8 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Ecclesiastical Inquiry Log #H-331</span>
+        <span class="artifact-source">Ecclesiastical Authority</span>
+      </div>
+      <h2 class="artifact-title">"The Silent Mass"</h2>
+      <p class="artifact-body">
+        Bell rings with no sound. Scripture reorders on the page: "THE FIRST SIN WAS NAMING IT HOLY." Priest's eye burns in the socket. A nun with no right eye appears at the altar.
+      </p>
+      <span class="artifact-domain">Sister Domain: Heresy</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 9 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Emergency Transcript #F-882</span>
+        <span class="artifact-source">911 Emergency Dispatch</span>
+      </div>
+      <h2 class="artifact-title">"The Overwrite Call"</h2>
+      <p class="artifact-body">
+        Caller's identity shifts mid-sentence. Memories invert. A woman wearing the victim's face answers the door. Sound of a mirror shattering, sustained for twelve seconds.
+      </p>
+      <span class="artifact-domain">Sister Domain: Fraud</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 10 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>Home Assistant Audio Capture #T-404</span>
+        <span class="artifact-source">Smart Home Forensics</span>
+      </div>
+      <h2 class="artifact-title">"The Mercy Killing"</h2>
+      <p class="artifact-body">
+        Caregiver murders spouse after perception inversion. Raw audio: "Rest and be free." Perceived audio: "Confess and bleed." 19 Hz hum. 40-degree temperature drop. Frost on gun in tropical climate.
+      </p>
+      <span class="artifact-domain">Sister Domain: Treachery</span>
+    </article>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- ARTIFACT 11 -->
+    <!-- ════════════════════════════════════════ -->
+    <article class="artifact">
+      <div class="artifact-case">
+        <span>NTSB Cockpit Voice Recorder Transcript #T-909</span>
+        <span class="artifact-source">National Transportation Safety Board</span>
+      </div>
+      <h2 class="artifact-title">"The Split-Signal Crash"</h2>
+      <p class="artifact-body">
+        Married pilots experience simultaneous split-frequency conversations. Both crash the plane. Third breathing pattern continues 45 seconds after impact. Hands frozen to controls.
+      </p>
+      <span class="artifact-domain">Sister Domain: Treachery</span>
+    </article>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <span>End of recovered index &mdash; Ghost Orgy &mdash; unholyghost.org</span>
+    </footer>
+
+  </div>
+
+</body>
+</html>

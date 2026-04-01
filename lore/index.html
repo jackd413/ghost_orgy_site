@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Orchard of Unmaking — Ghost Orgy Lore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="The Orchard of Unmaking. Cosmology and lore of Ghost Orgy — Nine Sisters, Watchers, and the laws that bind them."
+  />
+  <meta name="theme-color" content="#050608" />
+
+  <link rel="icon" type="image/png" href="../images/go-sigil-white.png" />
+  <link rel="apple-touch-icon" href="../images/go-sigil-white.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link href="https://db.onlinewebfonts.com/c/1d065bbebe505e76388da924c9cdd356?family=They+Perished" rel="stylesheet" />
+  <link href="https://db.onlinewebfonts.com/c/1c29c34b645c849dc0c4558ce3074ec3?family=Crimes+Times+Six" rel="stylesheet" />
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="../images/ritual-orchard.jpg" />
+
+  <style>
+    :root {
+      --bg: #050608;
+      --bg-alt: #090a0c;
+      --fg: #f0ece6;
+      --muted: #9a978f;
+      --accent: #8affc1;
+      --accent-soft: rgba(138, 255, 193, 0.08);
+      --accent-warm: #c4956a;
+      --accent-warm-soft: rgba(196, 149, 106, 0.1);
+      --border: #2a2826;
+      --radius: 4px;
+      --speed: 180ms ease-out;
+      --site-max: 860px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+    }
+
+    body {
+      font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible {
+      outline: 1px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ---- NAV ---- */
+
+    .site-nav {
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .site-nav-inner {
+      max-width: var(--site-max);
+      margin: 0 auto;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .site-nav .nav-brand {
+      font-family: "They Perished", serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      color: var(--fg);
+      transition: color var(--speed);
+    }
+
+    .site-nav .nav-brand:hover {
+      color: var(--accent);
+    }
+
+    .site-nav .nav-back {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      transition: color var(--speed);
+    }
+
+    .site-nav .nav-back:hover {
+      color: var(--accent);
+    }
+
+    /* ---- HERO ---- */
+
+    .hero {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 70vh;
+      min-height: 400px;
+      max-height: 720px;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: brightness(0.45) saturate(0.7);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 6, 8, 0.3) 0%,
+        rgba(5, 6, 8, 0.6) 60%,
+        var(--bg) 100%
+      );
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0 1.5rem 3.5rem;
+    }
+
+    .hero-text {
+      text-align: center;
+      max-width: var(--site-max);
+    }
+
+    .hero-title {
+      font-family: "They Perished", serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height: 1.1;
+      letter-spacing: 0.03em;
+      margin: 0 0 1rem;
+      color: var(--fg);
+    }
+
+    .hero-subtitle {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0;
+    }
+
+    /* ---- SHELL ---- */
+
+    .shell {
+      max-width: var(--site-max);
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    /* ---- SECTIONS ---- */
+
+    .lore-section {
+      padding: 4rem 0 0;
+    }
+
+    .lore-section + .lore-section {
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    .section-heading {
+      font-family: "Crimes Times Six", serif;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      letter-spacing: 0.06em;
+      color: var(--accent-warm);
+      margin: 0 0 1.5rem;
+      line-height: 1.2;
+    }
+
+    .lore-body p {
+      color: var(--fg);
+      margin: 0 0 1.25rem;
+      font-weight: 300;
+    }
+
+    .lore-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .lore-body strong {
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .lore-body em {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ---- SISTERS LIST ---- */
+
+    .sisters-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0 0;
+    }
+
+    .sisters-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      font-weight: 300;
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+
+    .sisters-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .sister-name {
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: color var(--speed);
+      flex-shrink: 0;
+    }
+
+    .sister-name:hover {
+      color: var(--accent-warm);
+    }
+
+    .sister-domain {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .sister-dash {
+      color: var(--border);
+      user-select: none;
+    }
+
+    /* ---- WATCHER IMAGE ---- */
+
+    .watcher-img-wrap {
+      margin: 2.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .watcher-img-wrap img {
+      width: 100%;
+      filter: brightness(0.55) saturate(0.6);
+      transition: filter 0.6s ease;
+    }
+
+    .watcher-img-wrap:hover img {
+      filter: brightness(0.65) saturate(0.75);
+    }
+
+    .watcher-caption {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.6rem 1rem;
+      border-top: 1px solid var(--border);
+      background: var(--bg-alt);
+    }
+
+    /* ---- AXIOMS ---- */
+
+    .axioms-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      counter-reset: axiom;
+    }
+
+    .axioms-list li {
+      counter-increment: axiom;
+      padding: 0.75rem 0 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--fg);
+      font-weight: 300;
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+    }
+
+    .axioms-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .axiom-num {
+      font-size: 0.7rem;
+      color: var(--accent-warm);
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+      font-weight: 600;
+      min-width: 2rem;
+    }
+
+    .axiom-text {
+      color: var(--muted);
+    }
+
+    /* ---- FOOTER ---- */
+
+    .lore-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .lore-footer p {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .lore-footer a {
+      color: var(--accent);
+      transition: color var(--speed);
+    }
+
+    .lore-footer a:hover {
+      color: var(--accent-warm);
+    }
+
+    /* ---- RESPONSIVE ---- */
+
+    @media (max-width: 600px) {
+      .hero-img {
+        height: 50vh;
+        min-height: 280px;
+      }
+
+      .hero-overlay {
+        padding-bottom: 2rem;
+      }
+
+      .lore-section {
+        padding-top: 2.5rem;
+      }
+
+      .lore-section + .lore-section {
+        margin-top: 2.5rem;
+      }
+
+      .sisters-list li {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .sister-dash {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="site-nav-inner">
+      <a href="../index.html" class="nav-brand">Ghost Orgy</a>
+      <a href="../index.html" class="nav-back">Back to main site</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img
+      src="../images/ritual-orchard.jpg"
+      alt="The Orchard of Unmaking -- dark tangled branches reaching into void"
+      class="hero-img"
+    />
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <p class="hero-subtitle">Cosmology / Lore</p>
+        <h1 class="hero-title">The Orchard of Unmaking</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+
+    <!-- SECTION 1: INTRO -->
+    <section class="lore-section">
+      <h2 class="section-heading">The Orchard of Unmaking</h2>
+      <div class="lore-body">
+        <p>The Orchard is neither alive nor dead. It is not an organism. It is a consciousness-of-will &mdash; static yet reactive. It remembers and yearns. It does not change to match its victims. It reacts to metaphysical weight.</p>
+        <p>It exists outside conventional theology. It is not heaven, hell, purgatory, or liminal space. It is a location that <em>insists</em> on itself. A place that was never built but has always been growing. A wound in cosmology that learned to breathe.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE ORCHARD REMEMBERS -->
+    <section class="lore-section">
+      <h2 class="section-heading">The Orchard Remembers</h2>
+      <div class="lore-body">
+        <p>The Orchard remembers in ways older than prayer. It tastes fear through its roots and traces lost breaths through its branches. Everything that falls into it remains as imprints &mdash; unresolved equations.</p>
+        <p>It grows according to what the world failed to hold. Its limbs are made from untaken apologies. Its knots are mid-sentence deaths. Its bark carries ghost screams. Its fruit contains futures that never happened.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE NINE SISTERS -->
+    <section class="lore-section">
+      <h2 class="section-heading">The Nine Sisters</h2>
+      <div class="lore-body">
+        <p>The Sisters are the Orchard's instruments. Human once, taken by Hell, cast back when Hell could not contain what they became. Each governs a domain:</p>
+      </div>
+      <ul class="sisters-list">
+        <li>
+          <a href="../sisters/limbo.html" class="sister-name">Limbo</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">annihilation of anchor</span>
+        </li>
+        <li>
+          <a href="../sisters/lust.html" class="sister-name">Lust</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">desire that overwrites self</span>
+        </li>
+        <li>
+          <a href="../sisters/gluttony.html" class="sister-name">Gluttony</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">starvation of meaning</span>
+        </li>
+        <li>
+          <a href="../sisters/greed.html" class="sister-name">Greed</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">value extraction</span>
+        </li>
+        <li>
+          <a href="../sisters/wrath.html" class="sister-name">Wrath</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">judgment as fire</span>
+        </li>
+        <li>
+          <a href="../sisters/heresy.html" class="sister-name">Heresy</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">counter-doctrine</span>
+        </li>
+        <li>
+          <a href="../sisters/violence.html" class="sister-name">Violence</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">structural resonance</span>
+        </li>
+        <li>
+          <a href="../sisters/fraud.html" class="sister-name">Fraud</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">identity replacement</span>
+        </li>
+        <li>
+          <a href="../sisters/treachery.html" class="sister-name">Treachery</a>
+          <span class="sister-dash">&mdash;</span>
+          <span class="sister-domain">weaponized trust</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 4: THE WATCHERS -->
+    <section class="lore-section">
+      <h2 class="section-heading">The Watchers</h2>
+      <div class="lore-body">
+        <p>Souls the Orchard cannot finish. Those who refused at the wrong moment. Those stolen from Above or Below whose souls were too loud. Those who died mid-ritual.</p>
+        <p>They are fragments of will drifting through branches like forgotten thoughts. They wear the blurred faces of their former selves. They cannot touch, strike, or warn &mdash; but they bear witness to every taking.</p>
+      </div>
+
+      <div class="watcher-img-wrap">
+        <img
+          src="../images/ritual-watcher-woods.jpg"
+          alt="Shadowed figures standing motionless among dark trees"
+          loading="lazy"
+        />
+        <div class="watcher-caption">Field capture -- the Watchers bearing witness</div>
+      </div>
+
+      <div class="lore-body">
+        <p>They are proof of the Sisters' imprecision and the cosmos's inability to categorize what it has lost.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 5: KNOWN LAWS -->
+    <section class="lore-section">
+      <h2 class="section-heading">Known Laws</h2>
+      <div class="lore-body">
+        <p><em>Recovered axioms. Provenance unknown. Accuracy unverified.</em></p>
+      </div>
+      <ol class="axioms-list">
+        <li>
+          <span class="axiom-num">I.</span>
+          <span class="axiom-text">The Orchard is static. It does not adapt.</span>
+        </li>
+        <li>
+          <span class="axiom-num">II.</span>
+          <span class="axiom-text">The Orchard can breathe metaphysically.</span>
+        </li>
+        <li>
+          <span class="axiom-num">III.</span>
+          <span class="axiom-text">Its branches shiver. Its limbs stretch.</span>
+        </li>
+        <li>
+          <span class="axiom-num">IV.</span>
+          <span class="axiom-text">The Orchard is a theological institution.</span>
+        </li>
+        <li>
+          <span class="axiom-num">V.</span>
+          <span class="axiom-text">Its will mirrors the Sisters' &mdash; or vice versa.</span>
+        </li>
+        <li>
+          <span class="axiom-num">VI.</span>
+          <span class="axiom-text">Souls feed it. Bodies dissolve into it as fruit, tree, and root.</span>
+        </li>
+        <li>
+          <span class="axiom-num">VII.</span>
+          <span class="axiom-text">Some souls become Watchers rather than completing.</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="lore-footer">
+      <p><a href="../index.html">Ghost Orgy</a> &mdash; Nine Sisters. One Orchard. No clean exit.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
