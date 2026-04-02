@@ -784,10 +784,21 @@
     }
 
     .hero-route-box {
-      margin-top: 1.35rem;
-      border-top: 1px solid rgba(138, 255, 193, 0.24);
-      padding-top: 0.95rem;
-      max-width: 34rem;
+      margin-top: 1.55rem;
+      max-width: 35rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .hero-route-box::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.15rem;
+      bottom: 0.15rem;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(143, 255, 209, 0.62), rgba(111, 15, 22, 0.0) 78%);
+      opacity: 0.8;
     }
 
     .hero-route-label {
@@ -831,11 +842,8 @@
     }
 
     .transmission-shell {
-      border: 1px solid rgba(111, 15, 22, 0.34);
-      border-left: 3px solid var(--accent);
-      background: linear-gradient(180deg, #090607 0%, #050608 100%);
-      padding: 1.2rem 1.25rem 1.3rem;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+      background: linear-gradient(180deg, rgba(13, 7, 8, 0.82) 0%, rgba(5, 6, 8, 0.82) 100%);
+      padding: 0.2rem 0.2rem 0.2rem 0;
     }
 
     .transmission-kicker {
@@ -869,11 +877,11 @@
     }
 
     .transmission-art {
-      border: 1px solid var(--border);
-      background: #050608;
+      background: transparent;
       overflow: hidden;
       display: grid;
       grid-template-rows: auto auto;
+      align-self: start;
     }
 
     .transmission-art img {
@@ -922,14 +930,14 @@
     /* Hero image panel */
 
     .hero-panel {
-      border: 1px solid rgba(111, 15, 22, 0.3);
       background: radial-gradient(circle at top, #140d10 0, #050608 72%);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-height: 640px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.48), inset 0 0 0 1px rgba(255,255,255,0.03);
+      box-shadow: 0 36px 90px rgba(0, 0, 0, 0.52);
+      clip-path: polygon(0 0, 100% 0, 100% 93%, 88% 100%, 0 100%);
     }
 
     .hero-panel::before {
@@ -1009,12 +1017,27 @@
     /* Section layout */
 
     section {
-      padding-top: 2.5rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border);
+      padding-top: 2.9rem;
+      padding-bottom: 2.7rem;
+      border-bottom: none;
+      position: relative;
     }
 
-    .section-head { margin-bottom: 1.6rem; }
+    section::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(111, 15, 22, 0.36), rgba(143, 255, 209, 0.12), transparent);
+      opacity: 0.7;
+    }
+
+    .section-head {
+      margin-bottom: 1.2rem;
+      max-width: 42rem;
+    }
 
     .section-title {
       font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
@@ -1042,8 +1065,9 @@
 
     .lore-layout {
       display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-      gap: 2rem;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 1.4rem;
+      align-items: start;
     }
 
     .lore-text p {
@@ -1064,15 +1088,13 @@
     }
 
     .evidence-browser {
-      border: 1px solid rgba(111, 15, 22, 0.3);
-      background: linear-gradient(180deg, #050608 0%, #070405 100%);
-      padding: 1rem;
+      background: linear-gradient(180deg, rgba(5, 6, 8, 0.88) 0%, rgba(7, 4, 5, 0.92) 100%);
+      padding: 0.95rem 0 0 0;
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
     }
 
     .evidence-browser::before {
@@ -1157,16 +1179,17 @@
 
     .evidence-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.55rem;
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
     }
 
     .evidence-thumb {
       width: 100%;
-      border: 1px solid var(--border);
-      background: #07090b;
+      border: none;
+      border-left: 1px solid rgba(111, 15, 22, 0.28);
+      background: rgba(7, 9, 11, 0.56);
       color: var(--muted);
-      padding: 0.45rem;
+      padding: 0.45rem 0.45rem 0.45rem 0.7rem;
       display: grid;
       grid-template-columns: 54px minmax(0, 1fr);
       gap: 0.65rem;
@@ -1188,7 +1211,7 @@
 
     .evidence-thumb.is-active {
       border-color: var(--accent);
-      background: var(--accent-soft);
+      background: linear-gradient(90deg, rgba(143, 255, 209, 0.08), rgba(111, 15, 22, 0.06));
       color: var(--fg);
     }
 
@@ -1246,11 +1269,22 @@
     }
 
     .lore-box {
-      border: 1px solid var(--border);
-      padding: 1rem 1.1rem;
-      background: #050608;
+      border: none;
+      padding: 1rem 0 0 0.95rem;
+      background: transparent;
       font-size: 0.86rem;
       color: var(--muted);
+      position: relative;
+    }
+
+    .lore-box::before {
+      content: "";
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(143, 255, 209, 0.24), rgba(143, 255, 209, 0));
     }
 
     .lore-label {
@@ -1302,15 +1336,16 @@
 
     .artifact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.9rem;
-      margin-top: 1.3rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem 1.1rem;
+      margin-top: 1.35rem;
     }
 
     .artifact-card {
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, #06080a 0%, #050608 100%);
-      padding: 0.95rem 1rem 1rem;
+      border: none;
+      border-left: 1px solid rgba(111, 15, 22, 0.34);
+      background: linear-gradient(180deg, rgba(6, 8, 10, 0.44) 0%, rgba(5, 6, 8, 0.18) 100%);
+      padding: 0.3rem 0 0.7rem 0.85rem;
       min-height: 100%;
     }
 
@@ -1341,18 +1376,31 @@
 
     .sisters-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.95rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.95rem 1.2rem;
+    }
+
+    .sister-card:nth-child(3n + 1) {
+      transform: translateY(0);
+    }
+
+    .sister-card:nth-child(3n + 2) {
+      transform: translateY(2.4rem);
+    }
+
+    .sister-card:nth-child(3n) {
+      transform: translateY(0.8rem);
     }
 
     .sister-card {
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(111, 15, 22, 0.26);
-      background: linear-gradient(180deg, #07090b 0%, #050608 100%);
+      border: none;
+      background: linear-gradient(180deg, rgba(7, 9, 11, 0.72) 0%, rgba(5, 6, 8, 0.94) 100%);
       display: flex;
       flex-direction: column;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.018), 0 14px 32px rgba(0,0,0,0.22);
+      box-shadow: 0 20px 44px rgba(0,0,0,0.28);
+      clip-path: polygon(0 0, 100% 0, 100% 95%, 93% 100%, 0 100%);
     }
 
     .sister-card::before {
@@ -1360,7 +1408,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(180deg, rgba(111, 15, 22, 0.14), transparent 24%, transparent 78%, rgba(143, 255, 209, 0.04));
+      background: linear-gradient(180deg, rgba(111, 15, 22, 0.18), transparent 20%, transparent 74%, rgba(143, 255, 209, 0.05));
       opacity: 0.85;
       z-index: 1;
     }
@@ -1583,8 +1631,8 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-      gap: 2rem;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.9fr);
+      gap: 1.2rem;
       align-items: flex-start;
     }
 
@@ -1640,10 +1688,10 @@
     }
 
     .social-block {
-      border: 1px solid rgba(111, 15, 22, 0.3);
-      border-left: 3px solid var(--accent);
-      background: linear-gradient(180deg, #050608, #090506);
-      padding: 0.9rem 1rem;
+      border: none;
+      border-left: 1px solid rgba(143, 255, 209, 0.24);
+      background: transparent;
+      padding: 0.5rem 0 0.5rem 1rem;
       font-size: 0.86rem;
       color: var(--muted);
     }
@@ -1729,7 +1777,14 @@
       }
 
       .sisters-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+      }
+
+      .sister-card,
+      .sister-card:nth-child(3n + 1),
+      .sister-card:nth-child(3n + 2),
+      .sister-card:nth-child(3n) {
+        transform: none;
       }
 
     }
@@ -1737,6 +1792,7 @@
     @media (max-width: 520px) {
       .evidence-grid { grid-template-columns: minmax(0, 1fr); }
       .hero-title { letter-spacing: 0.03em; }
+      .artifact-grid { grid-template-columns: 1fr; }
       .sisters-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -1806,18 +1862,18 @@
         <h1 class="hero-title">Ghost Orgy</h1>
 
         <p class="hero-note">
-          Nine sisters. One orchard. No witness comes back whole.
+          You were not invited. You were noticed.
         </p>
 
         <p class="hero-subtitle">
-          Ghost Orgy is not a clean music brand. It is a recovered contamination: breath too close,
-          sub-bass like structural stress, women Hell failed to contain, and songs that feel less written
-          than exhumed.
+          Ghost Orgy feels like opening the wrong gate and realizing it was already open from the other side.
+          Breath at the ear. Bass moving through the studs. A choir of women too intimate to be called distant
+          and too wrong to be called human.
         </p>
 
         <p class="hero-subtitle">
-          What reaches the public feed is only the portion that survived translation. The rest remains inside
-          the Orchard, still pressing at the membrane.
+          The songs are only what made it back with enough shape to stream. Everything else is still in the Orchard,
+          waiting for a mouth, a room, a body to carry it further in.
         </p>
 
 
@@ -1856,13 +1912,13 @@
         </div>
 
         <div class="hero-route-box">
-          <div class="hero-route-label">Field note</div>
+          <div class="hero-route-label">First trespass</div>
           <p class="hero-route-copy">
-            The streamable part is the mercy. Behind it are stills, transcripts, redactions,
-            and women Hell could not finish keeping.
+            Start with the music if you want the softest contact. Start with the archive if you want to feel the path
+            give under you.
           </p>
           <a class="hero-route-link" href="artifacts/index.html">
-            <span>open the recovered archive →</span>
+            <span>enter through the torn place →</span>
           </a>
         </div>
       </div>
@@ -1888,7 +1944,7 @@
       <div class="section-head">
         <h2 class="section-title">Current Signal</h2>
         <p class="section-sub">
-          <strong>Salt and Suffering</strong> is the clearest way in right now.
+          <strong>Salt and Suffering</strong> is the first bruise most people notice.
         </p>
       </div>
 
@@ -1897,13 +1953,11 @@
           <div class="transmission-kicker">Now active</div>
           <h3 class="transmission-title">Salt and Suffering</h3>
           <p class="transmission-copy">
-            Salt and Suffering begins like a whispered confession fed directly into failing tape
-            and ends like the room itself accepting a wound. The low end drags at the walls.
-            The voice stays too near the ear. Nothing leaves without residue.
+            It does not behave like a single song. It behaves like pressure gathering a body. Salt in the mouth.
+            A voice close enough to mistake for your own. Low end that does not hit so much as enter.
           </p>
           <p class="transmission-copy">
-            Start here if you want the cleanest entry point. It is still not safe, still not an
-            explanation, still only the first place the Orchard figured out how to sing through.
+            This is the part of Ghost Orgy that still knows how to pretend it wants listeners instead of witnesses.
           </p>
 
           <div class="hero-actions">
@@ -1931,7 +1985,7 @@
           </div>
 
           <p class="transmission-note">
-            Public signal. Sanitized only enough to stay online.
+            Play it once for the song. Play it twice to see what stays in the room.
           </p>
         </article>
 
@@ -1957,7 +2011,7 @@
       <div class="section-head">
         <h2 class="section-title">Music</h2>
         <p class="section-sub">
-          Headphones or speakers that move air. Nothing in between.
+          Headphones if you want the whisper. Speakers if you want the visitation.
         </p>
       </div>
 
@@ -2033,9 +2087,9 @@
 
         <div class="music-copy-wrap">
           <p class="music-copy">
-            <strong>Die-fi</strong> keeps the human damage in frame: breath, saliva, clipped prayer,
-            grain, pressure, and the body-noise most production tries to sterilize out. The engineering
-            is deliberate. The contamination is deliberate too.
+            <strong>Die-fi</strong> is fidelity used against distance. Mouth-noise left in. Breath left in.
+            The cut of the room left in. Precision not as polish, but as a way of making every wrong little detail
+            land exactly where it should.
           </p>
 
           <div class="platforms">
@@ -2080,24 +2134,20 @@
       <div class="section-head">
         <h2 class="section-title">Lore</h2>
         <p class="section-sub">
-          The tracks are only the audible edge of a larger infection: the Orchard, the Watchers,
-          the Nine Sisters, and the reports left behind after contact failed.
+          Do not read this like lore. Read it like the path started under your feet before you knew to look down.
         </p>
       </div>
 
       <div class="lore-layout">
         <div class="lore-text">
           <p>
-            The <strong>Nine Sisters</strong> were human once. Hell took them, changed
-            them, and lost custody. They move now through the <strong>Orchard of
-            Unmaking</strong>, where devotion rots into weather and every path behaves like
-            a decision already made.
+            There is a place under Ghost Orgy where the ground stops behaving like ground. Trees grow there,
+            but not like trees. Faces survive there, but not as ownership. The Sisters move through it the way a stain
+            moves through cloth: not fast, not slow, just certain.
           </p>
           <p>
-            Each sister arrives with a damage pattern. Some alter rooms. Some alter memory.
-            Some only need a voice and a witness. What remains afterward is physical:
-            rewritten text, impact symmetry, impossible time, faces that keep changing
-            between copies.
+            You do not meet them in a row. You do not meet them explained. You feel a room lean. You hear a phrase land wrong.
+            You look twice at a face and lose the argument the second time.
           </p>
 
           <div class="artifact-grid">
@@ -2105,36 +2155,32 @@
               <div class="artifact-kicker">Recovered · DOT Incident #L-770</div>
               <h3 class="artifact-title">The Infinite Mile</h3>
               <p>
-                Driver clocked at 85 mph. Vehicle stationary. Dashboard clock returns to
-                the same minute. Sound arrives three seconds late and echoes twice. Woman
-                in a grey habit visible in the rearview mirror. Limbo's domain.
+                Highway speed. No forward movement. The same minute chewing its way back onto the dash.
+                A woman in a grey habit where the mirror should have ended.
               </p>
             </article>
             <article class="artifact-card">
               <div class="artifact-kicker">Recovered · Ecclesiastical Inquiry #H-331</div>
               <h3 class="artifact-title">The Silent Mass</h3>
               <p>
-                Bell rings with no sound. Scripture reorders itself on the page:
-                <em>"THE FIRST SIN WAS NAMING IT HOLY."</em> Priest's eye burns inside
-                the socket. A nun with no right eye appears at the altar. Heresy's domain.
+                The bell moved. The air did not. Scripture opened its mouth and came back as
+                <em>"THE FIRST SIN WAS NAMING IT HOLY."</em>
               </p>
             </article>
             <article class="artifact-card">
               <div class="artifact-kicker">Recovered · Case File #V-909</div>
               <h3 class="artifact-title">The Mirror Break Incident</h3>
               <p>
-                Victim's skeleton fractures mirror the cracks in the walls. Symmetrical
-                breaks across every bone. Photographs show wood grain where marrow should be.
-                Violence's domain.
+                The room split first. The body followed it faithfully. Later, the photographs
+                suggested the bones had been learning woodgrain for years.
               </p>
             </article>
             <article class="artifact-card">
               <div class="artifact-kicker">Recovered · Emergency Transcript #F-882</div>
               <h3 class="artifact-title">The Overwrite Call</h3>
               <p>
-                911 caller's identity shifts mid-sentence. Memories invert. A woman wearing
-                the victim's face answers the door. Sound of a mirror shattering, sustained
-                for twelve seconds. Only one identity remains. Fraud's domain.
+                The caller stopped sounding like herself halfway through her own name. By the time the door opened,
+                someone else had already learned her face.
               </p>
             </article>
           </div>
@@ -2149,8 +2195,7 @@
           <div class="evidence-browser" data-evidence-browser>
             <div class="lore-label">Recovered Images</div>
             <p class="evidence-intro">
-              Recovered frames from separate incidents. Same place behind them. Same damage
-              signature.
+              Different incidents. Same pull in the image. Same feeling that the frame was looking back.
             </p>
 
             <figure class="evidence-photo">
@@ -2244,21 +2289,21 @@
           </div>
 
           <div class="lore-box">
-            <div class="lore-label">Field Fragment</div>
+            <div class="lore-label">What the path teaches too late</div>
             <p>
-              Extracted from Orchard-adjacent material. Appears across unrelated cases.
+              Found in separate mouths. Always after the threshold has already been crossed.
             </p>
             <ul>
-              <li>The Sisters do not symbolize appetite. They weaponize it.</li>
-              <li>The Orchard does not open. It notices.</li>
-              <li>A watcher cannot intervene. It can only remain.</li>
-              <li>If a face changes between copies, keep the older one.</li>
+              <li>The Orchard does not appear ahead of you. It appears in the fact that you kept going.</li>
+              <li>The Sisters are not categories. They are failures of the self with bodies grown around them.</li>
+              <li>A watcher is only proof that remaining can also be a form of helplessness.</li>
+              <li>If a face changes between glimpses, the first one was the mercy.</li>
             </ul>
             <details class="lore-details">
               <summary>open redacted appendix</summary>
               <div class="lore-details-body">
-                The same sentence appears in separate files written by people who never met:
-                <em>It did not follow us home. It was already there.</em>
+                The same sentence keeps surfacing in places that should not share language:
+                <em>We thought we were entering the Orchard. Later we understood the Orchard had already entered us.</em>
               </div>
             </details>
             <p style="margin-top: 0.9rem;">
@@ -2273,8 +2318,7 @@
       <div class="section-head">
         <h2 class="section-title">The Nine Sisters</h2>
         <p class="section-sub">
-          Human once. Taken by Hell. Cast out when Hell couldn't hold them.
-          Each one governs a domain. Each one leaves evidence.
+          Not a lineup. Not an index. Nine ways the self comes apart and keeps walking.
         </p>
       </div>
 
@@ -2447,16 +2491,15 @@
       <div class="section-head">
         <h2 class="section-title">Contact</h2>
         <p class="section-sub">
-          Licensing, placements, and projects that need horror to feel physical.
+          For work that wants horror intimate, expensive, and impossible to shake.
         </p>
       </div>
 
       <div class="contact-grid">
         <div class="contact-copy">
           <p>
-            Games, film, installations, trailers, ritual visuals, and anything else that needs
-            horror to feel intimate, expensive, and physically wrong. Send the brief, the shape
-            of the world, and where you want the damage to begin.
+            Games, film, trailers, installations, ritual visuals, and any world that needs its beauty compromised
+            with intention. Bring the brief. Bring the atmosphere. Bring the wound you want the sound to open.
           </p>
 
           <div class="contact-actions">
@@ -2478,7 +2521,7 @@
         </div>
 
         <aside class="social-block">
-          <div class="social-title">Channels</div>
+          <div class="social-title">Public traces</div>
           <div class="social-links">
             <a
               href="https://www.tiktok.com/@ghostorgy.music"
@@ -2759,7 +2802,7 @@
       window.clearTimeout(watcherTimer);
       if (!canHaunt()) return;
 
-      const delay = initial ? 4200 : 9000 + Math.random() * 9500;
+      const delay = initial ? 5200 : 11000 + Math.random() * 11000;
       watcherTimer = window.setTimeout(() => {
         watcherCount += 1;
         const isFlash = watcherCount % 4 === 0 || Math.random() < 0.2;
@@ -2813,7 +2856,7 @@
       }, 150);
 
       const now = window.performance ? performance.now() : Date.now();
-      if (canHaunt() && now - lastWatcherFlash > 7000 && Math.random() < 0.015) {
+      if (canHaunt() && now - lastWatcherFlash > 7600 && Math.random() < 0.014) {
         lastWatcherFlash = now;
         const pose = watcherFlashPoses[Math.floor(Math.random() * watcherFlashPoses.length)];
         setWatcherPose(pose);

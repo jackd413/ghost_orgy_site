@@ -1,0 +1,14 @@
+{
+  "mappings": [
+    {
+      "source": "C:\\GhostOrgyCanon\\lore",
+      "destination": "canon",
+      "include": ["*.md", "*.txt", "*.pdf", "*.docx"]
+    },
+    {
+      "source": "C:\\GhostOrgyCanon\\images",
+      "destination": "images",
+      "include": ["*.png", "*.jpg", "*.jpeg", "*.webp", "*.gif", "*.svg", "*.ico", "*.avif"]
+    }
+  ]
+}
