@@ -8,6 +8,8 @@
     name="description"
     content="Ghost Orgy is die-fi ritual audio. Nine Sisters, one Orchard, and sound built to hit the body before the mind catches up."
   />
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <meta name="color-scheme" content="dark" />
 
    <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R946B19QCY"></script>
@@ -40,10 +42,12 @@
     content="Die-fi ritual audio. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up."
   />
   <meta name="twitter:image" content="https://www.unholyghost.org/images/og-card.jpg" />
+  <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
 
   <!-- Favicons (add these files if you want custom icons) -->
   <link rel="icon" type="image/png" href="images/go-sigil-white.png" />
   <link rel="apple-touch-icon" href="images/go-sigil-white.png" />
+  <link rel="manifest" href="site.webmanifest" />
 
   <!-- Preload key images (helps avoid late pop-in) -->
   <link rel="preload" as="image" href="images/evidence-02.jpg?v=2" />
@@ -74,19 +78,9 @@
     }
   </script>
 
-  <!-- Base fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400;600&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Display fonts from CDN -->
-  <!-- They Perished -->
-  <link href="https://db.onlinewebfonts.com/c/1d065bbebe505e76388da924c9cdd356?family=They+Perished" rel="stylesheet">
-  <!-- Crimes Times Six -->
-  <link href="https://db.onlinewebfonts.com/c/1c29c34b645c849dc0c4558ce3074ec3?family=Crimes+Times+Six" rel="stylesheet">
+  <link rel="stylesheet" href="styles/fonts.css" />
+  <link rel="stylesheet" href="styles/core.css" />
+  <script src="scripts/site.js" defer></script>
 
   <style>
     :root {
@@ -1798,6 +1792,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to main content</a>
   <div class="noise" aria-hidden="true"></div>
   <div class="sigils" aria-hidden="true"></div>
   <header class="site-header">
@@ -2572,7 +2567,7 @@
   <footer>
     <div class="footer-inner">
       <div>Ghost Orgy, LLC</div>
-      <div>© <span id="year"></span></div>
+      <div>© <span data-current-year></span></div>
     </div>
   </footer>
 
@@ -2588,9 +2583,6 @@
   </div>
 
   <script>
-    // year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
     // mobile nav
     const toggle = document.querySelector(".nav-toggle");
     const mobileNav = document.getElementById("mobileNav");

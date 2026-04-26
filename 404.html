@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>404 — Ghost Orgy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The page you were trying to reach did not come back intact. Return to the main Ghost Orgy site, lore, or press kit." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#040405" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
+  <link rel="canonical" href="https://www.unholyghost.org/404.html" />
+  <link rel="icon" type="image/png" href="images/go-sigil-white.png" />
+  <link rel="apple-touch-icon" href="images/go-sigil-white.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="preload" as="image" href="images/hero-orchard-watcher.webp" />
+  <link rel="stylesheet" href="styles/fonts.css" />
+  <link rel="stylesheet" href="styles/core.css" />
+  <style>
+    :root {
+      --bg: #040405;
+      --fg: #efe9e1;
+      --muted: #a59b90;
+      --accent: #91ffd2;
+      --warm: #c4956a;
+      --line: rgba(255, 255, 255, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      color: var(--fg);
+      background:
+        linear-gradient(180deg, rgba(3,3,3,0.28) 0%, rgba(3,3,3,0.58) 54%, #030303 100%),
+        radial-gradient(circle at 22% 18%, rgba(145,255,210,0.08), transparent 22%),
+        url("images/hero-orchard-watcher.webp") center center / cover no-repeat,
+        var(--bg);
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.015) 3px, rgba(255,255,255,0.015) 4px);
+      mix-blend-mode: soft-light;
+      opacity: 0.7;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+    }
+
+    .shell {
+      width: min(720px, 100%);
+      padding: clamp(1.5rem, 5vw, 3rem);
+      border: 1px solid var(--line);
+      background: rgba(4, 4, 5, 0.72);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+    }
+
+    .eyebrow,
+    .trace,
+    .actions a,
+    .return-link {
+      font-family: "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .eyebrow {
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 0.76rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "They Perished", "IBM Plex Mono", monospace;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+    }
+
+    .subhead {
+      margin: 1.2rem 0 0;
+      color: var(--warm);
+      font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
+      font-size: clamp(1.1rem, 2.6vw, 1.8rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .copy {
+      max-width: 40rem;
+      margin: 1.4rem 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .actions a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 1rem;
+      border: 1px solid var(--line);
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 0.75rem;
+      transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+    }
+
+    .actions a:hover {
+      color: var(--accent);
+      border-color: rgba(145,255,210,0.54);
+      background: rgba(145,255,210,0.06);
+    }
+
+    .trace {
+      margin-top: 2rem;
+      color: rgba(239,233,225,0.55);
+      font-size: 0.68rem;
+    }
+
+    .return-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.72rem;
+    }
+
+    .return-link:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <main id="main-content">
+    <section class="shell" aria-labelledby="page-title">
+      <div class="eyebrow">Signal lost</div>
+      <h1 id="page-title">404</h1>
+      <div class="subhead">No clean exit from this route</div>
+      <p class="copy">The page you tried to reach did not come back intact. Follow one of the stable traces below and re-enter somewhere the Orchard still recognizes.</p>
+      <div class="actions">
+        <a href="/">Main site</a>
+        <a href="/lore/">Lore</a>
+        <a href="/press/">Press kit</a>
+        <a href="mailto:info@unholyghost.org">Contact</a>
+      </div>
+      <div class="trace">Recovered perimeter still · route unstable · witness retained</div>
+      <a class="return-link" href="/">Return to Ghost Orgy</a>
+    </section>
+  </main>
+</body>
+</html>

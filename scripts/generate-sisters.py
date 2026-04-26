@@ -12,6 +12,8 @@ sisters = [
         'circle': 'I',
         'aspect': 'Annihilation of anchor',
         'image': 'sister-limbo.jpg',
+        'image_width': 600,
+        'image_height': 900,
         'domain_intro': 'Motion without landing. Unsealed eyes that never close.',
         'body': [
             'Limbo is the Sister of Unbelief \u2014 not disbelief, but the inability to arrive at any fixed position. She breaks clocks, loops corridors, and removes the feeling that a present moment can ever fully hold still.',
@@ -30,6 +32,8 @@ sisters = [
         'circle': 'II',
         'aspect': 'Desire that overwrites self',
         'image': 'sister-lust.jpg',
+        'image_width': 600,
+        'image_height': 1066,
         'domain_intro': 'Consumptive wanting. She dissolves identity into pursuit.',
         'body': [
             'Lust is the Sister of Consumptive Desire. She does not seduce \u2014 she amplifies want until motive, memory, and restraint all collapse into the object itself. The subject becomes pure desire with no one left inside it.',
@@ -48,6 +52,8 @@ sisters = [
         'circle': 'III',
         'aspect': 'Starvation of meaning',
         'image': 'sister-gluttony.jpg',
+        'image_width': 600,
+        'image_height': 600,
         'domain_intro': 'Not hunger for food. Hunger for significance.',
         'body': [
             'Gluttony is the Sister of Starvation. She does not gorge \u2014 she drains. Color, joy, purpose, and the feeling that achievement means anything at all. She is the ache that remains when everything has been consumed and nothing was enough.',
@@ -66,6 +72,8 @@ sisters = [
         'circle': 'IV',
         'aspect': 'Value extraction',
         'image': 'sister-greed.jpg',
+        'image_width': 600,
+        'image_height': 900,
         'domain_intro': 'She audits souls like a cosmic ledger.',
         'body': [
             'Greed is the Sister of Value Extraction. She does not hoard \u2014 she redefines worth until everything real becomes worthless and everything worthless becomes priceless. She is the accountant of the Orchard.',
@@ -84,6 +92,8 @@ sisters = [
         'circle': 'V',
         'aspect': 'Judgment as fire',
         'image': 'sister-wrath.jpg',
+        'image_width': 600,
+        'image_height': 466,
         'domain_intro': 'Selective thermal execution. She does not rage \u2014 she delivers.',
         'body': [
             'Wrath is the Sister of Judgment. She does not rage \u2014 she executes. Her violence is not chaotic. It is precise, thermal, and deeply personal. She burns from the inside out, and she only burns what she means to burn.',
@@ -102,6 +112,8 @@ sisters = [
         'circle': 'VI',
         'aspect': 'Counter-doctrine',
         'image': 'sister-heresy.jpg',
+        'image_width': 600,
+        'image_height': 1200,
         'domain_intro': 'Stitched mouth. Burning eye socket. Charred black habit.',
         'body': [
             'Heresy is the Sister of Counter-Doctrine. She does not argue with faith \u2014 she makes faith forget its own words. Doctrine softens around her. Systems of belief lose the ability to distribute their own weight.',
@@ -120,6 +132,8 @@ sisters = [
         'circle': 'VII',
         'aspect': 'Structural resonance',
         'image': 'sister-violence.jpg',
+        'image_width': 600,
+        'image_height': 466,
         'domain_intro': 'Harm that mirrors itself across bodies and rooms.',
         'body': [
             "Violence is the Sister of Structural Resonance. She does not strike \u2014 she establishes a pattern, and then everything in the environment repeats it. Harm becomes grammar. Wounds become architecture.",
@@ -138,6 +152,8 @@ sisters = [
         'circle': 'VIII',
         'aspect': 'Identity replacement',
         'image': 'sister-fraud.jpg',
+        'image_width': 600,
+        'image_height': 900,
         'domain_intro': "Porcelain mask over frantic eyes. She wears the victim's face.",
         'body': [
             "Fraud is the Sister of False Truth. She does not lie \u2014 she replaces. The original is not hidden or contradicted. It is edited out and overwritten with something that performs better in public.",
@@ -156,6 +172,8 @@ sisters = [
         'circle': 'IX',
         'aspect': 'Weaponized trust',
         'image': 'sister-treachery.jpg',
+        'image_width': 600,
+        'image_height': 900,
         'domain_intro': 'Stitched-flesh face. Broken rings. She rewires perception.',
         'body': [
             "Treachery is the Sister of Weaponized Trust. She does not betray \u2014 she makes betrayal feel inevitable, so the subject betrays first. Pre-emptive destruction becomes the only logical response to love.",
@@ -177,98 +195,65 @@ TEMPLATE = '''<!DOCTYPE html>
   <title>{name} — The Nine Sisters — Ghost Orgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="{name}: {aspect}. {domain_intro} One of the Nine Sisters of the Orchard of Unmaking." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#050608" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://www.unholyghost.org/sisters/{file}.html" />
+  <meta property="og:site_name" content="Ghost Orgy" />
+  <meta property="og:title" content="{name} — The Nine Sisters — Ghost Orgy" />
+  <meta property="og:description" content="{name}: {aspect}. {domain_intro} One of the Nine Sisters of the Orchard of Unmaking." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.unholyghost.org/sisters/{file}.html" />
+  <meta property="og:image" content="https://www.unholyghost.org/images/{image}" />
+  <meta property="og:image:alt" content="{name}, one of the Nine Sisters of Ghost Orgy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{name} — The Nine Sisters — Ghost Orgy" />
+  <meta name="twitter:description" content="{name}: {aspect}. {domain_intro} One of the Nine Sisters of the Orchard of Unmaking." />
+  <meta name="twitter:image" content="https://www.unholyghost.org/images/{image}" />
+  <meta name="twitter:image:alt" content="{name}, one of the Nine Sisters of Ghost Orgy" />
+  <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
   <link rel="icon" type="image/png" href="../images/go-sigil-white.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-  <link href="https://db.onlinewebfonts.com/c/1d065bbebe505e76388da924c9cdd356?family=They+Perished" rel="stylesheet" />
-  <link href="https://db.onlinewebfonts.com/c/1c29c34b645c849dc0c4558ce3074ec3?family=Crimes+Times+Six" rel="stylesheet" />
-  <style>
-    :root {{
-      --bg: #050608; --fg: #f0ece6; --muted: #9a978f;
-      --accent: #8affc1; --accent-warm: #c4956a; --border: #2a2826;
-    }}
-    * {{ box-sizing: border-box; }}
-    html {{ scroll-behavior: smooth; }}
-    html, body {{ margin: 0; padding: 0; background: var(--bg); color: var(--fg); }}
-    body {{ font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 0.95rem; line-height: 1.65; }}
-    a {{ color: var(--accent); text-decoration: none; }}
-    a:hover {{ text-decoration: underline; }}
-    .nav {{ padding: 1.2rem 2rem; font-family: "IBM Plex Mono", monospace; font-size: 0.75rem;
-      text-transform: uppercase; letter-spacing: 0.18em; border-bottom: 1px solid var(--border);
-      display: flex; gap: 1.5rem; }}
-    .hero-wrap {{ position: relative; overflow: hidden; }}
-    .hero-wrap::after {{ content: ""; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 40%; background: linear-gradient(to top, var(--bg), transparent); pointer-events: none; }}
-    .hero-img {{ width: 100%; aspect-ratio: 16 / 9; display: block; object-fit: cover; object-position: center top;
-      filter: brightness(0.45) contrast(1.1) grayscale(0.25); }}
-    .content {{ max-width: 780px; margin: 0 auto; padding: 3rem 2rem 5rem; }}
-    .circle-label {{ font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
-      text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin-bottom: 0.3rem; }}
-    .aspect {{ font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
-      text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent-warm); margin-bottom: 1rem; }}
-    h1 {{ font-family: "They Perished", "Crimes Times Six", serif;
-      font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 400; margin: 0 0 0.3rem; color: var(--accent-warm); }}
-    .intro {{ font-size: 1.15rem; color: var(--fg); margin-bottom: 2.5rem;
-      border-left: 2px solid var(--accent-warm); padding-left: 1.2rem; }}
-    .body-text {{ color: var(--muted); margin-bottom: 2rem; }}
-    .body-text p {{ margin: 0 0 1.2rem; }}
-    .artifact-block {{ border: 1px solid var(--border); padding: 1.2rem 1.3rem;
-      margin: 2.5rem 0; background: #07090b; }}
-    .artifact-label {{ font-family: "IBM Plex Mono", monospace; font-size: 0.65rem;
-      text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent-warm); margin-bottom: 0.5rem; }}
-    .artifact-title {{ font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
-      font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.6rem; }}
-    .artifact-body {{ color: var(--muted); font-size: 0.88rem; }}
-    .trace {{ font-family: "IBM Plex Mono", monospace; font-size: 0.7rem;
-      text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent);
-      margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); }}
-    .back-link {{ margin-top: 3rem; font-family: "IBM Plex Mono", monospace;
-      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.16em; }}
-    .sister-nav {{ display: flex; flex-wrap: wrap; gap: 0.5rem;
-      margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }}
-    .sister-nav a {{ font-family: "IBM Plex Mono", monospace; font-size: 0.68rem;
-      text-transform: uppercase; letter-spacing: 0.14em; padding: 0.35rem 0.7rem;
-      border: 1px solid var(--border); color: var(--muted); transition: color 150ms, border-color 150ms; }}
-    .sister-nav a:hover {{ color: var(--accent-warm); border-color: var(--accent-warm); text-decoration: none; }}
-    .sister-nav a.is-current {{ color: var(--accent-warm); border-color: var(--accent-warm); }}
-    footer {{ padding: 2rem; border-top: 1px solid var(--border); text-align: center;
-      font-family: "IBM Plex Mono", monospace; font-size: 0.7rem;
-      text-transform: uppercase; letter-spacing: 0.16em; color: var(--muted); }}
-    @media (max-width: 600px) {{ .content {{ padding: 2rem 1.2rem 4rem; }} .nav {{ padding: 1rem 1.2rem; }} }}
-  </style>
+  <link rel="apple-touch-icon" href="../images/go-sigil-white.png" />
+  <link rel="manifest" href="../site.webmanifest" />
+  <link rel="stylesheet" href="../styles/fonts.css" />
+  <link rel="stylesheet" href="../styles/core.css" />
+  <link rel="stylesheet" href="../styles/sisters.css" />
 </head>
 <body>
-  <nav class="nav">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <nav class="nav" aria-label="Sister page">
     <a href="../index.html">Ghost Orgy</a>
     <a href="../lore/index.html">Lore</a>
     <a href="../artifacts/index.html">Field Artifacts</a>
   </nav>
-  <div class="hero-wrap">
-    <img class="hero-img" src="../images/{image}" alt="{name}" />
-  </div>
-  <div class="content">
-    <div class="circle-label">Circle {circle} &middot; The Nine Sisters</div>
-    <div class="aspect">{aspect}</div>
-    <h1>{name}</h1>
-    <p class="intro">{domain_intro}</p>
-    <div class="body-text">
+  <main class="page-main" id="main-content">
+    <div class="hero-wrap">
+      <img class="hero-img" src="../images/{image}" alt="{name}, one of the Nine Sisters" width="{image_width}" height="{image_height}" decoding="async" fetchpriority="high" />
+    </div>
+    <div class="content">
+      <div class="circle-label">Circle {circle} &middot; The Nine Sisters</div>
+      <div class="aspect">{aspect}</div>
+      <h1>{name}</h1>
+      <p class="intro">{domain_intro}</p>
+      <div class="body-text">
 {body_html}
-    </div>
-    <div class="artifact-block">
-      <div class="artifact-label">Recovered &middot; {artifact_num}</div>
-      <h3 class="artifact-title">{artifact_name}</h3>
-      <p class="artifact-body">{artifact_body}</p>
-    </div>
-    <div class="trace">Trace &middot; {trace}</div>
-    <div class="sister-nav">
+      </div>
+      <div class="artifact-block">
+        <div class="artifact-label">Recovered &middot; {artifact_num}</div>
+        <h3 class="artifact-title">{artifact_name}</h3>
+        <p class="artifact-body">{artifact_body}</p>
+      </div>
+      <div class="trace">Trace &middot; {trace}</div>
+      <nav class="sister-nav" aria-label="Nine Sisters index">
 {sister_nav}
+      </nav>
+      <div class="back-link">
+        <a href="../index.html#sisters">&larr; Back to the Nine</a>
+      </div>
     </div>
-    <div class="back-link">
-      <a href="../index.html#sisters">&larr; Back to the Nine</a>
-    </div>
-  </div>
-  <footer>Ghost Orgy, LLC &middot; <script>document.write(new Date().getFullYear())</script></footer>
+  </main>
+  <footer>Ghost Orgy, LLC &middot; <span data-current-year></span></footer>
+  <script src="../scripts/site.js" defer></script>
 </body>
 </html>'''
 
@@ -278,15 +263,18 @@ for s in sisters:
     body_html = '\n'.join(f'      <p>{p}</p>' for p in s['body'])
     nav_links = []
     for name, fname in all_names:
-        cls = ' class="is-current"' if fname == s['file'] else ''
-        nav_links.append(f'      <a href="{fname}.html"{cls}>{name}</a>')
+        cls = ' class="is-current" aria-current="page"' if fname == s['file'] else ''
+        nav_links.append(f'        <a href="{fname}.html"{cls}>{name}</a>')
     sister_nav = '\n'.join(nav_links)
 
     html = TEMPLATE.format(
         name=s['name'],
         circle=s['circle'],
         aspect=s['aspect'],
+        file=s['file'],
         image=s['image'],
+        image_width=s['image_width'],
+        image_height=s['image_height'],
         domain_intro=s['domain_intro'],
         body_html=body_html,
         artifact_num=s['artifact_num'],
@@ -297,7 +285,7 @@ for s in sisters:
     )
 
     path = os.path.join(base, f"{s['file']}.html")
-    with open(path, 'w', encoding='utf-8') as f:
+    with open(path, 'w', encoding='utf-8', newline='\n') as f:
         f.write(html)
     print(f"OK: {s['file']}.html")
 

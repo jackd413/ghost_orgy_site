@@ -8,23 +8,35 @@
     name="description"
     content="The Orchard of Unmaking. Cosmology and lore of Ghost Orgy — Nine Sisters, Watchers, and the laws that bind them."
   />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#050608" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://www.unholyghost.org/lore/" />
+  <meta property="og:site_name" content="Ghost Orgy" />
+  <meta property="og:title" content="The Orchard of Unmaking — Ghost Orgy Lore" />
+  <meta property="og:description" content="Cosmology and lore of Ghost Orgy — the Orchard, the Nine Sisters, the Watchers, and the laws that bind them." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.unholyghost.org/lore/" />
+  <meta property="og:image" content="https://www.unholyghost.org/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Orchard of Unmaking — Ghost Orgy Lore" />
+  <meta name="twitter:description" content="Cosmology and lore of Ghost Orgy — the Orchard, the Nine Sisters, the Watchers, and the laws that bind them." />
+  <meta name="twitter:image" content="https://www.unholyghost.org/images/og-card.jpg" />
+  <meta name="twitter:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
+  <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
 
   <link rel="icon" type="image/png" href="../images/go-sigil-white.png" />
   <link rel="apple-touch-icon" href="../images/go-sigil-white.png" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400;600&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://db.onlinewebfonts.com/c/1d065bbebe505e76388da924c9cdd356?family=They+Perished" rel="stylesheet" />
-  <link href="https://db.onlinewebfonts.com/c/1c29c34b645c849dc0c4558ce3074ec3?family=Crimes+Times+Six" rel="stylesheet" />
+  <link rel="manifest" href="../site.webmanifest" />
 
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="../images/ritual-orchard.jpg" />
+  <link rel="stylesheet" href="../styles/fonts.css" />
+  <link rel="stylesheet" href="../styles/core.css" />
+  <script src="../scripts/site.js" defer></script>
 
   <style>
     :root {
@@ -94,9 +106,11 @@
     }
 
     .site-nav .nav-brand {
-      font-family: "They Perished", serif;
-      font-size: 1.15rem;
-      letter-spacing: 0.04em;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
       color: var(--fg);
       transition: color var(--speed);
     }
@@ -107,9 +121,9 @@
 
     .site-nav .nav-back {
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       color: var(--muted);
       transition: color var(--speed);
     }
@@ -157,18 +171,19 @@
     }
 
     .hero-title {
-      font-family: "They Perished", serif;
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      line-height: 1.1;
-      letter-spacing: 0.03em;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: clamp(2.4rem, 5.4vw, 4.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      font-weight: 600;
       margin: 0 0 1rem;
       color: var(--fg);
     }
 
     .hero-subtitle {
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.8rem;
-      letter-spacing: 0.14em;
+      font-size: 0.84rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
       margin: 0;
@@ -194,9 +209,10 @@
     }
 
     .section-heading {
-      font-family: "Crimes Times Six", serif;
-      font-size: clamp(1.4rem, 3.5vw, 2rem);
-      letter-spacing: 0.06em;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: clamp(1.55rem, 3.4vw, 2.2rem);
+      letter-spacing: -0.03em;
+      font-weight: 600;
       color: var(--accent-warm);
       margin: 0 0 1.5rem;
       line-height: 1.2;
@@ -349,9 +365,9 @@
     }
 
     .lore-footer p {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin: 0;
@@ -398,9 +414,10 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <!-- NAV -->
-  <nav class="site-nav">
+  <nav class="site-nav" aria-label="Lore navigation">
     <div class="site-nav-inner">
       <a href="../index.html" class="nav-brand">Ghost Orgy</a>
       <a href="../index.html" class="nav-back">Back to main site</a>
@@ -413,6 +430,10 @@
       src="../images/ritual-orchard.jpg"
       alt="The Orchard of Unmaking -- dark tangled branches reaching into void"
       class="hero-img"
+      width="1600"
+      height="1066"
+      decoding="async"
+      fetchpriority="high"
     />
     <div class="hero-overlay">
       <div class="hero-text">
@@ -422,7 +443,7 @@
     </div>
   </div>
 
-  <div class="shell">
+  <main class="shell" id="main-content">
 
     <!-- SECTION 1: INTRO -->
     <section class="lore-section">
@@ -509,7 +530,10 @@
         <img
           src="../images/ritual-watcher-woods.jpg"
           alt="Shadowed figures standing motionless among dark trees"
+          width="1024"
+          height="1536"
           loading="lazy"
+          decoding="async"
         />
         <div class="watcher-caption">Field capture -- the Watchers bearing witness</div>
       </div>
@@ -558,11 +582,11 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="lore-footer">
-      <p><a href="../index.html">Ghost Orgy</a> &mdash; Nine Sisters. One Orchard. No clean exit.</p>
-    </footer>
+  </main>
 
-  </div>
+  <footer class="lore-footer">
+    <p><a href="../index.html">Ghost Orgy</a> &mdash; Nine Sisters. One Orchard. No clean exit.</p>
+  </footer>
 
 </body>
 </html>

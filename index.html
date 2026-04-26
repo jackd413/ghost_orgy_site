@@ -8,6 +8,8 @@
     name="description"
     content="Ghost Orgy is die-fi ritual audio. Nine Sisters, one Orchard, and sound built to hit the body before the mind catches up."
   />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="color-scheme" content="dark" />
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-R946B19QCY"></script>
   <script>
@@ -19,6 +21,7 @@
 
   <link rel="canonical" href="https://www.unholyghost.org/" />
   <meta name="theme-color" content="#040405" />
+  <meta property="og:site_name" content="Ghost Orgy" />
   <meta property="og:title" content="Ghost Orgy — Nine Sisters. One Orchard. No clean exit." />
   <meta property="og:description" content="Die-fi ritual audio. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up." />
   <meta property="og:type" content="website" />
@@ -26,14 +29,19 @@
   <meta property="og:image" content="https://www.unholyghost.org/images/og-card.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ghost Orgy — Nine Sisters. One Orchard. No clean exit." />
   <meta name="twitter:description" content="Die-fi ritual audio. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up." />
   <meta name="twitter:image" content="https://www.unholyghost.org/images/og-card.jpg" />
+  <meta name="twitter:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
+  <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
 
   <link rel="icon" type="image/png" href="images/go-sigil-white.png" />
   <link rel="apple-touch-icon" href="images/go-sigil-white.png" />
+  <link rel="manifest" href="site.webmanifest" />
   <link rel="alternate" type="application/rss+xml" title="Ghost Orgy RSS" href="https://feeds.soundcloud.com/users/soundcloud:users:12663938/sounds.rss" />
+  <link rel="preload" as="image" href="images/hero-orchard-watcher.webp" />
 
   <script type="application/ld+json">
     {
@@ -52,11 +60,9 @@
     }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://db.onlinewebfonts.com/c/1d065bbebe505e76388da924c9cdd356?family=They+Perished" rel="stylesheet" />
-  <link href="https://db.onlinewebfonts.com/c/1c29c34b645c849dc0c4558ce3074ec3?family=Crimes+Times+Six" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/fonts.css" />
+  <link rel="stylesheet" href="styles/core.css" />
+  <script src="scripts/site.js" defer></script>
 
   <style>
     :root {
@@ -170,7 +176,7 @@
       position: fixed;
       inset: 0 0 auto 0;
       z-index: 30;
-      padding: 18px var(--pad);
+      padding: 14px var(--pad) 0;
       pointer-events: none;
     }
 
@@ -178,51 +184,58 @@
       max-width: var(--site-max);
       margin: 0 auto;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      padding: 12px 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(8,8,9,0.9), rgba(8,8,9,0.74)),
+        radial-gradient(circle at left center, rgba(145,255,210,0.05), transparent 32%);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.28);
+      backdrop-filter: blur(16px) saturate(120%);
       pointer-events: auto;
     }
 
     .site-mark {
       display: inline-flex;
       flex-direction: column;
-      gap: 2px;
-      mix-blend-mode: screen;
-    }
-
-    .site-mark-title,
-    .site-mark-sub,
-    .site-nav {
-      font-family: "IBM Plex Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.28em;
+      gap: 4px;
     }
 
     .site-mark-title {
-      font-size: 12px;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 15px;
       font-weight: 600;
-      color: rgba(239,233,225,0.94);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(239,233,225,0.96);
     }
 
     .site-mark-sub {
-      font-size: 10px;
-      letter-spacing: 0.26em;
-      color: rgba(165,155,144,0.8);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(165,155,144,0.84);
     }
 
     .site-nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 18px;
-      font-size: 10px;
-      color: rgba(239,233,225,0.78);
+      gap: 10px 18px;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(239,233,225,0.84);
     }
 
     .site-nav a {
       position: relative;
-      padding-bottom: 0.2rem;
+      padding: 4px 0;
     }
 
     .site-nav a::after {
@@ -252,8 +265,19 @@
       overflow: hidden;
       background:
         linear-gradient(180deg, rgba(3,3,3,0.14) 0%, rgba(3,3,3,0.34) 34%, rgba(3,3,3,0.82) 82%, #030303 100%),
-        radial-gradient(circle at 50% 28%, rgba(255,255,255,0.06), transparent 24%),
-        url('images/hero-orchard-watcher.png') center center / cover no-repeat;
+        radial-gradient(circle at 50% 28%, rgba(255,255,255,0.06), transparent 24%);
+      background-color: #030303;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      z-index: 0;
+      filter: saturate(0.96) contrast(1.02);
     }
 
     .hero::before {
@@ -290,8 +314,8 @@
       color: var(--accent);
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 0.32em;
+      font-size: 12px;
+      letter-spacing: 0.22em;
     }
 
     .hero-title {
@@ -324,8 +348,8 @@
       margin-top: 28px;
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 11px;
+      letter-spacing: 0.16em;
+      font-size: 12px;
     }
 
     .hero-actions a {
@@ -350,8 +374,8 @@
       color: rgba(239,233,225,0.58);
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      font-size: 10px;
-      letter-spacing: 0.24em;
+      font-size: 11px;
+      letter-spacing: 0.18em;
     }
 
     .hero-note::before {
@@ -374,26 +398,26 @@
       color: var(--accent);
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 0.28em;
+      font-size: 12px;
+      letter-spacing: 0.2em;
       margin-bottom: 14px;
     }
 
     .chapter-title {
       margin: 0;
-      font-family: "They Perished", "IBM Plex Mono", monospace;
-      font-size: clamp(48px, 8vw, 128px);
-      line-height: 0.92;
-      font-weight: 400;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: clamp(42px, 6.7vw, 96px);
+      line-height: 0.95;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: -0.05em;
       position: relative;
       display: inline-block;
       padding-left: 0;
     }
 
     .chapter-title.small {
-      font-size: clamp(38px, 5.5vw, 84px);
+      font-size: clamp(34px, 4.8vw, 68px);
     }
 
     .bloodblock {
@@ -418,11 +442,11 @@
     }
 
     .chapter-sub {
-      max-width: 760px;
+      max-width: 56ch;
       margin: 18px 0 0;
-      color: var(--muted);
-      font-size: clamp(16px, 1.3vw, 20px);
-      line-height: 1.55;
+      color: rgba(239,233,225,0.74);
+      font-size: clamp(17px, 1.28vw, 21px);
+      line-height: 1.6;
     }
 
     /* ---------- SIGNAL (breach + player tabs) ---------- */
@@ -485,20 +509,20 @@
 
     .release-title {
       margin: 0 0 12px;
-      font-family: "They Perished", "IBM Plex Mono", monospace;
+      font-family: "IBM Plex Sans", sans-serif;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      font-size: clamp(36px, 4.8vw, 72px);
-      line-height: 0.92;
-      font-weight: 400;
+      letter-spacing: -0.05em;
+      font-size: clamp(32px, 4vw, 60px);
+      line-height: 0.96;
+      font-weight: 600;
       color: var(--fg);
     }
 
     .release-meta {
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 0.26em;
+      font-size: 12px;
+      letter-spacing: 0.18em;
       color: var(--accent);
       margin: -4px 0 14px;
     }
@@ -526,8 +550,8 @@
       flex-wrap: wrap;
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 11px;
+      letter-spacing: 0.16em;
+      font-size: 12px;
     }
 
     .release-links a {
@@ -554,8 +578,8 @@
       color: var(--accent);
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      font-size: 10px;
-      letter-spacing: 0.24em;
+      font-size: 11px;
+      letter-spacing: 0.18em;
     }
 
     .player-tabs {
@@ -573,8 +597,8 @@
       cursor: pointer;
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 11px;
+      letter-spacing: 0.16em;
+      font-size: 12px;
       position: relative;
     }
 
@@ -647,8 +671,8 @@
     .shot-label {
       display: inline-block;
       font-family: "IBM Plex Mono", monospace;
-      font-size: 10px;
-      letter-spacing: 0.26em;
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 10px;
@@ -656,8 +680,8 @@
 
     .shot-text {
       max-width: 34ch;
-      font-size: clamp(15px, 1.3vw, 22px);
-      line-height: 1.34;
+      font-size: clamp(15px, 1.16vw, 20px);
+      line-height: 1.4;
       color: rgba(239,233,225,0.96);
       text-shadow: 0 2px 20px rgba(0,0,0,0.6);
     }
@@ -667,12 +691,27 @@
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       grid-template-rows: minmax(320px, 44vw) minmax(240px, 30vw);
-      gap: 16px;
+      gap: 18px;
     }
 
     .fragments-grid .shot:first-child { grid-row: 1 / span 2; }
-    .fragments-grid .shot:nth-child(2) img { filter: brightness(0.86) contrast(1.04) saturate(0.88); }
-    .fragments-grid .shot:nth-child(3) img { filter: brightness(0.82) contrast(1.02) saturate(0.78); }
+    .fragment-footage img {
+      object-position: center center;
+      transform: scale(1.08);
+      filter: brightness(0.74) contrast(1.08) saturate(0.82);
+    }
+
+    .fragment-sigil img {
+      object-position: center 18%;
+      transform: scale(1.04);
+      filter: brightness(0.88) contrast(1.06) saturate(0.92);
+    }
+
+    .fragment-kinetic img {
+      object-position: center 24%;
+      transform: scale(1.08);
+      filter: brightness(0.8) contrast(1.05) saturate(0.8);
+    }
 
     /* ---------- SISTERS (apparition tiles) ---------- */
     .sisters-frame {
@@ -681,25 +720,26 @@
 
     .apparition-wall {
       display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(16px, 1.8vw, 24px);
       align-items: stretch;
-      margin-top: 28px;
+      margin-top: 36px;
     }
 
     .apparition {
       position: relative;
-      min-height: 360px;
+      min-height: clamp(460px, 40vw, 600px);
       overflow: hidden;
       display: flex;
       align-items: end;
       background-color: #050506;
-      background-size: 112%;
+      background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-      clip-path: polygon(0 0, 100% 0, 100% 96%, 94% 100%, 0 100%);
-      box-shadow: 0 24px 70px rgba(0,0,0,0.26);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 28px 72px rgba(0,0,0,0.3);
       isolation: isolate;
+      transition: transform 400ms ease, box-shadow 400ms ease;
     }
 
     .apparition::before {
@@ -707,9 +747,9 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.02), transparent 14%),
-        linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.22) 38%, rgba(0,0,0,0.82) 100%),
-        radial-gradient(circle at 16% 22%, rgba(106,17,24,0.26), transparent 36%);
+        linear-gradient(180deg, rgba(255,255,255,0.03), transparent 14%),
+        linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.22) 44%, rgba(0,0,0,0.9) 100%),
+        radial-gradient(circle at 18% 20%, rgba(106,17,24,0.22), transparent 34%);
       opacity: 1;
       z-index: 0;
       transition: opacity var(--ease), transform 700ms ease;
@@ -722,92 +762,107 @@
       background:
         repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(255,255,255,0.012) 4px, rgba(255,255,255,0.012) 5px);
       mix-blend-mode: screen;
-      opacity: 0.35;
+      opacity: 0.22;
       z-index: 0;
     }
 
+    .apparition:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 34px 82px rgba(0,0,0,0.4);
+    }
+
     .apparition:hover::before {
-      opacity: 0.86;
-      transform: scale(1.02);
+      opacity: 0.94;
+      transform: scale(1.01);
     }
 
     .apparition-copy {
       position: relative;
       z-index: 1;
       width: 100%;
-      padding: 1rem 1rem;
+      min-height: 100%;
+      padding: clamp(20px, 2vw, 26px);
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      justify-content: end;
+      gap: 0.65rem;
     }
 
     .apparition-rank {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      color: rgba(239,233,225,0.6);
-    }
-
-    .apparition-name {
-      margin: 0;
-      font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: clamp(1.5rem, 2vw, 2.6rem);
-      line-height: 0.96;
-      color: var(--fg);
-      max-width: 10ch;
-    }
-
-    .apparition-line {
-      margin: 0;
       font-family: "IBM Plex Mono", monospace;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: rgba(145,255,210,0.86);
-      line-height: 1.7;
-      max-width: 28ch;
+    }
+
+    .apparition-name {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
+      font-size: clamp(2rem, 2.6vw, 2.9rem);
+      line-height: 0.98;
+      font-weight: 600;
+      color: var(--fg);
+      max-width: none;
+    }
+
+    .apparition-line {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: clamp(15px, 1.05vw, 18px);
+      color: rgba(239,233,225,0.92);
+      line-height: 1.38;
+      max-width: 24ch;
     }
 
     .apparition-trace {
-      margin-top: 4px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.12);
       font-family: "IBM Plex Mono", monospace;
       font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(239,233,225,0.52);
+      color: rgba(239,233,225,0.62);
       line-height: 1.65;
-      max-width: 30ch;
+      max-width: none;
     }
 
-    .apparition.limbo { grid-column: span 5; min-height: 620px; background-image: url('images/sister-limbo.jpg'); background-position: center 22%; }
-    .apparition.lust { grid-column: span 3; min-height: 450px; background-image: url('images/sister-lust.jpg'); background-position: center 16%; }
-    .apparition.gluttony { grid-column: span 4; min-height: 450px; background-image: url('images/sister-gluttony.jpg'); }
-    .apparition.greed { grid-column: span 4; min-height: 470px; background-image: url('images/sister-greed.jpg'); }
-    .apparition.wrath { grid-column: span 4; min-height: 610px; background-image: url('images/sister-wrath.jpg'); background-position: center 18%; }
-    .apparition.heresy { grid-column: span 4; min-height: 420px; background-image: url('images/sister-heresy.jpg'); }
-    .apparition.violence { grid-column: span 5; min-height: 540px; background-image: url('images/sister-violence.jpg'); }
-    .apparition.fraud { grid-column: span 3; min-height: 390px; background-image: url('images/sister-fraud.jpg'); }
-    .apparition.treachery { grid-column: span 4; min-height: 390px; background-image: url('images/sister-treachery.jpg'); }
+    .apparition.limbo { background-image: url('images/sister-limbo.jpg'); background-position: center 18%; }
+    .apparition.lust { background-image: url('images/sister-lust.jpg'); background-position: center 18%; }
+    .apparition.gluttony { background-image: url('images/sister-gluttony.jpg'); background-position: center 18%; }
+    .apparition.greed { background-image: url('images/sister-greed.jpg'); background-position: center 22%; }
+    .apparition.wrath { background-image: url('images/sister-wrath.jpg'); background-position: center 18%; }
+    .apparition.heresy { background-image: url('images/sister-heresy.jpg'); background-position: center 16%; }
+    .apparition.violence { background-image: url('images/sister-violence.jpg'); background-position: center 18%; }
+    .apparition.fraud { background-image: url('images/sister-fraud.jpg'); background-position: center 14%; }
+    .apparition.treachery { background-image: url('images/sister-treachery.jpg'); background-position: center 18%; }
 
     /* ---------- EVIDENCE STRIP (full-bleed two-up break) ---------- */
     .evidence-strip {
-      width: 100%;
-      max-width: none;
-      margin: var(--section) 0 0;
+      max-width: var(--site-max);
+      margin: var(--section) auto 0;
+      padding: 0 var(--pad);
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+      gap: 18px;
     }
 
     .evidence-strip-item {
-      min-height: clamp(320px, 48vh, 520px);
+      min-height: clamp(360px, 44vw, 560px);
+    }
+
+    .evidence-strip-item:nth-child(1) img {
+      object-position: center 36%;
+      filter: brightness(0.78) contrast(1.05) saturate(0.84);
     }
 
     .evidence-strip-item:nth-child(2) img {
-      filter: brightness(0.78) contrast(1.06) saturate(0.7);
+      object-position: center 16%;
+      transform: scale(1.08);
+      filter: brightness(0.74) contrast(1.08) saturate(0.78);
     }
 
     @media (max-width: 820px) {
@@ -869,8 +924,8 @@
       gap: 14px 22px;
       font-family: "IBM Plex Mono", monospace;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 11px;
+      letter-spacing: 0.16em;
+      font-size: 12px;
     }
 
     .trace-links a {
@@ -883,12 +938,11 @@
     .trace-links a:hover { color: var(--accent); border-color: var(--accent); }
 
     footer {
-      padding: 0 var(--pad) 28px;
-      color: rgba(239,233,225,0.42);
-      font-family: "IBM Plex Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 10px;
+      margin-top: 72px;
+      padding: 24px var(--pad) 32px;
+      border-top: 1px solid var(--soft-line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.22));
+      color: rgba(239,233,225,0.72);
     }
 
     .footer-inner {
@@ -896,8 +950,26 @@
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
+    }
+
+    .footer-inner > div:first-child {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(239,233,225,0.86);
+    }
+
+    .footer-inner > div:last-child {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(239,233,225,0.62);
     }
 
     /* ---------- WATCHER ---------- */
@@ -1001,25 +1073,16 @@
       }
       .fragments-grid .shot:first-child { grid-row: auto; min-height: 54vh; }
       .fragments-grid .shot { min-height: 44vh; }
-      .apparition.limbo,
-      .apparition.lust,
-      .apparition.gluttony,
-      .apparition.greed,
-      .apparition.wrath,
-      .apparition.heresy,
-      .apparition.violence,
-      .apparition.fraud,
-      .apparition.treachery {
-        grid-column: span 6;
-      }
+      .apparition-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 820px) {
       html { scroll-behavior: auto; }
-      .site-header { padding: 16px 18px; }
+      .site-header { padding: 14px 18px 0; }
       .site-header-inner {
         flex-direction: column;
-        gap: 12px;
+        align-items: flex-start;
+        gap: 10px;
       }
       .site-nav {
         gap: 12px 16px;
@@ -1031,24 +1094,16 @@
       }
       .hero-title { max-width: none; }
       .chapter { padding: 72px 18px 0; }
+      .evidence-strip { padding: 0 18px; }
       .trace-links { grid-template-columns: 1fr; }
-      .apparition.limbo,
-      .apparition.lust,
-      .apparition.gluttony,
-      .apparition.greed,
-      .apparition.wrath,
-      .apparition.heresy,
-      .apparition.violence,
-      .apparition.fraud,
-      .apparition.treachery {
-        grid-column: span 12;
-        min-height: 420px;
-      }
+      .apparition-wall { grid-template-columns: 1fr; }
+      .apparition { min-height: 420px; }
       .watcher { display: none; }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#entry">Skip to main content</a>
   <div class="noise" aria-hidden="true"></div>
   <div class="glyphs" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
@@ -1072,6 +1127,7 @@
 
   <main id="entry">
     <section class="hero">
+      <img class="hero-media" src="images/hero-orchard-watcher.webp" alt="" width="2048" height="1364" decoding="async" fetchpriority="high" />
       <div class="hero-inner">
         <div class="kicker">Recovered ritual audio</div>
         <h1 class="hero-title">Ghost Orgy</h1>
@@ -1098,7 +1154,7 @@
       <div class="releases-grid">
         <article class="release">
           <a class="release-cover" href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="release_salt_cover">
-            <img src="images/cover-salt.jpg" alt="Salt album cover" loading="lazy" decoding="async" />
+            <img src="images/cover-salt.webp" alt="Salt album cover" width="1500" height="1500" loading="lazy" decoding="async" />
           </a>
           <div class="release-copy">
             <div class="release-kicker">I · Salt</div>
@@ -1114,7 +1170,7 @@
 
         <article class="release">
           <a class="release-cover" href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="release_suffering_cover">
-            <img src="images/cover-suffering.jpg" alt="Suffering album cover" loading="lazy" decoding="async" />
+            <img src="images/cover-suffering.webp" alt="Suffering album cover" width="1500" height="1500" loading="lazy" decoding="async" />
           </a>
           <div class="release-copy">
             <div class="release-kicker">II · Suffering</div>
@@ -1149,7 +1205,6 @@
           <iframe
             title="Ghost Orgy on SoundCloud"
             scrolling="no"
-            frameborder="no"
             allow="autoplay"
             loading="lazy"
             data-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/ghostorgymusic&color=%23050608&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
@@ -1167,7 +1222,7 @@
 
       <div class="fragments-grid">
         <figure class="shot fragment-footage">
-          <img src="images/violence-footage.png" alt="Recovered footage frame, distorted" loading="lazy" decoding="async" />
+          <img src="images/violence-footage.webp" alt="Recovered footage frame, distorted" width="1536" height="1024" loading="lazy" decoding="async" />
           <figcaption class="shot-caption">
             <div class="shot-label">Recovered footage · violence domain</div>
             <div class="shot-text"><em>We thought we were entering the Orchard. Later we understood the Orchard had already entered us.</em></div>
@@ -1175,17 +1230,17 @@
         </figure>
 
         <figure class="shot fragment-sigil">
-          <img src="images/fraud-mask.jpg" alt="Recovered photograph — cracked porcelain face smiling at the camera" loading="lazy" decoding="async" />
+          <img src="images/sister-fraud.jpg" alt="Fraud, one of the Nine Sisters" width="600" height="900" loading="lazy" decoding="async" />
           <figcaption class="shot-caption">
-            <div class="shot-label">Stolen face · Sister-class signature</div>
+            <div class="shot-label">Fraud · canonical sister-class signature</div>
             <div class="shot-text">A face learned too well. The smile is the warning. The crack is older than the photograph.</div>
           </figcaption>
         </figure>
 
         <figure class="shot fragment-kinetic">
-          <img src="images/shot-reverse-summoning.gif" alt="Recovered violent ritual frame, in motion" loading="lazy" decoding="async" />
+          <img src="images/ritual-watcher-woods.jpg" alt="Watcher figure on a narrow forest path" width="1024" height="1536" loading="lazy" decoding="async" />
           <figcaption class="shot-caption">
-            <div class="shot-label">Reverse summoning · retained after contact</div>
+            <div class="shot-label">Perimeter witness · retained after contact</div>
             <div class="shot-text">If the figure is already waiting, do not trust the feeling that you have just arrived.</div>
           </figcaption>
         </figure>
@@ -1194,17 +1249,17 @@
 
     <section class="evidence-strip" aria-label="Recovered evidence — outside the Orchard">
       <figure class="shot evidence-strip-item">
-        <img src="images/watcher-masked-orchard.jpg" alt="Masked watcher standing close, holding fruit, skulls at the feet" loading="lazy" decoding="async" />
+        <img src="images/watcher-masked-orchard.jpg" alt="Masked watcher standing close, holding fruit, skulls at the feet" width="1500" height="1000" loading="lazy" decoding="async" />
         <figcaption class="shot-caption">
           <div class="shot-label">Watcher · close approach</div>
           <div class="shot-text">It used to keep the treeline. Now it brings what it found into reach. The fruit is part of the warning.</div>
         </figcaption>
       </figure>
       <figure class="shot evidence-strip-item">
-        <img src="images/bear-skull-concept.jpg" alt="Composite painting — the lost sister and a skull bear, fused" loading="lazy" decoding="async" />
+        <img src="images/hero-sister.jpg" alt="Veiled sister portrait with blackened eyes and a blood-dark mouth" width="900" height="1600" loading="lazy" decoding="async" />
         <figcaption class="shot-caption">
-          <div class="shot-label">Lost-sister composite · canon adjacent</div>
-          <div class="shot-text">A face the orchard learned to wear over a skull. The scream is reproduction, not pain. Transmission acknowledges receipt.</div>
+          <div class="shot-label">Sister signal · near-field portrait</div>
+          <div class="shot-text">When the Orchard wants a face instead of a silhouette, it sends beauty first and consequence second.</div>
         </figcaption>
       </figure>
     </section>
@@ -1212,8 +1267,8 @@
     <section class="chapter sisters-frame" id="sisters">
       <div class="chapter-head">
         <div class="bloodblock"><div class="chapter-kicker">The Nine</div></div>
-        <h2 class="chapter-title">Not a lineup</h2>
-        <p class="chapter-sub">Nine failures of the self with bodies grown around them. They do not arrive evenly. They do not keep still long enough to become profiles. They surface the way dread surfaces: by changing the room around them first.</p>
+        <h2 class="chapter-title">The Nine Sisters</h2>
+        <p class="chapter-sub">Nine bodies grown around nine failures of the self. They are not mascots or lore cards. They are the Orchard's preferred ways of entering a room.</p>
       </div>
 
       <div class="apparition-wall">
@@ -1302,10 +1357,10 @@
 
     <section class="orchard-shot" id="orchard">
       <figure class="shot">
-        <img src="images/orchard-skulls-path.jpg" alt="Orchard path between skull-bone trees, no figure visible" loading="lazy" decoding="async" />
+        <img src="images/orchard-skulls-path.jpg" alt="Orchard path between skull-bone trees, no figure visible" width="1536" height="1024" loading="lazy" decoding="async" />
         <figcaption class="shot-caption">
           <div class="shot-label">Operating principle</div>
-          <div class="shot-text">The transmissions retrieved are what made it back with enough shape to replay. Transients and spectral readouts are not confirmed. Listeners are at risk. Multiband readings show wavelength transmutation and stochastic wave removal. What is missing is still moving through the hearts of the living, echoing in the halls of the First Sinners and, part of the witness that never sealed properly again.</div>
+          <div class="shot-text">Only the songs returned with enough shape to replay. Everything else is still moving through weather, reflections, and the part of the witness that never sealed properly again.</div>
         </figcaption>
       </figure>
     </section>
@@ -1337,23 +1392,21 @@
   <footer>
     <div class="footer-inner">
       <div>Ghost Orgy, LLC</div>
-      <div>signal retained · <span id="year"></span></div>
+      <div>signal retained · <span data-current-year></span></div>
     </div>
   </footer>
 
   <div class="watcher" aria-hidden="true">
     <div class="watcher-inner">
       <div class="watcher-glitch">
-        <img class="watcher-base" src="images/watcher-face.png" alt="" loading="lazy" decoding="async" />
-        <img class="watcher-echo watcher-echo-a" src="images/watcher-face.png" alt="" loading="lazy" decoding="async" />
-        <img class="watcher-echo watcher-echo-b" src="images/watcher-face.png" alt="" loading="lazy" decoding="async" />
+        <img class="watcher-base" src="images/watcher-face.png" alt="" width="334" height="427" loading="lazy" decoding="async" />
+        <img class="watcher-echo watcher-echo-a" src="images/watcher-face.png" alt="" width="334" height="427" loading="lazy" decoding="async" />
+        <img class="watcher-echo watcher-echo-b" src="images/watcher-face.png" alt="" width="334" height="427" loading="lazy" decoding="async" />
       </div>
     </div>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
     function trackEvent(name, params = {}) {
       if (typeof window.gtag !== "function") return;
       window.gtag("event", name, params);
@@ -1445,8 +1498,8 @@
 
     const watcherFaces = [
       "images/watcher-face.png",
-      "images/watcher-alt-a.png",
-      "images/watcher-alt-b.png"
+      "images/watcher-alt-a.webp",
+      "images/watcher-alt-b.webp"
     ];
 
     const watcherImgs = watcher ? watcher.querySelectorAll("img") : [];
@@ -1460,7 +1513,9 @@
       }
       lastWatcherFaceIndex = idx;
       const src = watcherFaces[idx];
-      watcherImgs.forEach((img) => { if (img.src !== src) img.src = src; });
+      watcherImgs.forEach((img) => {
+        if (img.getAttribute("src") !== src) img.src = src;
+      });
     }
 
     function setWatcherPose(pose) {

@@ -16,6 +16,7 @@ Those directories are intentionally ignored by git. They are safe to use for:
 - art exploration
 - branding/source files
 - social/share-package context
+- retired public assets that should stay local but no longer ship from `images/`
 
 They are not part of the public repo and are not published by GitHub Pages unless
 you deliberately copy files from them into tracked website paths.

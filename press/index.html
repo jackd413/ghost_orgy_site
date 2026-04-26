@@ -8,20 +8,32 @@
     name="description"
     content="Ghost Orgy press kit. Die-fi ritual audio for film, games, installations, and anything that needs horror to feel physical."
   />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://www.unholyghost.org/press/" />
   <meta name="theme-color" content="#050608" />
+  <meta name="color-scheme" content="dark" />
+  <meta property="og:site_name" content="Ghost Orgy" />
+  <meta property="og:title" content="Ghost Orgy — Press / EPK" />
+  <meta property="og:description" content="Ghost Orgy press kit for film, games, installations, commissions, licensing, and horror work that needs to feel physical." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.unholyghost.org/press/" />
+  <meta property="og:image" content="https://www.unholyghost.org/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ghost Orgy — Press / EPK" />
+  <meta name="twitter:description" content="Ghost Orgy press kit for film, games, installations, commissions, licensing, and horror work that needs to feel physical." />
+  <meta name="twitter:image" content="https://www.unholyghost.org/images/og-card.jpg" />
+  <meta name="twitter:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
+  <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
   <link rel="icon" type="image/png" href="../images/go-sigil-white.png" />
   <link rel="apple-touch-icon" href="../images/go-sigil-white.png" />
+  <link rel="manifest" href="../site.webmanifest" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@300;400;600&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://db.onlinewebfonts.com/c/1d065bbebe505e76388da924c9cdd356?family=They+Perished" rel="stylesheet">
-  <link href="https://db.onlinewebfonts.com/c/1c29c34b645c849dc0c4558ce3074ec3?family=Crimes+Times+Six" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/fonts.css" />
+  <link rel="stylesheet" href="../styles/core.css" />
+  <script src="../scripts/site.js" defer></script>
 
   <style>
     :root {
@@ -92,10 +104,11 @@
     }
 
     .site-title {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.72rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.16em;
       color: var(--muted);
     }
 
@@ -104,9 +117,9 @@
       flex-wrap: wrap;
       gap: 1rem;
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.72rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       color: var(--muted);
     }
 
@@ -133,27 +146,29 @@
 
     .kicker {
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.68rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.18em;
       color: var(--accent);
       margin-bottom: 0.6rem;
     }
 
     .section-title {
       margin: 0 0 0.5rem;
-      font-family: "Crimes Times Six", "IBM Plex Mono", monospace;
-      font-size: 1.4rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: -0.03em;
     }
 
     h1 {
       margin: 0 0 1rem;
-      font-family: "They Perished", "IBM Plex Mono", monospace;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      letter-spacing: 0.05em;
-      line-height: 1.04;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: clamp(2.6rem, 5.4vw, 4.2rem);
+      letter-spacing: -0.05em;
+      line-height: 0.96;
+      font-weight: 600;
     }
 
     /* --- Bio --- */
@@ -339,10 +354,10 @@
     footer {
       padding: 1.8rem 0 1rem;
       color: var(--muted);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.68rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-size: 0.76rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
     }
 
     /* --- Responsive --- */
@@ -355,18 +370,19 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header">
     <div class="site-header-inner">
       <div class="site-title">Ghost Orgy / Press</div>
-      <nav class="site-nav">
+      <nav class="site-nav" aria-label="Press navigation">
         <a href="../index.html">Main Site</a>
         <a href="mailto:info@unholyghost.org">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main class="shell">
+  <main class="shell" id="main-content">
 
     <!-- BIO -->
     <section class="bio">
@@ -434,15 +450,15 @@
       <h2 class="section-title">Visual Strip</h2>
       <div class="strip">
         <article class="strip-card">
-          <img src="../images/ritual-watcher-woods.jpg" alt="Watcher figure on a narrow forest path" />
+          <img src="../images/ritual-watcher-woods.jpg" alt="Watcher figure on a narrow forest path" width="1024" height="1536" loading="lazy" decoding="async" />
           <div class="strip-caption">Watcher trace / wrong path</div>
         </article>
         <article class="strip-card">
-          <img src="../images/ritual-orchard.jpg" alt="The Orchard of Unmaking" />
+          <img src="../images/ritual-orchard.jpg" alt="The Orchard of Unmaking" width="1600" height="1066" loading="lazy" decoding="async" />
           <div class="strip-caption">Orchard residue / public fragment</div>
         </article>
         <article class="strip-card">
-          <img src="../images/hero-sister.jpg" alt="Sister figure from the Nine" />
+          <img src="../images/hero-sister.jpg" alt="Sister figure from the Nine" width="900" height="1600" loading="lazy" decoding="async" />
           <div class="strip-caption">Sister signal / field capture</div>
         </article>
       </div>
@@ -461,7 +477,7 @@
     </section>
 
     <footer>
-      &copy; 2026 Ghost Orgy, LLC
+      &copy; <span data-current-year></span> Ghost Orgy, LLC
     </footer>
 
   </main>

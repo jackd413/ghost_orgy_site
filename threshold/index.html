@@ -3,16 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ghost Orgy</title>
-  <meta name="description" content="Ghost Orgy — die-fi ritual audio." />
+  <title>Threshold — Ghost Orgy</title>
+  <meta name="description" content="Threshold transmission for Ghost Orgy. Follow the breach signal and public channels for the next public emergence." />
   <meta name="robots" content="index,follow" />
-
-  <!-- Optional: Open Graph (for clean link previews) -->
-  <meta property="og:title" content="Ghost Orgy" />
-  <meta property="og:description" content="As above, so below, glory to sin…" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://www.unholyghost.org/threshold/" />
+  <meta property="og:site_name" content="Ghost Orgy" />
+  <meta property="og:title" content="Threshold — Ghost Orgy" />
+  <meta property="og:description" content="Threshold transmission. Follow the breach signal and public channels for the next public emergence." />
   <meta property="og:type" content="website" />
-  <!-- <meta property="og:image" content="https://threshold.unholyghost.org/og.jpg" /> -->
-  <meta property="og:url" content="https://threshold.unholyghost.org/" />
+  <meta property="og:url" content="https://www.unholyghost.org/threshold/" />
+  <meta property="og:image" content="https://www.unholyghost.org/images/og-card.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Threshold — Ghost Orgy" />
+  <meta name="twitter:description" content="Threshold transmission. Follow the breach signal and public channels for the next public emergence." />
+  <meta name="twitter:image" content="https://www.unholyghost.org/images/og-card.jpg" />
+  <meta name="twitter:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
+  <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
+  <link rel="icon" type="image/png" href="../images/go-sigil-white.png" />
+  <link rel="apple-touch-icon" href="../images/go-sigil-white.png" />
+  <link rel="manifest" href="../site.webmanifest" />
+  <link rel="stylesheet" href="../styles/core.css" />
+  <script src="../scripts/site.js" defer></script>
 
   <style>
     :root{
@@ -78,6 +94,40 @@
       color:var(--muted);
       font-size:13px;
     }
+    .eyebrow{
+      margin-bottom:10px;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+    .note{
+      max-width:42rem;
+      margin:0;
+      color:var(--muted);
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+    .action{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 14px;
+      border:1px solid var(--rule);
+      border-radius:999px;
+      background:#050505;
+      color:var(--fg);
+      text-decoration:none;
+    }
+    .action:hover{
+      border-bottom-color:var(--rule);
+      background:#0b0b0b;
+    }
     a{color:var(--fg); text-decoration:none; border-bottom:1px solid rgba(242,242,242,.35);}
     a:hover{border-bottom-color:rgba(242,242,242,.75);}
     .img{
@@ -98,6 +148,7 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <main class="wrap">
     <header>
       <div class="sigil">
@@ -117,29 +168,20 @@ They are within.
 
     <hr />
 
-    <section aria-label="Entry track">
-      <h1>Sunk Cost</h1>
-
-      <div class="player">
-        <!-- Replace the src with your actual SoundCloud embed URL for SUNK COST -->
-        <iframe
-          title="Ghost Orgy — Sunk Cost"
-          scrolling="no"
-          allow="autoplay"
-          src="https://w.soundcloud.com/player/?url=YOUR_SOUNDCLOUD_TRACK_URL&color=%23000000&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
-        </iframe>
+    <section id="main-content" aria-labelledby="signal-title">
+      <div class="eyebrow">Threshold transmission</div>
+      <h1 id="signal-title">Sunk Cost</h1>
+      <p class="note">Public threshold signal pending. Follow the primary channels now; this room updates when the breach is ready to hold shape.</p>
+      <div class="actions">
+        <a class="action" href="../index.html">Enter the main site</a>
+        <a class="action" href="https://soundcloud.com/ghostorgymusic" target="_blank" rel="noopener noreferrer">SoundCloud</a>
+        <a class="action" href="mailto:info@unholyghost.org">Contact</a>
       </div>
 
       <div class="meta">
-        <div class="muted">threshold.unholyghost.org</div>
+        <div class="muted">threshold / signal watch</div>
         <div><a href="mailto:info@unholyghost.org">info@unholyghost.org</a></div>
       </div>
-
-      <!-- Optional: one canonical image only (uncomment if you want it)
-      <div class="img">
-        <img src="sisters-nine.jpg" alt="Sisters Nine" />
-      </div>
-      -->
     </section>
   </main>
 </body>
