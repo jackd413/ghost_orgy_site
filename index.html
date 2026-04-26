@@ -792,6 +792,28 @@
     .apparition.fraud { grid-column: span 3; min-height: 390px; background-image: url('images/sister-fraud.jpg'); }
     .apparition.treachery { grid-column: span 4; min-height: 390px; background-image: url('images/sister-treachery.jpg'); }
 
+    /* ---------- EVIDENCE STRIP (full-bleed two-up break) ---------- */
+    .evidence-strip {
+      width: 100%;
+      max-width: none;
+      margin: var(--section) 0 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+    }
+
+    .evidence-strip-item {
+      min-height: clamp(320px, 48vh, 520px);
+    }
+
+    .evidence-strip-item:nth-child(2) img {
+      filter: brightness(0.78) contrast(1.06) saturate(0.7);
+    }
+
+    @media (max-width: 820px) {
+      .evidence-strip { grid-template-columns: 1fr; }
+    }
+
     /* ---------- ORCHARD CLOSER (full bleed) ---------- */
     .orchard-shot {
       position: relative;
@@ -1144,24 +1166,24 @@
       </div>
 
       <div class="fragments-grid">
-        <figure class="shot">
-          <img src="images/fragment-watcher-branches.png" alt="A watcher figure partially hidden behind dark branches" loading="lazy" decoding="async" />
+        <figure class="shot fragment-footage">
+          <img src="images/violence-footage.png" alt="Recovered footage frame, distorted" loading="lazy" decoding="async" />
           <figcaption class="shot-caption">
-            <div class="shot-label">Shared sentence across unrelated reports</div>
+            <div class="shot-label">Recovered footage · violence domain</div>
             <div class="shot-text"><em>We thought we were entering the Orchard. Later we understood the Orchard had already entered us.</em></div>
           </figcaption>
         </figure>
 
-        <figure class="shot">
-          <img src="images/shot-orchard-path.png" alt="A distant figure standing in a flooded orchard lined with skulls" loading="lazy" decoding="async" />
+        <figure class="shot fragment-sigil">
+          <img src="images/ritual-symbol.png" alt="Recovered ritual sigil — repeating mark across unrelated sites" loading="lazy" decoding="async" />
           <figcaption class="shot-caption">
-            <div class="shot-label">Recovered ritual site · violence domain</div>
+            <div class="shot-label">Repeating sigil · cross-site</div>
             <div class="shot-text">The mark survives its witness. The room keeps the instruction after the mouth is gone.</div>
           </figcaption>
         </figure>
 
-        <figure class="shot">
-          <img src="images/shot-reverse-summoning.gif" alt="Recovered violent ritual frame" loading="lazy" decoding="async" />
+        <figure class="shot fragment-kinetic">
+          <img src="images/shot-reverse-summoning.gif" alt="Recovered violent ritual frame, in motion" loading="lazy" decoding="async" />
           <figcaption class="shot-caption">
             <div class="shot-label">Reverse summoning · retained after contact</div>
             <div class="shot-text">If the figure is already waiting, do not trust the feeling that you have just arrived.</div>
@@ -1170,9 +1192,20 @@
       </div>
     </section>
 
-    <section class="banner-shot" aria-hidden="true">
-      <figure class="shot banner-shot-inner">
-        <img src="images/street-ritual.png" alt="" loading="lazy" decoding="async" />
+    <section class="evidence-strip" aria-label="Recovered evidence — outside the Orchard">
+      <figure class="shot evidence-strip-item">
+        <img src="images/street-ritual.png" alt="Street-level ritual, recovered outside the Orchard" loading="lazy" decoding="async" />
+        <figcaption class="shot-caption">
+          <div class="shot-label">Street ingress · public domain</div>
+          <div class="shot-text">The mark crossed back into the city. The crowd kept walking.</div>
+        </figcaption>
+      </figure>
+      <figure class="shot evidence-strip-item">
+        <img src="images/found-evidence.png" alt="Found evidence frame, source unconfirmed" loading="lazy" decoding="async" />
+        <figcaption class="shot-caption">
+          <div class="shot-label">Found evidence · source unconfirmed</div>
+          <div class="shot-text">No witness will admit to filming this. The file existed before the camera was on.</div>
+        </figcaption>
       </figure>
     </section>
 
