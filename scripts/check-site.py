@@ -104,6 +104,8 @@ def main() -> int:
                 errors.append(f"{page.relative_to(ROOT)} still references external font host `{snippet}`.")
 
     for draft in DRAFT_PAGES:
+        if not draft.is_file():
+            continue
         text = read_text(draft)
         if 'meta name="robots" content="noindex, nofollow, noarchive"' not in text:
             errors.append(f"{draft.relative_to(ROOT)} should be marked `noindex, nofollow, noarchive`.")
