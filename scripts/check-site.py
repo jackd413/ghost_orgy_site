@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import hashlib
+import json
 from pathlib import Path
 import re
 import sys
@@ -68,6 +70,10 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def read_json(path: Path) -> object:
+    return json.loads(read_text(path))
+
+
 def collect_referenced_assets(page: Path, text: str) -> set[Path]:
     assets: set[Path] = set()
 
@@ -121,6 +127,69 @@ def main() -> int:
 
     if not (ROOT / ".well-known" / "agent-service.json").is_file():
         errors.append(".well-known/agent-service.json is missing.")
+
+    robots = read_text(ROOT / "robots.txt")
+    if "Content-Signal:" not in robots:
+        errors.append("robots.txt is missing a `Content-Signal:` directive.")
+
+    agent_skills_index = ROOT / ".well-known" / "agent-skills" / "index.json"
+    if not agent_skills_index.is_file():
+        errors.append(".well-known/agent-skills/index.json is missing.")
+    else:
+        try:
+            index_data = read_json(agent_skills_index)
+        except json.JSONDecodeError as exc:
+            errors.append(f".well-known/agent-skills/index.json is not valid JSON: {exc}.")
+        else:
+            expected_schema = "https://schemas.agentskills.io/discovery/0.2.0/schema.json"
+            if index_data.get("$schema") != expected_schema:
+                errors.append(
+                    ".well-known/agent-skills/index.json should use "
+                    f"`{expected_schema}` as its `$schema`."
+                )
+
+            skills = index_data.get("skills")
+            if not isinstance(skills, list) or not skills:
+                errors.append(".well-known/agent-skills/index.json should contain a non-empty `skills` array.")
+            else:
+                for idx, skill in enumerate(skills, start=1):
+                    if not isinstance(skill, dict):
+                        errors.append(f"Skill entry #{idx} in agent-skills index is not an object.")
+                        continue
+
+                    for field in ("name", "type", "description", "url", "digest"):
+                        if field not in skill:
+                            errors.append(f"Skill entry #{idx} is missing `{field}`.")
+
+                    if skill.get("type") != "skill-md":
+                        errors.append(
+                            f"Skill `{skill.get('name', f'#{idx}')}` should use `type: \"skill-md\"` for a standalone SKILL.md file."
+                        )
+                        continue
+
+                    raw_url = skill.get("url")
+                    if not isinstance(raw_url, str) or not raw_url.startswith("/"):
+                        errors.append(f"Skill `{skill.get('name', f'#{idx}')}` should use a path-absolute `url`.")
+                        continue
+
+                    artifact = (ROOT / raw_url.lstrip("/")).resolve()
+                    try:
+                        artifact.relative_to(ROOT)
+                    except ValueError:
+                        errors.append(f"Skill `{skill.get('name', f'#{idx}')}` points outside the repo: `{raw_url}`.")
+                        continue
+
+                    if not artifact.is_file():
+                        errors.append(f"Skill `{skill.get('name', f'#{idx}')}` points to a missing artifact: `{raw_url}`.")
+                        continue
+
+                    digest = hashlib.sha256(artifact.read_bytes()).hexdigest()
+                    expected_digest = f"sha256:{digest}"
+                    if skill.get("digest") != expected_digest:
+                        errors.append(
+                            f"Skill `{skill.get('name', f'#{idx}')}` has digest `{skill.get('digest')}`, "
+                            f"expected `{expected_digest}`."
+                        )
 
     homepage = read_text(ROOT / "index.html")
     for rel_name in ("service-desc", "service-doc", "describedby"):

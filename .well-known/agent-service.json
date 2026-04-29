@@ -5,6 +5,12 @@
   "serviceDoc": "https://www.unholyghost.org/press/",
   "resources": [
     {
+      "rel": "service-desc",
+      "href": "https://www.unholyghost.org/.well-known/agent-skills/index.json",
+      "type": "application/json",
+      "title": "Agent skills discovery index"
+    },
+    {
       "rel": "service-doc",
       "href": "https://www.unholyghost.org/press/",
       "type": "text/html",

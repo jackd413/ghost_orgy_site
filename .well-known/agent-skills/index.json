@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "site-navigation",
+      "type": "skill-md",
+      "description": "Find the right public Ghost Orgy page for a request by routing questions to the homepage, lore, artifacts, press kit, threshold page, or sister pages.",
+      "url": "/.well-known/agent-skills/site-navigation/SKILL.md",
+      "digest": "sha256:17656a6335db798df3bafe32afe4e467cb9f3dc9f8bda3bc69ca8121c354b158"
+    },
+    {
+      "name": "brand-lore",
+      "type": "skill-md",
+      "description": "Explain Ghost Orgy's public mythology, themes, and Nine Sisters canon using the lore and sister pages without inventing backstory.",
+      "url": "/.well-known/agent-skills/brand-lore/SKILL.md",
+      "digest": "sha256:70196ae9f1bbbc5fef763c5b2666b3916942bdc36848e12cbc7c97c3a78ade41"
+    },
+    {
+      "name": "contact-platforms",
+      "type": "skill-md",
+      "description": "Retrieve official Ghost Orgy contact information, streaming profiles, and social links from the public press materials and homepage.",
+      "url": "/.well-known/agent-skills/contact-platforms/SKILL.md",
+      "digest": "sha256:6c791b8bda0968e5cecfcf13fb52398dedb7ece0a60657d307dbe00a07d63ae7"
+    }
+  ]
+}
