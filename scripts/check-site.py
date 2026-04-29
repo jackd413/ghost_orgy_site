@@ -116,6 +116,9 @@ def main() -> int:
     if not (ROOT / "site.webmanifest").is_file():
         errors.append("site.webmanifest is missing.")
 
+    if not (ROOT / ".nojekyll").is_file():
+        errors.append(".nojekyll is missing; GitHub Pages may skip dot-directories like /.well-known/.")
+
     if not (ROOT / ".well-known" / "agent-service.json").is_file():
         errors.append(".well-known/agent-service.json is missing.")
 
