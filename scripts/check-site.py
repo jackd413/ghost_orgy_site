@@ -116,6 +116,14 @@ def main() -> int:
     if not (ROOT / "site.webmanifest").is_file():
         errors.append("site.webmanifest is missing.")
 
+    if not (ROOT / ".well-known" / "agent-service.json").is_file():
+        errors.append(".well-known/agent-service.json is missing.")
+
+    homepage = read_text(ROOT / "index.html")
+    for rel_name in ("service-desc", "service-doc", "describedby"):
+        if f'rel="{rel_name}"' not in homepage:
+            errors.append(f'index.html is missing a `<link rel="{rel_name}">` discovery hint.')
+
     for asset in referenced_assets:
         if asset.suffix.lower() not in PUBLIC_MEDIA_EXTENSIONS:
             continue

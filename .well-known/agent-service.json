@@ -1,0 +1,42 @@
+{
+  "name": "Ghost Orgy",
+  "homepage": "https://www.unholyghost.org/",
+  "description": "Ghost Orgy is die-fi post-hardcore, horrorcore, and experimental post-rock. This document lists the primary human-readable and machine-readable resources that describe the public site.",
+  "serviceDoc": "https://www.unholyghost.org/press/",
+  "resources": [
+    {
+      "rel": "service-doc",
+      "href": "https://www.unholyghost.org/press/",
+      "type": "text/html",
+      "title": "Press kit, public contact routes, and platform links"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www.unholyghost.org/sitemap.xml",
+      "type": "application/xml",
+      "title": "Sitemap"
+    },
+    {
+      "rel": "collection",
+      "href": "https://www.unholyghost.org/lore/",
+      "type": "text/html",
+      "title": "Lore and cosmology"
+    },
+    {
+      "rel": "collection",
+      "href": "https://www.unholyghost.org/artifacts/",
+      "type": "text/html",
+      "title": "Recovered artifacts and documentation"
+    },
+    {
+      "rel": "collection",
+      "href": "https://www.unholyghost.org/threshold/",
+      "type": "text/html",
+      "title": "Threshold and public signal routes"
+    }
+  ],
+  "contact": {
+    "email": "info@unholyghost.org"
+  },
+  "updated": "2026-04-29"
+}
