@@ -11,12 +11,30 @@
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="color-scheme" content="dark" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R946B19QCY"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-R946B19QCY");
+    window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+
+    let analyticsBooted = false;
+    function loadAnalytics() {
+      if (analyticsBooted) return;
+      analyticsBooted = true;
+      const script = document.createElement("script");
+      script.src = "https://www.googletagmanager.com/gtag/js?id=G-R946B19QCY";
+      script.async = true;
+      script.onload = function () {
+        window.gtag("config", "G-R946B19QCY");
+      };
+      document.head.appendChild(script);
+    }
+
+    window.addEventListener("pointerdown", loadAnalytics, { once: true, passive: true });
+    window.addEventListener("touchstart", loadAnalytics, { once: true, passive: true });
+    window.addEventListener("keydown", loadAnalytics, { once: true });
+    window.addEventListener("load", () => {
+      window.setTimeout(loadAnalytics, 1800);
+    }, { once: true });
   </script>
 
   <link rel="canonical" href="https://www.unholyghost.org/" />
@@ -67,9 +85,20 @@
     }
   </script>
 
-  <link rel="stylesheet" href="styles/fonts.css" />
-  <link rel="stylesheet" href="styles/core.css" />
-  <script src="scripts/site.js" defer></script>
+  <style>
+    @font-face{font-family:"IBM Plex Mono";src:url("fonts/ibm-plex-mono-400.woff") format("woff"),url("fonts/ibm-plex-mono-400.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:"IBM Plex Sans";src:url("fonts/ibm-plex-sans-400.woff") format("woff"),url("fonts/ibm-plex-sans-400.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:"IBM Plex Sans";src:url("fonts/ibm-plex-sans-500.woff") format("woff"),url("fonts/ibm-plex-sans-500.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+    @font-face{font-family:"IBM Plex Sans";src:url("fonts/ibm-plex-sans-600.woff") format("woff"),url("fonts/ibm-plex-sans-600.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+    @font-face{font-family:"They Perished";src:url("fonts/they-perished.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+    :root{color-scheme:dark;--focus-ring:#8affc1}
+    body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+    :focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+    .skip-link{position:absolute;top:0;left:0;z-index:1000;transform:translateY(-140%);padding:.9rem 1rem;background:rgba(4,4,5,.96);color:#efe9e1;border:1px solid rgba(138,255,193,.45);font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+    .skip-link:focus{transform:translateY(0)}
+    [data-current-year]{display:inline}
+    @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0ms!important}}
+  </style>
 
   <style>
     :root {
@@ -840,15 +869,15 @@
       max-width: none;
     }
 
-    .apparition.limbo { background-image: url('images/sister-limbo.jpg'); background-position: center 18%; }
-    .apparition.lust { background-image: url('images/sister-lust.jpg'); background-position: center 18%; }
-    .apparition.gluttony { background-image: url('images/sister-gluttony.jpg'); background-position: center 18%; }
-    .apparition.greed { background-image: url('images/sister-greed.jpg'); background-position: center 22%; }
-    .apparition.wrath { background-image: url('images/sister-wrath.jpg'); background-position: center 18%; }
-    .apparition.heresy { background-image: url('images/sister-heresy.jpg'); background-position: center 16%; }
-    .apparition.violence { background-image: url('images/sister-violence.jpg'); background-position: center 18%; }
-    .apparition.fraud { background-image: url('images/sister-fraud.jpg'); background-position: center 14%; }
-    .apparition.treachery { background-image: url('images/sister-treachery.jpg'); background-position: center 18%; }
+    .apparition.limbo { background-image: url('images/sister-limbo.webp'); background-position: center 18%; }
+    .apparition.lust { background-image: url('images/sister-lust.webp'); background-position: center 18%; }
+    .apparition.gluttony { background-image: url('images/sister-gluttony.webp'); background-position: center 18%; }
+    .apparition.greed { background-image: url('images/sister-greed.webp'); background-position: center 22%; }
+    .apparition.wrath { background-image: url('images/sister-wrath.webp'); background-position: center 18%; }
+    .apparition.heresy { background-image: url('images/sister-heresy.webp'); background-position: center 16%; }
+    .apparition.violence { background-image: url('images/sister-violence.webp'); background-position: center 18%; }
+    .apparition.fraud { background-image: url('images/sister-fraud.webp'); background-position: center 14%; }
+    .apparition.treachery { background-image: url('images/sister-treachery.webp'); background-position: center 18%; }
 
     /* ---------- EVIDENCE STRIP (full-bleed two-up break) ---------- */
     .evidence-strip {
@@ -1169,9 +1198,9 @@
         <article class="release">
           <a class="release-cover" href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="release_salt_cover">
             <img
-              src="images/cover-salt.webp"
-              srcset="images/cover-salt-640.webp 640w, images/cover-salt-960.webp 960w, images/cover-salt.webp 1500w"
-              sizes="(max-width: 1120px) calc(100vw - 36px), 50vw"
+              src="images/cover-salt-768.webp"
+              srcset="images/cover-salt-640.webp 640w, images/cover-salt-768.webp 768w, images/cover-salt.webp 1500w"
+              sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1600px) 46vw, 680px"
               alt="Salt album cover"
               width="1500"
               height="1500"
@@ -1194,9 +1223,9 @@
         <article class="release">
           <a class="release-cover" href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="release_suffering_cover">
             <img
-              src="images/cover-suffering.webp"
-              srcset="images/cover-suffering-640.webp 640w, images/cover-suffering-960.webp 960w, images/cover-suffering.webp 1500w"
-              sizes="(max-width: 1120px) calc(100vw - 36px), 50vw"
+              src="images/cover-suffering-768.webp"
+              srcset="images/cover-suffering-640.webp 640w, images/cover-suffering-768.webp 768w, images/cover-suffering.webp 1500w"
+              sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1600px) 46vw, 680px"
               alt="Suffering album cover"
               width="1500"
               height="1500"
@@ -1443,6 +1472,10 @@
   </div>
 
   <script>
+    document.querySelectorAll("[data-current-year]").forEach((node) => {
+      node.textContent = String(new Date().getFullYear());
+    });
+
     function trackEvent(name, params = {}) {
       if (typeof window.gtag !== "function") return;
       window.gtag("event", name, params);
@@ -1598,6 +1631,14 @@
       watcher.classList.remove("is-haunting", "is-flash");
     }
 
+    function revealWatcher(isFlash = false) {
+      if (!watcher) return;
+      window.requestAnimationFrame(() => {
+        watcher.classList.add("is-haunting");
+        if (isFlash) watcher.classList.add("is-flash");
+      });
+    }
+
     function clearWatcherTimers() {
       window.clearTimeout(watcherTimer);
       window.clearTimeout(watcherHideTimer);
@@ -1621,10 +1662,7 @@
         setWatcherPose(pose);
         rotateWatcherFace();
         hideWatcher();
-        void watcher.offsetWidth;
-        watcher.classList.add("is-haunting");
-
-        if (isFlash) watcher.classList.add("is-flash");
+        revealWatcher(isFlash);
 
         watcherHideTimer = window.setTimeout(() => {
           hideWatcher();
@@ -1660,7 +1698,7 @@
         setWatcherPose(pose);
         rotateWatcherFace();
         hideWatcher();
-        watcher.classList.add("is-haunting", "is-flash");
+        revealWatcher(true);
         window.clearTimeout(watcherHideTimer);
         watcherHideTimer = window.setTimeout(() => {
           hideWatcher();
