@@ -20,11 +20,7 @@ PUBLIC_PAGES = [
     *sorted((ROOT / "sisters").glob("*.html")),
 ]
 
-DRAFT_PAGES = [
-    ROOT / "ghost_orgy_cinematic_sequence.html",
-    ROOT / "ghost_orgy_hero_rewrite.html",
-    ROOT / "ghost_orgy_orchard_reentry.html",
-]
+DRAFT_PAGES: list[Path] = []
 
 REQUIRED_PATTERNS = [
     ("<title>", re.compile(r"<title>.*?</title>", re.IGNORECASE | re.DOTALL)),

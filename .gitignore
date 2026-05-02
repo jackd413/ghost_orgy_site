@@ -10,11 +10,6 @@ source-assets/
 # for authoring, promoted into the site via scripts/promote-site-asset.ps1.
 [0-9][0-9] - */
 
-# Scratch / draft layouts that live next to index.html during iteration.
-ghost_orgy_cinematic_sequence.html
-ghost_orgy_hero_rewrite.html
-ghost_orgy_orchard_reentry.html
-
 # OS / editor noise
 desktop.ini
 Thumbs.db
