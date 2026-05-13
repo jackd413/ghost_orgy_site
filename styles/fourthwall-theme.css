@@ -11,7 +11,7 @@
     Theme settings → Colors          → Background #040405, Text #efe9e1, Accent #91ffd2
     Theme settings → Typography      → leave as-is; fonts are overridden below
     Theme settings → Buttons         → square corners, no border (already default)
-    Site settings  → Logo            → upload images/go-sigil-white.png from this repo
+    Site settings  → Logo            → upload source-assets/site-legacy-images/go-sigil-white-1024.png (high-res master; the 256px favicon at images/go-sigil-white.png is too small for the shop header)
 
   The override targets two surfaces:
     1. Fourthwall :root CSS variables (documented; safest, theme-agnostic).

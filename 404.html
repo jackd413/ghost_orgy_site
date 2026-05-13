@@ -13,7 +13,9 @@
   <link rel="icon" type="image/png" href="images/go-sigil-white.png" />
   <link rel="apple-touch-icon" href="images/go-sigil-white.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <link rel="preload" as="image" href="images/hero-orchard-watcher.webp" />
+  <link rel="preload" as="image" href="images/hero-orchard-watcher-800.webp" media="(max-width: 800px)" />
+  <link rel="preload" as="image" href="images/hero-orchard-watcher-1280.webp" media="(min-width: 801px) and (max-width: 1280px)" />
+  <link rel="preload" as="image" href="images/hero-orchard-watcher.webp" media="(min-width: 1281px)" />
   <link rel="stylesheet" href="styles/fonts.css" />
   <link rel="stylesheet" href="styles/core.css" />
   <style>
@@ -34,9 +36,21 @@
       background:
         linear-gradient(180deg, rgba(3,3,3,0.28) 0%, rgba(3,3,3,0.58) 54%, #030303 100%),
         radial-gradient(circle at 22% 18%, rgba(145,255,210,0.08), transparent 22%),
-        url("images/hero-orchard-watcher.webp") center center / cover no-repeat,
+        url("images/hero-orchard-watcher-800.webp") center center / cover no-repeat,
         var(--bg);
       font-family: "IBM Plex Sans", system-ui, sans-serif;
+    }
+    @media (min-width: 801px) and (max-width: 1280px) {
+      body { background-image:
+        linear-gradient(180deg, rgba(3,3,3,0.28) 0%, rgba(3,3,3,0.58) 54%, #030303 100%),
+        radial-gradient(circle at 22% 18%, rgba(145,255,210,0.08), transparent 22%),
+        url("images/hero-orchard-watcher-1280.webp"); }
+    }
+    @media (min-width: 1281px) {
+      body { background-image:
+        linear-gradient(180deg, rgba(3,3,3,0.28) 0%, rgba(3,3,3,0.58) 54%, #030303 100%),
+        radial-gradient(circle at 22% 18%, rgba(145,255,210,0.08), transparent 22%),
+        url("images/hero-orchard-watcher.webp"); }
     }
 
     body::before {
