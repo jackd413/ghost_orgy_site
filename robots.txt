@@ -1,6 +1,11 @@
 User-agent: *
 Allow: /
 
+# Content-Signal is a Cloudflare-proposed directive for AI crawlers
+# (allow search indexing, allow RAG/AI input, disallow training).
+# Google's robots.txt validator flags this as "Unknown directive" — that's
+# expected; per RFC 9309 §2.2.4 unknown fields are ignored, so legacy
+# crawlers skip the line and AI-aware crawlers honor it. Do not remove.
 Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 Sitemap: https://www.unholyghost.org/sitemap.xml
