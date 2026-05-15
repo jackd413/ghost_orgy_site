@@ -10,6 +10,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 MAX_PUBLIC_ASSET_BYTES = 5 * 1024 * 1024
+TAG_MANAGER_CONTAINER_ID = "GTM-KQVXQND4"
 
 PUBLIC_PAGES = [
     ROOT / "index.html",
@@ -21,6 +22,10 @@ PUBLIC_PAGES = [
 ]
 
 DRAFT_PAGES: list[Path] = []
+TAGGED_PAGES = [
+    *PUBLIC_PAGES,
+    ROOT / "404.html",
+]
 
 REQUIRED_PATTERNS = [
     ("<title>", re.compile(r"<title>.*?</title>", re.IGNORECASE | re.DOTALL)),
@@ -91,6 +96,15 @@ def collect_referenced_assets(page: Path, text: str) -> set[Path]:
 def main() -> int:
     errors: list[str] = []
     referenced_assets: set[Path] = set()
+
+    for page in TAGGED_PAGES:
+        text = read_text(page)
+        gtm_script = f"googletagmanager.com/gtm.js?id='+i+dl"
+        gtm_noscript = f"googletagmanager.com/ns.html?id={TAG_MANAGER_CONTAINER_ID}"
+        if TAG_MANAGER_CONTAINER_ID not in text or gtm_script not in text:
+            errors.append(f"{page.relative_to(ROOT)} is missing Google Tag Manager container `{TAG_MANAGER_CONTAINER_ID}`.")
+        if gtm_noscript not in text:
+            errors.append(f"{page.relative_to(ROOT)} is missing the Google Tag Manager noscript iframe.")
 
     for page in PUBLIC_PAGES:
         text = read_text(page)

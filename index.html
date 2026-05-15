@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KQVXQND4');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <title>Ghost Orgy — Nine Sisters. One Orchard. No clean exit.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,32 +17,6 @@
   />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="color-scheme" content="dark" />
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function gtag(){ window.dataLayer.push(arguments); };
-    window.gtag("js", new Date());
-
-    let analyticsBooted = false;
-    function loadAnalytics() {
-      if (analyticsBooted) return;
-      analyticsBooted = true;
-      const script = document.createElement("script");
-      script.src = "https://www.googletagmanager.com/gtag/js?id=G-R946B19QCY";
-      script.async = true;
-      script.onload = function () {
-        window.gtag("config", "G-R946B19QCY");
-      };
-      document.head.appendChild(script);
-    }
-
-    window.addEventListener("pointerdown", loadAnalytics, { once: true, passive: true });
-    window.addEventListener("touchstart", loadAnalytics, { once: true, passive: true });
-    window.addEventListener("keydown", loadAnalytics, { once: true });
-    window.addEventListener("load", () => {
-      window.setTimeout(loadAnalytics, 1800);
-    }, { once: true });
-  </script>
 
   <link rel="canonical" href="https://www.unholyghost.org/" />
   <meta name="theme-color" content="#040405" />
@@ -1165,6 +1146,10 @@
   </style>
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQVXQND4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <a class="skip-link" href="#entry">Skip to main content</a>
   <div class="noise" aria-hidden="true"></div>
   <div class="glyphs" aria-hidden="true"></div>
@@ -1544,8 +1529,8 @@
     });
 
     function trackEvent(name, params = {}) {
-      if (typeof window.gtag !== "function") return;
-      window.gtag("event", name, params);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ ...params, event: name });
     }
 
     const playerTabs = document.querySelectorAll(".player-tab[data-player]");

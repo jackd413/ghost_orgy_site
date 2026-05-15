@@ -188,9 +188,23 @@ sisters = [
     },
 ]
 
+GTM_HEAD = '''  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-KQVXQND4');</script>
+  <!-- End Google Tag Manager -->'''
+
+GTM_NOSCRIPT = '''  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQVXQND4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->'''
+
 TEMPLATE = '''<!DOCTYPE html>
 <html lang="en">
 <head>
+{gtm_head}
   <meta charset="UTF-8" />
   <title>{name} — The Nine Sisters — Ghost Orgy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -220,6 +234,7 @@ TEMPLATE = '''<!DOCTYPE html>
   <link rel="stylesheet" href="../styles/sisters.css" />
 </head>
 <body>
+{gtm_noscript}
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <nav class="nav" aria-label="Sister page">
     <a href="../index.html">Ghost Orgy</a>
@@ -282,6 +297,8 @@ for s in sisters:
         artifact_body=s['artifact_body'],
         trace=s['trace'],
         sister_nav=sister_nav,
+        gtm_head=GTM_HEAD,
+        gtm_noscript=GTM_NOSCRIPT,
     )
 
     path = os.path.join(base, f"{s['file']}.html")
