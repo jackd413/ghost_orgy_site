@@ -331,6 +331,7 @@
     .hero-inner {
       position: relative;
       z-index: 2;
+      width: min(960px, 92vw);
       max-width: min(960px, 92vw);
     }
 
@@ -1126,18 +1127,49 @@
         gap: 10px;
       }
       .site-nav {
-        gap: 12px 16px;
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        width: 100%;
+        gap: 12px 18px;
         justify-content: flex-start;
+        font-size: 12px;
+        letter-spacing: 0.1em;
       }
       .hero {
         min-height: 92svh;
         padding: 118px 18px 40px;
       }
+      .hero-inner {
+        width: 100%;
+        max-width: calc(100vw - 36px);
+      }
       .hero-media {
         object-position: center center;
         transform: scale(1.02);
       }
-      .hero-title { max-width: none; }
+      .hero-title {
+        max-width: none;
+        font-size: clamp(44px, 13vw, 54px);
+      }
+      .hero-copy {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+      .hero-actions {
+        max-width: 100%;
+        gap: 12px 16px;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        overflow-wrap: anywhere;
+      }
+      .hero-note {
+        max-width: 100%;
+        gap: 12px;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+      }
       .chapter { padding: 72px 18px 0; }
       .evidence-strip { padding: 0 18px; }
       .trace-links { grid-template-columns: 1fr; }
@@ -1206,8 +1238,8 @@
         <article class="release">
           <a class="release-cover" href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="release_salt_cover">
             <img
-              src="images/cover-salt-768.webp"
-              srcset="images/cover-salt-640.webp 640w, images/cover-salt-768.webp 768w, images/cover-salt-960.webp 960w, images/cover-salt.webp 1500w"
+              src="images/cover-salt-768-v2.webp"
+              srcset="images/cover-salt-640.webp 640w, images/cover-salt-768-v2.webp 768w, images/cover-salt-960.webp 960w, images/cover-salt.webp 1500w"
               sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1600px) 46vw, 680px"
               alt="Salt album cover"
               width="1500"
@@ -1231,8 +1263,8 @@
         <article class="release">
           <a class="release-cover" href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="release_suffering_cover">
             <img
-              src="images/cover-suffering-768.webp"
-              srcset="images/cover-suffering-640.webp 640w, images/cover-suffering-768.webp 768w, images/cover-suffering-960.webp 960w, images/cover-suffering.webp 1500w"
+              src="images/cover-suffering-768-v2.webp"
+              srcset="images/cover-suffering-640.webp 640w, images/cover-suffering-768-v2.webp 768w, images/cover-suffering-960.webp 960w, images/cover-suffering.webp 1500w"
               sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1600px) 46vw, 680px"
               alt="Suffering album cover"
               width="1500"
@@ -1291,7 +1323,16 @@
 
       <div class="fragments-grid">
         <figure class="shot fragment-footage">
-          <img src="images/violence-footage.webp" alt="Recovered footage frame, distorted" width="1536" height="1024" loading="lazy" decoding="async" />
+          <img
+            src="images/violence-footage-1024-v2.webp"
+            srcset="images/violence-footage-768-v2.webp 768w, images/violence-footage-1024-v2.webp 1024w, images/violence-footage.webp 1536w"
+            sizes="(max-width: 900px) calc(100vw - 36px), 58vw"
+            alt="Recovered footage frame, distorted"
+            width="1536"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+          />
           <figcaption class="shot-caption">
             <div class="shot-label">Recovered footage · violence domain</div>
             <div class="shot-text"><em>We thought we were entering the Orchard. Later we understood the Orchard had already entered us.</em></div>
@@ -1299,7 +1340,16 @@
         </figure>
 
         <figure class="shot fragment-sigil">
-          <img src="images/sister-fraud.jpg" alt="Fraud, one of the Nine Sisters" width="600" height="900" loading="lazy" decoding="async" />
+          <img
+            src="images/sister-fraud-480-v2.webp"
+            srcset="images/sister-fraud-480-v2.webp 480w, images/sister-fraud-600-v2.webp 600w"
+            sizes="(max-width: 900px) calc(100vw - 36px), 38vw"
+            alt="Fraud, one of the Nine Sisters"
+            width="600"
+            height="900"
+            loading="lazy"
+            decoding="async"
+          />
           <figcaption class="shot-caption">
             <div class="shot-label">Fraud · canonical sister-class signature</div>
             <div class="shot-text">A face learned too well. The smile is the warning. The crack is older than the photograph.</div>
@@ -1621,12 +1671,12 @@
     const watcher = document.querySelector(".watcher");
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const smallScreen = window.matchMedia("(max-width: 820px)");
-    let scrollTimer;
     let watcherRaf = null;
     let watcherTimer = 0;
     let watcherHideTimer = 0;
     let watcherCount = 0;
     let lastWatcherFlash = 0;
+    let pendingScrollY = 0;
 
     const watcherPoses = [
       { x: "80vw", y: "8vh", scale: "1.04", rotate: "-8deg", size: "clamp(330px, 23vw, 520px)" },
@@ -1673,10 +1723,9 @@
       watcher.style.setProperty("--watcher-size", pose.size);
     }
 
-    function updateWatcherParallax() {
+    function updateWatcherParallax(scrollY = window.scrollY || window.pageYOffset || 0) {
       if (!watcher) return;
-      const y = window.scrollY || window.pageYOffset || 0;
-      const drift = Math.min(48, y * 0.045);
+      const drift = Math.min(48, scrollY * 0.045);
       watcher.style.setProperty("--scroll-drift", `${drift}px`);
     }
 
@@ -1739,12 +1788,7 @@
     syncWatcherAvailability();
 
     window.addEventListener("scroll", () => {
-      document.documentElement.classList.add("scrolling");
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => {
-        document.documentElement.classList.remove("scrolling");
-      }, 150);
-
+      pendingScrollY = window.scrollY || window.pageYOffset || 0;
       const now = window.performance ? performance.now() : Date.now();
       if (canHaunt() && now - lastWatcherFlash > 9000 && Math.random() < 0.01) {
         lastWatcherFlash = now;
@@ -1763,7 +1807,7 @@
       if (!watcherRaf) {
         watcherRaf = requestAnimationFrame(() => {
           watcherRaf = null;
-          updateWatcherParallax();
+          updateWatcherParallax(pendingScrollY);
         });
       }
     }, { passive: true });
