@@ -12,6 +12,11 @@
     Theme settings → Typography      → leave as-is; fonts are overridden below
     Theme settings → Buttons         → square corners, no border (already default)
     Site settings  → Logo            → upload source-assets/site-legacy-images/go-sigil-white-1024.png (high-res master; the 256px favicon at images/go-sigil-white.png is too small for the shop header)
+    Announcement   → Text            → Hear Salt before the artifacts
+    Announcement   → Link            → https://www.unholyghost.org/listen/
+    Navigation     → Add links       → Listen https://www.unholyghost.org/listen/
+                                      → Salt https://www.unholyghost.org/salt/
+                                      → Updates https://www.unholyghost.org/updates/
 
   The override targets two surfaces:
     1. Fourthwall :root CSS variables (documented; safest, theme-agnostic).
@@ -232,6 +237,16 @@ h1, h2, h3, h4,
   color: rgba(239, 233, 225, 0.72);
 }
 
+.announcement-bar {
+  background:
+    linear-gradient(90deg, rgba(145, 255, 210, 0.12), rgba(4, 4, 5, 0.92) 34%),
+    #040405;
+}
+
+.announcement-bar__inner {
+  color: var(--go-accent);
+}
+
 .header__link,
 .mobile-menu__link,
 .footer__menu-link {
@@ -247,6 +262,19 @@ h1, h2, h3, h4,
 .mobile-menu__link:hover,
 .footer__menu-link:hover {
   color: var(--go-accent);
+}
+
+.header__link[href*="unholyghost.org/listen"],
+.header__link[href*="unholyghost.org/salt"],
+.header__link[href*="unholyghost.org/updates"],
+.mobile-menu__link[href*="unholyghost.org/listen"],
+.mobile-menu__link[href*="unholyghost.org/salt"],
+.mobile-menu__link[href*="unholyghost.org/updates"],
+.footer__menu-link[href*="unholyghost.org/listen"],
+.footer__menu-link[href*="unholyghost.org/salt"],
+.footer__menu-link[href*="unholyghost.org/updates"] {
+  color: var(--go-accent);
+  border-bottom: 1px solid rgba(145, 255, 210, 0.45);
 }
 
 /* ── Product tiles ──────────────────────────────────────────────────────── */

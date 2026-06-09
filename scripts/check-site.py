@@ -15,9 +15,15 @@ TAG_MANAGER_CONTAINER_ID = "GTM-KQVXQND4"
 PUBLIC_PAGES = [
     ROOT / "index.html",
     ROOT / "artifacts" / "index.html",
+    ROOT / "licensing" / "index.html",
+    ROOT / "listen" / "index.html",
     ROOT / "lore" / "index.html",
+    ROOT / "nine-sisters" / "index.html",
     ROOT / "press" / "index.html",
+    ROOT / "salt" / "index.html",
+    ROOT / "shop" / "index.html",
     ROOT / "threshold" / "index.html",
+    ROOT / "updates" / "index.html",
     *sorted((ROOT / "sisters").glob("*.html")),
 ]
 
@@ -48,6 +54,27 @@ DISALLOWED_PAGE_SNIPPETS = [
     "fonts.googleapis.com",
     "fonts.gstatic.com",
     "db.onlinewebfonts.com",
+]
+
+DISALLOWED_COPY_SNIPPETS = [
+    "Textural Orbit",
+    "Lingua Ignota",
+    "Godspeed You! Black Emperor",
+    "Sunn O)))",
+    "The Caretaker",
+    "Burial",
+    "horrorcore",
+    "experimental post-rock",
+    "Pre-save",
+]
+
+REQUIRED_DOWNLOADS = [
+    ROOT / "press" / "assets" / "ghost-orgy-one-sheet.pdf",
+    ROOT / "press" / "assets" / "ghost-orgy-salt-cover-3000.jpg",
+    ROOT / "press" / "assets" / "ghost-orgy-wordmark.svg",
+    ROOT / "press" / "assets" / "ghost-orgy-short-bio.txt",
+    ROOT / "press" / "assets" / "ghost-orgy-long-bio.txt",
+    ROOT / "press" / "assets" / "ghost-orgy-bios.txt",
 ]
 
 PUBLIC_MEDIA_EXTENSIONS = {
@@ -118,6 +145,9 @@ def main() -> int:
         for snippet in DISALLOWED_PAGE_SNIPPETS:
             if snippet in text:
                 errors.append(f"{page.relative_to(ROOT)} still references external font host `{snippet}`.")
+        for snippet in DISALLOWED_COPY_SNIPPETS:
+            if snippet in text:
+                errors.append(f"{page.relative_to(ROOT)} contains disallowed copy/reference `{snippet}`.")
 
     for draft in DRAFT_PAGES:
         if not draft.is_file():
@@ -131,6 +161,10 @@ def main() -> int:
 
     if not (ROOT / "site.webmanifest").is_file():
         errors.append("site.webmanifest is missing.")
+
+    for download in REQUIRED_DOWNLOADS:
+        if not download.is_file():
+            errors.append(f"Required press download is missing: {download.relative_to(ROOT)}.")
 
     if not (ROOT / ".nojekyll").is_file():
         errors.append(".nojekyll is missing; GitHub Pages may skip dot-directories like /.well-known/.")

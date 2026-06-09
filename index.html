@@ -9,11 +9,11 @@
   })(window,document,'script','dataLayer','GTM-KQVXQND4');</script>
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
-  <title>Ghost Orgy — Nine Sisters. One Orchard. No clean exit.</title>
+  <title>Ghost Orgy | Phoenix Experimental Post-Hardcore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Ghost Orgy is die-fi post-hardcore, horrorcore, and experimental post-rock. Nine Sisters, one Orchard, and sound built to hit the body before the mind catches up."
+    content="Ghost Orgy is a Phoenix-based experimental post-hardcore project by Jack Dyer, blending art-damaged hardcore, horror-mythic world-building, and die-fi ritual audio."
   />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="color-scheme" content="dark" />
@@ -21,8 +21,8 @@
   <link rel="canonical" href="https://www.unholyghost.org/" />
   <meta name="theme-color" content="#040405" />
   <meta property="og:site_name" content="Ghost Orgy" />
-  <meta property="og:title" content="Ghost Orgy — Nine Sisters. One Orchard. No clean exit." />
-  <meta property="og:description" content="Die-fi post-hardcore, horrorcore, and experimental post-rock. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up." />
+  <meta property="og:title" content="Ghost Orgy | Phoenix Experimental Post-Hardcore" />
+  <meta property="og:description" content="Phoenix-based experimental post-hardcore by Jack Dyer: art-damaged hardcore, horror-mythic world-building, and die-fi ritual audio." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.unholyghost.org/" />
   <meta property="og:image" content="https://www.unholyghost.org/images/og-card.jpg" />
@@ -30,8 +30,8 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ghost Orgy — Nine Sisters. One Orchard. No clean exit." />
-  <meta name="twitter:description" content="Die-fi post-hardcore, horrorcore, and experimental post-rock. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up." />
+  <meta name="twitter:title" content="Ghost Orgy | Phoenix Experimental Post-Hardcore" />
+  <meta name="twitter:description" content="Phoenix-based experimental post-hardcore by Jack Dyer: art-damaged hardcore, horror-mythic world-building, and die-fi ritual audio." />
   <meta name="twitter:image" content="https://www.unholyghost.org/images/og-card.jpg" />
   <meta name="twitter:image:alt" content="Ghost Orgy ritual artwork with the sigil and orchard imagery" />
   <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
@@ -57,10 +57,18 @@
       "@type": "MusicGroup",
       "name": "Ghost Orgy",
       "url": "https://www.unholyghost.org/",
-      "description": "Die-fi post-hardcore, horrorcore, and experimental post-rock. Nine Sisters, one Orchard, and sound that hits the body before the mind catches up.",
-      "genre": ["Post-hardcore", "Horrorcore", "Experimental post-rock", "Experimental rock"],
+      "description": "Phoenix-based experimental post-hardcore by Jack Dyer, blending art-damaged hardcore, horror-mythic world-building, and die-fi ritual audio.",
+      "genre": ["Experimental post-hardcore", "Art-damaged hardcore", "Literary heavy music", "Die-fi"],
+      "album": {
+        "@type": "MusicAlbum",
+        "name": "Salt",
+        "datePublished": "2026-05-29",
+        "byArtist": { "@type": "MusicGroup", "name": "Ghost Orgy" },
+        "url": "https://www.unholyghost.org/salt/"
+      },
       "sameAs": [
         "https://soundcloud.com/ghostorgymusic",
+        "https://ghostorgy.bandcamp.com/album/salt",
         "https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB",
         "https://music.apple.com/us/artist/ghost-orgy/1863228828",
         "https://www.amazon.com/music/player/artists/B0GBPCWM1V/ghost-orgy",
@@ -282,7 +290,7 @@
     /* ---------- HERO ---------- */
     .hero {
       position: relative;
-      min-height: 100svh;
+      min-height: 86svh;
       padding: min(16vh, 120px) var(--pad) 52px;
       display: flex;
       align-items: flex-end;
@@ -386,6 +394,11 @@
       transition: color var(--ease), border-color var(--ease);
     }
 
+    .hero-actions a:first-child {
+      color: var(--accent);
+      border-color: rgba(145,255,210,0.72);
+    }
+
     .hero-actions a:hover {
       color: var(--accent);
       border-color: var(--accent);
@@ -475,6 +488,174 @@
       color: rgba(239,233,225,0.74);
       font-size: clamp(17px, 1.28vw, 21px);
       line-height: 1.6;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .path-card {
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      padding: clamp(18px, 2vw, 26px);
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.34)),
+        radial-gradient(circle at 18% 12%, rgba(145,255,210,0.06), transparent 44%);
+      box-shadow: 0 22px 58px rgba(0,0,0,0.24);
+    }
+
+    .path-card:hover {
+      border-color: rgba(145,255,210,0.46);
+    }
+
+    .path-card span {
+      color: var(--accent);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .path-card strong {
+      display: block;
+      color: var(--fg);
+      font-size: clamp(22px, 2.4vw, 34px);
+      line-height: 1.02;
+      text-transform: uppercase;
+    }
+
+    .path-card p {
+      margin: 12px 0 0;
+      color: rgba(239,233,225,0.72);
+      line-height: 1.52;
+    }
+
+    .conversion-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .conversion-card {
+      min-height: 260px;
+      padding: clamp(18px, 2vw, 26px);
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.34)),
+        radial-gradient(circle at 18% 12%, rgba(145,255,210,0.055), transparent 46%);
+      box-shadow: 0 22px 58px rgba(0,0,0,0.24);
+    }
+
+    .conversion-card h3 {
+      margin: 0;
+      font-size: clamp(24px, 2.4vw, 38px);
+      line-height: 1.02;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .conversion-card p {
+      margin: 14px 0 0;
+      color: rgba(239,233,225,0.74);
+      line-height: 1.55;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .fan-tag,
+    .copy-field,
+    .email-input {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(4,4,5,0.55);
+      color: rgba(239,233,225,0.9);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .fan-tag {
+      padding: 9px 11px;
+    }
+
+    .copy-field,
+    .email-input {
+      width: 100%;
+      min-height: 44px;
+      margin-top: 16px;
+      padding: 10px 12px;
+      border-radius: 0;
+      overflow-wrap: anywhere;
+      text-transform: none;
+      letter-spacing: 0.02em;
+    }
+
+    .email-input::placeholder {
+      color: rgba(239,233,225,0.38);
+    }
+
+    .compact-actions,
+    .email-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+      margin-top: 16px;
+      font-family: "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
+    }
+
+    .compact-actions a,
+    .compact-actions button,
+    .email-form button {
+      appearance: none;
+      border: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      padding: 0 0 6px;
+      background: transparent;
+      color: rgba(239,233,225,0.82);
+      cursor: pointer;
+      transition: color var(--ease), border-color var(--ease);
+    }
+
+    .compact-actions a:first-child,
+    .compact-actions button:first-child,
+    .email-form button {
+      color: var(--accent);
+      border-color: rgba(145,255,210,0.6);
+    }
+
+    .compact-actions a:hover,
+    .compact-actions button:hover,
+    .email-form button:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .email-status {
+      min-height: 18px;
+      margin-top: 12px;
+      color: rgba(145,255,210,0.8);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     /* ---------- SIGNAL (breach + player tabs) ---------- */
@@ -570,6 +751,11 @@
       font-size: clamp(16px, 1.35vw, 20px);
       line-height: 1.48;
       max-width: 40ch;
+    }
+
+    .release-copy p a {
+      color: var(--accent);
+      border-bottom: 1px solid rgba(145,255,210,0.46);
     }
 
     .release-links {
@@ -1106,7 +1292,9 @@
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 1120px) {
       .releases-grid,
-      .trace-strip {
+      .trace-strip,
+      .path-grid,
+      .conversion-grid {
         grid-template-columns: 1fr;
       }
       .fragments-grid {
@@ -1136,11 +1324,12 @@
         letter-spacing: 0.1em;
       }
       .hero {
-        min-height: 92svh;
-        padding: 118px 18px 40px;
+        align-items: flex-start;
+        min-height: auto;
+        padding: 220px 18px 56px;
       }
       .hero-inner {
-        width: 100%;
+        width: calc(100vw - 36px);
         max-width: calc(100vw - 36px);
       }
       .hero-media {
@@ -1150,17 +1339,32 @@
       .hero-title {
         max-width: none;
         font-size: clamp(44px, 13vw, 54px);
+        white-space: normal;
+        overflow-wrap: anywhere;
       }
       .hero-copy {
         max-width: 100%;
+        font-size: 16px;
+        line-height: 1.42;
         overflow-wrap: anywhere;
       }
       .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
         max-width: 100%;
-        gap: 12px 16px;
+        gap: 10px;
         font-size: 11px;
         letter-spacing: 0.12em;
         overflow-wrap: anywhere;
+      }
+      .hero-actions a {
+        border: 1px solid rgba(255,255,255,0.16);
+        padding: 10px 12px;
+        background: rgba(0,0,0,0.26);
+      }
+      .hero-actions a:first-child {
+        border-color: rgba(145,255,210,0.72);
+        background: rgba(145,255,210,0.08);
       }
       .hero-note {
         max-width: 100%;
@@ -1197,11 +1401,14 @@
       </div>
       <nav class="site-nav" aria-label="Primary">
         <a href="#entry">Entry</a>
-        <a href="#signal">Signal</a>
+        <a href="listen/index.html">Listen</a>
+        <a href="salt/index.html">Salt</a>
+        <a href="press/index.html">Press</a>
         <a href="#fragments">Fragments</a>
-        <a href="#sisters">The Nine</a>
+        <a href="nine-sisters/index.html">The Nine</a>
         <a href="lore/index.html">Orchard</a>
-        <a href="#effects">Shop</a>
+        <a href="shop/index.html">Shop</a>
+        <a href="updates/index.html">Updates</a>
         <a href="#traces">Traces</a>
       </nav>
     </div>
@@ -1209,21 +1416,127 @@
 
   <main id="entry">
     <section class="hero">
-      <img class="hero-media" src="images/hero-orchard-watcher.webp" srcset="images/hero-orchard-watcher-800.webp 800w, images/hero-orchard-watcher-1280.webp 1280w, images/hero-orchard-watcher.webp 2048w" sizes="100vw" alt="" width="2048" height="1364" decoding="async" fetchpriority="high" />
+      <img class="hero-media" src="images/hero-orchard-watcher.webp" srcset="images/hero-orchard-watcher-800.webp 800w, images/hero-orchard-watcher-1280.webp 1280w, images/hero-orchard-watcher.webp 2048w" sizes="100vw" alt="Ghost Orgy orchard watcher image for the Phoenix experimental post-hardcore project" width="2048" height="1364" decoding="async" fetchpriority="high" />
       <div class="hero-inner">
-        <div class="kicker">Recovered ritual audio</div>
+        <div class="kicker">Phoenix experimental post-hardcore</div>
         <h1 class="hero-title">Ghost Orgy</h1>
         <p class="hero-copy">
-          Ghost Orgy is what crossed back. <span class="muted">Not the Orchard. Not the women still moving through it. Not the part of the room that keeps changing after the sound stops.</span> Only this: signal, breath, pressure, witness.
+          Ghost Orgy is a Phoenix-based experimental post-hardcore project by Jack Dyer. <span class="muted">Art-damaged hardcore and die-fi ritual audio built as a horror-mythic canon: Nine Sisters, one Orchard, and no clean exit.</span>
         </p>
         <div class="hero-actions">
-          <a href="#signal">Listen now</a>
+          <a href="listen/index.html">Listen now</a>
+          <a href="salt/index.html#start">Start: The Sky That Fears Us</a>
+          <a href="salt/index.html">Salt is out now</a>
+          <a href="press/index.html">Press kit</a>
+          <a href="mailto:info@unholyghost.org?subject=Ghost%20Orgy%20licensing%20/%20placement">Licensing / Placement</a>
           <a href="https://soundcloud.com/ghostorgymusic" target="_blank" rel="noopener noreferrer" data-track="hero_soundcloud">SoundCloud</a>
+          <a href="https://ghostorgy.bandcamp.com/album/salt" target="_blank" rel="noopener noreferrer" data-track="hero_bandcamp">Bandcamp</a>
           <a href="lore/index.html">Enter the Orchard</a>
-          <a href="artifacts/index.html">Recovered artifacts</a>
-          <a href="https://shop.unholyghost.org" target="_blank" rel="noopener noreferrer" data-track="hero_shop">Shop</a>
         </div>
-        <div class="hero-note">Recovered perimeter still · orchard ingress · source unstable</div>
+        <div class="hero-note">Salt out now · start with The Sky That Fears Us · press/licensing: info@unholyghost.org</div>
+      </div>
+    </section>
+
+    <section class="chapter" id="start-here">
+      <div class="chapter-head">
+        <div class="bloodblock"><div class="chapter-kicker">Start here</div></div>
+        <h2 class="chapter-title small">Choose the doorway</h2>
+        <p class="chapter-sub">
+          Experimental post-hardcore for the art-damaged hardcore listener. Pick the fastest route: listen, press, licensing, lore, shop, or updates.
+        </p>
+      </div>
+
+      <div class="path-grid" aria-label="Ghost Orgy visitor paths">
+        <a class="path-card" href="listen/index.html">
+          <span>Fan path</span>
+          <div>
+            <strong>Listen</strong>
+            <p>Start with Salt and The Sky That Fears Us.</p>
+          </div>
+        </a>
+        <a class="path-card" href="press/index.html">
+          <span>Editor path</span>
+          <div>
+            <strong>Press kit</strong>
+            <p>Facts, RIYL, bios, assets, coverage angles, and contact.</p>
+          </div>
+        </a>
+        <a class="path-card" href="licensing/index.html">
+          <span>Placement path</span>
+          <div>
+            <strong>Licensing</strong>
+            <p>Music and visual world-building for games, film, trailers, installations, and horror media.</p>
+          </div>
+        </a>
+        <a class="path-card" href="nine-sisters/index.html">
+          <span>Lore path</span>
+          <div>
+            <strong>Nine Sisters</strong>
+            <p>Limbo, Lust, Gluttony, Greed, Wrath, Heresy, Violence, Fraud, and Treachery.</p>
+          </div>
+        </a>
+        <a class="path-card" href="shop/index.html">
+          <span>Artifact path</span>
+          <div>
+            <strong>Shop</strong>
+            <p>Salt-adjacent garments, sigils, sister marks, and orchard fragments.</p>
+          </div>
+        </a>
+        <a class="path-card" href="updates/index.html">
+          <span>Update path</span>
+          <div>
+            <strong>Receive transmissions</strong>
+            <p>Request release notes, press notes, product drops, and future field notices.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="chapter" id="conversion">
+      <div class="chapter-head">
+        <div class="bloodblock"><div class="chapter-kicker">Fast anchors</div></div>
+        <h2 class="chapter-title small">For fans, shares, and returns</h2>
+        <p class="chapter-sub">
+          The shortest version: experimental post-hardcore for the art-damaged hardcore listener. Salt is the entry point.
+        </p>
+      </div>
+
+      <div class="conversion-grid">
+        <article class="conversion-card">
+          <div class="chapter-kicker">For fans of</div>
+          <h3>RIYL</h3>
+          <p>Use these as the first listening anchors before the Orchard opens wider.</p>
+          <div class="tag-list" aria-label="Recommended artists">
+            <span class="fan-tag">Refused</span>
+            <span class="fan-tag">Give Up the Ghost</span>
+            <span class="fan-tag">The Blood Brothers</span>
+            <span class="fan-tag">early mewithoutYou</span>
+            <span class="fan-tag">Modern Life Is War</span>
+            <span class="fan-tag">The Sound of Animals Fighting</span>
+          </div>
+        </article>
+
+        <article class="conversion-card">
+          <div class="chapter-kicker">Share track</div>
+          <h3>The Sky That Fears Us</h3>
+          <p>Best first click for editors, friends, playlist notes, and anyone asking where to start.</p>
+          <input class="copy-field" id="shareStartTrack" type="text" value="https://www.unholyghost.org/salt/#start" readonly aria-label="Share link for The Sky That Fears Us" />
+          <div class="compact-actions">
+            <button type="button" data-copy-target="shareStartTrack" data-copy-label="Start track link copied">Copy link</button>
+            <a href="salt/index.html#start">Open start track</a>
+          </div>
+        </article>
+
+        <article class="conversion-card">
+          <div class="chapter-kicker">Email list</div>
+          <h3>Receive transmissions</h3>
+          <p>Release updates, press notes, and future field notices without depending on a social feed.</p>
+          <form class="email-form" data-subscribe-form>
+            <input class="email-input" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address for Ghost Orgy updates" required />
+            <button type="submit">Request updates</button>
+          </form>
+          <div class="email-status" data-subscribe-status aria-live="polite"></div>
+        </article>
       </div>
     </section>
 
@@ -1236,12 +1549,12 @@
 
       <div class="releases-grid">
         <article class="release">
-          <a class="release-cover" href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="release_salt_cover">
+          <a class="release-cover" href="https://open.spotify.com/album/7ICbOrsiIRThJOoHafvEOu" target="_blank" rel="noopener noreferrer" data-track="release_salt_cover">
             <img
-              src="images/cover-salt-768-v2.webp"
-              srcset="images/cover-salt-640.webp 640w, images/cover-salt-768-v2.webp 768w, images/cover-salt-960.webp 960w, images/cover-salt.webp 1500w"
+              src="images/cover-salt-official-768.webp"
+              srcset="images/cover-salt-official-640.webp 640w, images/cover-salt-official-768.webp 768w, images/cover-salt-official-960.webp 960w, images/cover-salt-official-1500.webp 1500w"
               sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1600px) 46vw, 680px"
-              alt="Salt album cover"
+              alt="Salt album cover by Ghost Orgy"
               width="1500"
               height="1500"
               loading="lazy"
@@ -1251,10 +1564,12 @@
           <div class="release-copy">
             <div class="release-kicker">I · Salt</div>
             <h3 class="release-title">Salt</h3>
-            <div class="release-meta"><time datetime="2026-05-29T03:16">2026.05.29 · 03:16</time> · arrival</div>
-            <p>The preservation wound. What is kept in the body so it remembers what entered it.</p>
+            <div class="release-meta"><time datetime="2026-05-29T03:16">Debut album · released May 29, 2026</time></div>
+            <p>The preservation wound. Start with <a href="salt/index.html#start">The Sky That Fears Us</a>, then follow the album into the Orchard.</p>
             <div class="release-links">
-              <a href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="release_salt_spotify">Pre-save · Spotify</a>
+              <a href="salt/index.html" data-track="release_salt_page">Salt page</a>
+              <a href="https://open.spotify.com/album/7ICbOrsiIRThJOoHafvEOu" target="_blank" rel="noopener noreferrer" data-track="release_salt_spotify">Listen · Spotify</a>
+              <a href="https://ghostorgy.bandcamp.com/album/salt" target="_blank" rel="noopener noreferrer" data-track="release_salt_bandcamp">Bandcamp</a>
               <a href="https://soundcloud.com/ghostorgymusic" target="_blank" rel="noopener noreferrer" data-track="release_salt_soundcloud">SoundCloud</a>
             </div>
           </div>
@@ -1266,7 +1581,7 @@
               src="images/cover-suffering-768-v2.webp"
               srcset="images/cover-suffering-640.webp 640w, images/cover-suffering-768-v2.webp 768w, images/cover-suffering-960.webp 960w, images/cover-suffering.webp 1500w"
               sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1600px) 46vw, 680px"
-              alt="Suffering album cover"
+              alt="Suffering album cover by Ghost Orgy"
               width="1500"
               height="1500"
               loading="lazy"
@@ -1295,8 +1610,8 @@
 
         <div class="player-embed is-active" id="playerSpotify" role="tabpanel" aria-labelledby="tabSpotify" data-player="spotify">
           <iframe
-            title="Ghost Orgy on Spotify"
-            data-src="https://open.spotify.com/embed/artist/1SslPfozi6GhP2JbSNoLTB?utm_source=generator"
+            title="Salt by Ghost Orgy on Spotify"
+            data-src="https://open.spotify.com/embed/album/7ICbOrsiIRThJOoHafvEOu?utm_source=generator"
             loading="lazy"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           ></iframe>
@@ -1486,9 +1801,9 @@
 
     <section class="chapter" id="effects">
       <div class="chapter-head">
-        <div class="bloodblock"><div class="chapter-kicker">Effects · carried back out</div></div>
+        <div class="bloodblock"><div class="chapter-kicker">Salt artifacts · carried back out</div></div>
         <h2 class="chapter-title small">Worn evidence of contact</h2>
-        <p class="chapter-sub">Garments and objects pressed with the same shapes the recordings left in the room. Witness markings, on cotton heavy enough to remember what you bring through it. Shipped from outside the perimeter.</p>
+        <p class="chapter-sub">Merch is the physical bridge back to the record: Salt marks, sister traces, and orchard fragments for listeners who want the album world to leave the speaker.</p>
       </div>
 
       <div class="releases-grid">
@@ -1506,11 +1821,12 @@
           <div class="release-copy">
             <div class="release-kicker">Effect · I</div>
             <h3 class="release-title">This Is Not A Warning</h3>
-            <div class="release-meta">Heavyweight hooded garment · sleeve invocation · $75 USD</div>
-            <p>It is not a warning. It is an invocation. An affirmation of damnation. You can stop if you want to. Nothing will follow you.</p>
+            <div class="release-meta">Heavyweight hooded garment · Salt-adjacent artifact · $75 USD</div>
+            <p>A wearable piece from the same pressure system as Salt: a physical echo of the record, the Orchard, and the warnings that do not work as warnings.</p>
             <div class="release-links">
               <a href="https://shop.unholyghost.org/products/this-is-not-a-warning" target="_blank" rel="noopener noreferrer" data-track="effect_warning_buy">View garment · Shop</a>
-              <a href="https://shop.unholyghost.org" target="_blank" rel="noopener noreferrer" data-track="effect_warning_storefront">Open the perimeter shop</a>
+              <a href="salt/index.html" data-track="effect_warning_salt">Hear Salt first</a>
+              <a href="shop/index.html" data-track="effect_warning_shop_bridge">Shop bridge</a>
             </div>
           </div>
         </article>
@@ -1519,9 +1835,10 @@
           <div class="release-copy">
             <div class="release-kicker">The rest of the perimeter</div>
             <h3 class="release-title small">Sigil. Sister. Orchard.</h3>
-            <p>If a piece is gone it is not coming back the same way. Sigil prints, sister marks, orchard fragments. Releases come at the speed the Orchard lets them, not at the speed retail expects.</p>
+            <p>Every object should send people back to the music. Start with Salt, then move through sigil prints, sister marks, and orchard fragments as extensions of the album world.</p>
             <div class="release-links">
-              <a href="https://shop.unholyghost.org" target="_blank" rel="noopener noreferrer" data-track="effect_storefront">Enter the shop</a>
+              <a href="listen/index.html" data-track="effect_listen">Listen first</a>
+              <a href="shop/index.html" data-track="effect_storefront">Enter the shop</a>
               <a href="mailto:info@unholyghost.org?subject=Effects%20%E2%80%94%20licensing%20or%20commission" data-track="effect_contact">Commission a piece</a>
             </div>
           </div>
@@ -1542,6 +1859,7 @@
         <div class="trace-links">
           <a href="mailto:info@unholyghost.org" data-track="contact_email">info@unholyghost.org</a>
           <a href="https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB" target="_blank" rel="noopener noreferrer" data-track="music_spotify">Spotify</a>
+          <a href="https://ghostorgy.bandcamp.com/album/salt" target="_blank" rel="noopener noreferrer" data-track="music_bandcamp">Bandcamp</a>
           <a href="https://music.apple.com/us/artist/ghost-orgy/1863228828" target="_blank" rel="noopener noreferrer" data-track="music_apple">Apple Music</a>
           <a href="https://www.amazon.com/music/player/artists/B0GBPCWM1V/ghost-orgy" target="_blank" rel="noopener noreferrer" data-track="music_amazon">Amazon Music</a>
           <a href="https://soundcloud.com/ghostorgymusic" target="_blank" rel="noopener noreferrer" data-track="music_soundcloud">SoundCloud</a>
@@ -1549,7 +1867,11 @@
           <a href="https://www.tiktok.com/@ghostorgy.music" target="_blank" rel="noopener noreferrer" data-track="social_tiktok">TikTok</a>
           <a href="https://www.facebook.com/9ghostlysisters/" target="_blank" rel="noopener noreferrer" data-track="social_facebook">Facebook</a>
           <a href="https://www.pinterest.com/GhostOrgy/" target="_blank" rel="noopener noreferrer" data-track="social_pinterest">Pinterest</a>
-          <a href="https://shop.unholyghost.org" target="_blank" rel="noopener noreferrer" data-track="trace_shop">Shop</a>
+          <a href="listen/index.html">Listen</a>
+          <a href="updates/index.html">Updates</a>
+          <a href="licensing/index.html">Licensing</a>
+          <a href="nine-sisters/index.html">Nine Sisters</a>
+          <a href="shop/index.html" data-track="trace_shop">Shop</a>
           <a href="artifacts/index.html">Artifacts</a>
           <a href="lore/index.html">Orchard</a>
           <a href="press/index.html">Press kit</a>
@@ -1584,6 +1906,36 @@
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ ...params, event: name });
     }
+
+    document.querySelectorAll("[data-copy-target]").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copyTarget);
+        if (!target) return;
+        target.select();
+        target.setSelectionRange(0, target.value.length);
+        try {
+          await navigator.clipboard.writeText(target.value);
+          button.textContent = button.dataset.copyLabel || "Copied";
+        } catch (error) {
+          document.execCommand("copy");
+          button.textContent = button.dataset.copyLabel || "Copied";
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-subscribe-form]").forEach((form) => {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const input = form.querySelector('input[name="email"]');
+        const status = form.parentElement.querySelector("[data-subscribe-status]");
+        const email = input ? input.value.trim() : "";
+        if (!email) return;
+        const subject = encodeURIComponent("Subscribe to Ghost Orgy transmissions");
+        const body = encodeURIComponent(`Please add ${email} to the Ghost Orgy update list.`);
+        if (status) status.textContent = "Opening email request...";
+        window.location.href = `mailto:info@unholyghost.org?subject=${subject}&body=${body}`;
+      });
+    });
 
     const playerTabs = document.querySelectorAll(".player-tab[data-player]");
     const playerPanels = document.querySelectorAll(".player-embed[data-player]");
