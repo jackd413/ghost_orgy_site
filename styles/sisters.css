@@ -76,7 +76,9 @@ a:hover {
 }
 
 .nav a {
+  flex: 0 0 auto;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .nav a:first-child {
@@ -274,6 +276,8 @@ footer {
 @media (max-width: 700px) {
   .nav {
     padding: 1rem 1.2rem;
+    column-gap: 1rem;
+    row-gap: 0.75rem;
   }
 
   .content {

@@ -30,7 +30,7 @@ sisters = [
         'name': 'Lust',
         'file': 'lust',
         'circle': 'II',
-        'aspect': 'Desire that overwrites self',
+        'aspect': 'Annihilation of self',
         'image': 'sister-lust.jpg',
         'image_width': 600,
         'image_height': 1066,
@@ -50,7 +50,7 @@ sisters = [
         'name': 'Gluttony',
         'file': 'gluttony',
         'circle': 'III',
-        'aspect': 'Starvation of meaning',
+        'aspect': 'Annihilation of meaning',
         'image': 'sister-gluttony.jpg',
         'image_width': 600,
         'image_height': 600,
@@ -70,7 +70,7 @@ sisters = [
         'name': 'Greed',
         'file': 'greed',
         'circle': 'IV',
-        'aspect': 'Value extraction',
+        'aspect': 'Annihilation of worth',
         'image': 'sister-greed.jpg',
         'image_width': 600,
         'image_height': 900,
@@ -90,7 +90,7 @@ sisters = [
         'name': 'Wrath',
         'file': 'wrath',
         'circle': 'V',
-        'aspect': 'Judgment as fire',
+        'aspect': 'Annihilation of measure',
         'image': 'sister-wrath.jpg',
         'image_width': 600,
         'image_height': 466,
@@ -110,7 +110,7 @@ sisters = [
         'name': 'Heresy',
         'file': 'heresy',
         'circle': 'VI',
-        'aspect': 'Counter-doctrine',
+        'aspect': 'Annihilation of order',
         'image': 'sister-heresy.jpg',
         'image_width': 600,
         'image_height': 1200,
@@ -130,7 +130,7 @@ sisters = [
         'name': 'Violence',
         'file': 'violence',
         'circle': 'VII',
-        'aspect': 'Structural resonance',
+        'aspect': 'Annihilation of structure',
         'image': 'sister-violence.jpg',
         'image_width': 600,
         'image_height': 466,
@@ -150,7 +150,7 @@ sisters = [
         'name': 'Fraud',
         'file': 'fraud',
         'circle': 'VIII',
-        'aspect': 'Identity replacement',
+        'aspect': 'Annihilation of reality',
         'image': 'sister-fraud.jpg',
         'image_width': 600,
         'image_height': 900,
@@ -170,7 +170,7 @@ sisters = [
         'name': 'Treachery',
         'file': 'treachery',
         'circle': 'IX',
-        'aspect': 'Weaponized trust',
+        'aspect': 'Annihilation of bond',
         'image': 'sister-treachery.jpg',
         'image_width': 600,
         'image_height': 900,
@@ -240,6 +240,9 @@ TEMPLATE = '''<!DOCTYPE html>
     <a href="../index.html">Ghost Orgy</a>
     <a href="../lore/index.html">Lore</a>
     <a href="../artifacts/index.html">Field Artifacts</a>
+    <a href="https://shop.unholyghost.org" target="_blank" rel="noopener noreferrer">Shop</a>
+    <a href="../press/">Press</a>
+    <a href="../threshold/index.html">Threshold</a>
   </nav>
   <main class="page-main" id="main-content">
     <div class="hero-wrap">
@@ -303,7 +306,7 @@ for s in sisters:
 
     path = os.path.join(base, f"{s['file']}.html")
     with open(path, 'w', encoding='utf-8', newline='\n') as f:
-        f.write(html)
+        f.write(html + '\n')
     print(f"OK: {s['file']}.html")
 
 print("\nAll 9 sister pages created.")
