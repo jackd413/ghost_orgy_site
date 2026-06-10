@@ -493,16 +493,16 @@
     .path-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: start;
       gap: 18px;
       margin-top: 28px;
     }
 
     .path-card {
-      min-height: 220px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
+      justify-content: flex-start;
+      gap: 18px;
       padding: clamp(18px, 2vw, 26px);
       border: 1px solid rgba(255,255,255,0.08);
       background:
@@ -521,6 +521,7 @@
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      overflow-wrap: anywhere;
     }
 
     .path-card strong {
@@ -529,23 +530,27 @@
       font-size: clamp(22px, 2.4vw, 34px);
       line-height: 1.02;
       text-transform: uppercase;
+      overflow-wrap: anywhere;
     }
 
     .path-card p {
       margin: 12px 0 0;
       color: rgba(239,233,225,0.72);
       line-height: 1.52;
+      overflow-wrap: anywhere;
     }
 
     .conversion-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
       gap: 18px;
       margin-top: 28px;
     }
 
     .conversion-card {
-      min-height: 260px;
+      display: flex;
+      flex-direction: column;
       padding: clamp(18px, 2vw, 26px);
       border: 1px solid rgba(255,255,255,0.08);
       background:
@@ -561,12 +566,14 @@
       text-transform: uppercase;
       letter-spacing: 0;
       font-weight: 600;
+      overflow-wrap: anywhere;
     }
 
     .conversion-card p {
       margin: 14px 0 0;
       color: rgba(239,233,225,0.74);
       line-height: 1.55;
+      overflow-wrap: anywhere;
     }
 
     .tag-list {
@@ -716,6 +723,56 @@
       margin-bottom: 8px;
     }
 
+    .signal-flicker {
+      position: relative;
+      display: inline-block;
+      animation: textFlicker 8.5s steps(2, end) infinite;
+    }
+
+    .signal-flicker::before,
+    .signal-flicker::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .signal-flicker::before {
+      color: rgba(145,255,210,0.38);
+      text-shadow: 0 0 8px rgba(145,255,210,0.25);
+      animation: textGlitchA 7.8s steps(2, end) infinite;
+    }
+
+    .signal-flicker::after {
+      color: rgba(255,110,110,0.24);
+      text-shadow: 0 0 6px rgba(255,110,110,0.22);
+      animation: textGlitchB 10.7s steps(2, end) infinite;
+    }
+
+    @keyframes textFlicker {
+      0%, 100% { opacity: 1; }
+      84% { opacity: 1; }
+      85% { opacity: 0.8; }
+      86% { opacity: 0.98; }
+      87% { opacity: 0.72; }
+      88% { opacity: 1; }
+    }
+
+    @keyframes textGlitchA {
+      0%, 89%, 100% { opacity: 0; transform: translate3d(0, 0, 0); }
+      90% { opacity: 0.7; transform: translate3d(2px, 0, 0); }
+      91% { opacity: 0.25; transform: translate3d(-2px, 1px, 0); }
+      92% { opacity: 0.55; transform: translate3d(1px, -1px, 0); }
+    }
+
+    @keyframes textGlitchB {
+      0%, 92%, 100% { opacity: 0; transform: translate3d(0, 0, 0); }
+      93% { opacity: 0.55; transform: translate3d(-3px, 0, 0); }
+      94% { opacity: 0.18; transform: translate3d(2px, -1px, 0); }
+      95% { opacity: 0; transform: translate3d(0, 0, 0); }
+    }
+
     .release-title {
       margin: 0 0 12px;
       font-family: "They Perished", "IBM Plex Sans", sans-serif;
@@ -725,6 +782,7 @@
       line-height: 0.92;
       font-weight: 400;
       color: var(--fg);
+      overflow-wrap: anywhere;
     }
 
     .release-meta {
@@ -734,6 +792,7 @@
       letter-spacing: 0.18em;
       color: var(--accent);
       margin: -4px 0 14px;
+      overflow-wrap: anywhere;
     }
 
     .release-meta time {
@@ -751,6 +810,7 @@
       font-size: clamp(16px, 1.35vw, 20px);
       line-height: 1.48;
       max-width: 40ch;
+      overflow-wrap: anywhere;
     }
 
     .release-copy p a {
@@ -772,6 +832,7 @@
       color: rgba(239,233,225,0.82);
       border-bottom: 1px solid rgba(255,255,255,0.16);
       padding-bottom: 6px;
+      overflow-wrap: anywhere;
       transition: color var(--ease), border-color var(--ease);
     }
 
@@ -785,7 +846,7 @@
     }
 
     .effects-ledger {
-      align-self: stretch;
+      align-self: start;
       padding: clamp(20px, 2.4vw, 32px);
       border: 1px solid rgba(255,255,255,0.08);
       background:
@@ -1551,8 +1612,8 @@
         <article class="release">
           <a class="release-cover" href="https://open.spotify.com/album/7ICbOrsiIRThJOoHafvEOu" target="_blank" rel="noopener noreferrer" data-track="release_salt_cover">
             <img
-              src="images/cover-salt-official-768.webp"
-              srcset="images/cover-salt-official-640.webp 640w, images/cover-salt-official-768.webp 768w, images/cover-salt-official-960.webp 960w, images/cover-salt-official-1500.webp 1500w"
+              src="images/cover-salt-final-20260526-768.webp"
+              srcset="images/cover-salt-final-20260526-640.webp 640w, images/cover-salt-final-20260526-768.webp 768w, images/cover-salt-final-20260526-960.webp 960w, images/cover-salt-final-20260526-1500.webp 1500w"
               sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1600px) 46vw, 680px"
               alt="Salt album cover by Ghost Orgy"
               width="1500"
@@ -1801,31 +1862,33 @@
 
     <section class="chapter" id="effects">
       <div class="chapter-head">
-        <div class="bloodblock"><div class="chapter-kicker">Salt artifacts · carried back out</div></div>
-        <h2 class="chapter-title small">Worn evidence of contact</h2>
-        <p class="chapter-sub">Merch is the physical bridge back to the record: Salt marks, sister traces, and orchard fragments for listeners who want the album world to leave the speaker.</p>
+        <div class="bloodblock"><div class="chapter-kicker">Salt artifacts · after the record</div></div>
+        <h2 class="chapter-title small">Physical traces after Salt</h2>
+        <p class="chapter-sub">The storefront should orbit the album, not replace it. Start with Salt, then follow the approved objects, marks, and fragments outward.</p>
       </div>
 
       <div class="releases-grid">
         <article class="release">
-          <a class="release-cover" href="https://shop.unholyghost.org/products/this-is-not-a-warning" target="_blank" rel="noopener noreferrer" data-track="effect_warning_cover">
+          <a class="release-cover" href="salt/index.html" data-track="effect_salt_cover">
             <img
-              src="images/shop-this-is-not-a-warning.webp"
-              alt="This Is Not A Warning — salt-scattered Ghost Orgy print"
-              width="1280"
-              height="720"
+              src="images/cover-salt-final-20260526-768.webp"
+              srcset="images/cover-salt-final-20260526-640.webp 640w, images/cover-salt-final-20260526-768.webp 768w, images/cover-salt-final-20260526-960.webp 960w, images/cover-salt-final-20260526-1500.webp 1500w"
+              sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1600px) 46vw, 680px"
+              alt="Salt final proof album cover by Ghost Orgy"
+              width="1500"
+              height="1500"
               loading="lazy"
               decoding="async"
             />
           </a>
           <div class="release-copy">
-            <div class="release-kicker">Effect · I</div>
-            <h3 class="release-title">This Is Not A Warning</h3>
-            <div class="release-meta">Heavyweight hooded garment · Salt-adjacent artifact · $75 USD</div>
-            <p>A wearable piece from the same pressure system as Salt: a physical echo of the record, the Orchard, and the warnings that do not work as warnings.</p>
+            <div class="release-kicker">Record first</div>
+            <h3 class="release-title">Salt</h3>
+            <div class="release-meta">Final proof cover · debut album · out now</div>
+            <p>The music stays first. Shop objects and garment drops should read as fallout from Salt, not as a separate product world.</p>
             <div class="release-links">
-              <a href="https://shop.unholyghost.org/products/this-is-not-a-warning" target="_blank" rel="noopener noreferrer" data-track="effect_warning_buy">View garment · Shop</a>
-              <a href="salt/index.html" data-track="effect_warning_salt">Hear Salt first</a>
+              <a href="salt/index.html" data-track="effect_salt_page">Hear Salt first</a>
+              <a href="https://shop.unholyghost.org/products/this-is-not-a-warning" target="_blank" rel="noopener noreferrer" data-track="effect_warning_buy">This Is Not A Warning</a>
               <a href="shop/index.html" data-track="effect_warning_shop_bridge">Shop bridge</a>
             </div>
           </div>
@@ -1935,6 +1998,13 @@
         if (status) status.textContent = "Opening email request...";
         window.location.href = `mailto:info@unholyghost.org?subject=${subject}&body=${body}`;
       });
+    });
+
+    document.querySelectorAll(".chapter-kicker, .release-kicker, .player-tag, .shot-label, .apparition-rank, .path-card span, .fan-tag").forEach((element) => {
+      const text = element.textContent.trim();
+      if (!text) return;
+      element.dataset.text = text;
+      element.classList.add("signal-flicker");
     });
 
     const playerTabs = document.querySelectorAll(".player-tab[data-player]");

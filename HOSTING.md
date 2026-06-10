@@ -32,7 +32,7 @@ the repo:
 
 - `hero-orchard-watcher.webp` + `hero-orchard-watcher-800.webp` + `-1280.webp`
   (responsive variants — different filenames, no cache collision)
-- `cover-salt.webp` + `cover-salt-640.webp` + `-768.webp` + `-960.webp`
+- `cover-salt-final-20260526-1500.webp` + `-960.webp` + `-768.webp` + `-640.webp`
 
 The same applies to fonts, though those rarely change.
 

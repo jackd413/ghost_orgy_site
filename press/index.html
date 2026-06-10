@@ -265,17 +265,17 @@
     h1 {
       margin: 0;
       font-family: "They Perished", "IBM Plex Sans", sans-serif;
-      font-size: clamp(4rem, 12vw, 9.8rem);
+      font-size: clamp(2.1rem, 9.6vw, 7rem);
       line-height: 0.82;
       letter-spacing: 0.03em;
       font-weight: 400;
       text-transform: uppercase;
-      text-wrap: balance;
+      white-space: nowrap;
       text-shadow: 0 22px 50px var(--shadow);
     }
 
     h1 span {
-      display: block;
+      display: inline;
     }
 
     .hero-deck {
@@ -442,20 +442,20 @@
     .facts-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      align-items: start;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(4, 4, 5, 0.72);
-      overflow: hidden;
+      overflow: visible;
     }
 
     .fact {
-      min-height: 150px;
       padding: 18px;
       border-right: 1px solid var(--line);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
+      justify-content: flex-start;
+      gap: 16px;
     }
 
     .fact:last-child {
@@ -468,6 +468,7 @@
       font-size: clamp(1rem, 1.8vw, 1.28rem);
       line-height: 1.18;
       text-wrap: balance;
+      overflow-wrap: anywhere;
     }
 
     .angle-grid,
@@ -523,7 +524,8 @@
     .copy-grid,
     .asset-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      align-items: start;
       gap: 18px;
     }
 
@@ -540,6 +542,7 @@
       margin: 0;
       color: rgba(242, 238, 231, 0.88);
       line-height: 1.62;
+      overflow-wrap: anywhere;
     }
 
     .copy-card .eyebrow,
@@ -550,8 +553,7 @@
     .asset-card {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 190px;
+      justify-content: flex-start;
       gap: 18px;
     }
 
@@ -783,7 +785,7 @@
       }
 
       h1 {
-        font-size: clamp(3.55rem, 18vw, 4.8rem);
+        font-size: clamp(2rem, 9.6vw, 3.8rem);
         line-height: 0.88;
       }
 
@@ -815,7 +817,6 @@
       }
 
       .fact {
-        min-height: 118px;
         border-right: 0;
         border-bottom: 1px solid var(--line);
       }
@@ -859,7 +860,7 @@
       <div class="hero-grid">
         <div>
           <div class="kicker">Electronic Press Kit</div>
-          <h1 id="page-title"><span>Ghost</span><span>Orgy</span></h1>
+          <h1 id="page-title"><span>Ghost</span> <span>Orgy</span></h1>
           <p class="hero-deck">
             Phoenix-based experimental post-hardcore by Jack Dyer. Art-damaged hardcore, literary heavy music, damaged texture, and a horror-mythic world built around Nine Sisters and one Orchard.
           </p>
@@ -1049,8 +1050,8 @@
         <article class="release">
           <a class="release-cover" href="https://open.spotify.com/album/7ICbOrsiIRThJOoHafvEOu" target="_blank" rel="noopener noreferrer">
             <img
-              src="../images/cover-salt-official-768.webp"
-              srcset="../images/cover-salt-official-640.webp 640w, ../images/cover-salt-official-768.webp 768w, ../images/cover-salt-official-960.webp 960w, ../images/cover-salt-official-1500.webp 1500w"
+              src="../images/cover-salt-final-20260526-768.webp"
+              srcset="../images/cover-salt-final-20260526-640.webp 640w, ../images/cover-salt-final-20260526-768.webp 768w, ../images/cover-salt-final-20260526-960.webp 960w, ../images/cover-salt-final-20260526-1500.webp 1500w"
               sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 980px) 42vw, 260px"
               alt="Salt album cover by Ghost Orgy"
               width="1500"
