@@ -39,18 +39,14 @@ document.querySelectorAll("[data-copy-target]").forEach((trigger) => {
 
 document.querySelectorAll("[data-subscribe-form]").forEach((form) => {
   form.addEventListener("submit", (event) => {
-    event.preventDefault();
     const input = form.querySelector('input[name="email"]');
     const status = form.parentElement.querySelector("[data-subscribe-status]");
     const email = input ? input.value.trim() : "";
     if (!email) return;
-    const subject = encodeURIComponent("Subscribe to Ghost Orgy transmissions");
-    const body = encodeURIComponent(`Please add ${email} to the Ghost Orgy update list.`);
-    if (status) status.textContent = "Opening email request...";
+    if (status) status.textContent = "Sending confirmation...";
     trackEvent("generate_lead", {
       event_category: "conversion",
-      event_label: "updates_mailto_subscribe"
+      event_label: "updates_listmonk_subscribe"
     });
-    window.location.href = `mailto:info@unholyghost.org?subject=${subject}&body=${body}`;
   });
 });

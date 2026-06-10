@@ -1592,9 +1592,11 @@
           <div class="chapter-kicker">Email list</div>
           <h3>Receive transmissions</h3>
           <p>Release updates, press notes, and future field notices without depending on a social feed.</p>
-          <form class="email-form" data-subscribe-form>
+          <form class="email-form" action="https://list.unholyghost.org/subscription/form" method="post" data-subscribe-form>
             <input class="email-input" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address for Ghost Orgy updates" required />
-            <button type="submit">Request updates</button>
+            <input type="hidden" name="nonce" value="" />
+            <input type="hidden" name="l" value="39596dd0-e824-4258-b27f-47e6e7aa5fda" />
+            <button type="submit">Subscribe</button>
           </form>
           <div class="email-status" data-subscribe-status aria-live="polite"></div>
         </article>
@@ -1988,15 +1990,11 @@
 
     document.querySelectorAll("[data-subscribe-form]").forEach((form) => {
       form.addEventListener("submit", (event) => {
-        event.preventDefault();
         const input = form.querySelector('input[name="email"]');
         const status = form.parentElement.querySelector("[data-subscribe-status]");
         const email = input ? input.value.trim() : "";
         if (!email) return;
-        const subject = encodeURIComponent("Subscribe to Ghost Orgy transmissions");
-        const body = encodeURIComponent(`Please add ${email} to the Ghost Orgy update list.`);
-        if (status) status.textContent = "Opening email request...";
-        window.location.href = `mailto:info@unholyghost.org?subject=${subject}&body=${body}`;
+        if (status) status.textContent = "Sending confirmation...";
       });
     });
 

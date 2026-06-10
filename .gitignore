@@ -17,6 +17,7 @@ Thumbs.db
 
 # Per-developer tooling config (Claude Code permissions allowlist, etc.)
 .claude/
+.wrangler/
 
 # Local tools and scratch output.
 listmonk_*/
