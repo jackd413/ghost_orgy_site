@@ -46,7 +46,7 @@ document.querySelectorAll("[data-subscribe-form]").forEach((form) => {
     if (status) status.textContent = "Sending confirmation...";
     trackEvent("generate_lead", {
       event_category: "conversion",
-      event_label: "updates_listmonk_subscribe"
+      event_label: "updates_buttondown_subscribe"
     });
   });
 });
