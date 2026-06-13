@@ -141,6 +141,39 @@ sisters = [
             "The atmospheric pressure changes in her presence. Rooms feel tight around the ribs. Sound develops a metallic echo. The air itself seems to carry the memory of impact \u2014 not the event, but the structure of it, repeated and refined.",
             "Her domain is cruelty made into pattern. She governs all harm that, through repetition, becomes indistinguishable from design.",
         ],
+        'death_record': {
+            'label': 'Origin record &middot; life and death',
+            'title': 'The story of her death',
+            'body': [
+                'She was with her lover. Not a stranger. Not an enemy in the abstract. Someone whose body she already knew, whose patterns, temper, and thresholds she could read.',
+                "That's why she was there.",
+                "They had fought like this before. Not constantly, but often enough that escalation had a shape. Often enough that neither of them believed words were reliable anymore once the tone shifted.",
+                "The argument wasn't about anything new. It never was.",
+                "It had already crossed the point where language could land. Voices were sharp, clipped, fast; not searching for understanding, just dominance. She recognized the moment when restraint leaves the room. She always did.",
+                "She struck first. Not wildly. Not blindly. A practiced decision. A way to end it before it got worse. The fist moving faster than the tongue ever could.",
+                "For a split second, it worked. Then he hit her back, harder than she expected, closer than she anticipated.",
+                "She lost balance as much as footing; her body already committed forward when the counterforce arrived. She went down fast, backward, her head snapping into the edge of the kitchen counter as she fell.",
+                "The impact was sharp, disorienting, wrong. Not enough to knock her out. Enough to scramble everything. She was still conscious when she hit the floor. That mattered.",
+                "He didn't stop. Not because he was thinking clearly. Not because he wanted to kill her. Because escalation had already taken over, and there was no mediation left to return to.",
+                "He was on her before she could orient herself; weight, hands, breath knocked out of rhythm. She tried to move and couldn't coordinate it properly. Pain was already everywhere, too fast to isolate.",
+                "Somewhere in the chaos, the knife came into play. Not ritual. Not symbolic. It was there because kitchens have knives.",
+                "The first stab wasn't precise. It wasn't theatrical. It was panic and force and proximity. After that, there was no restraint left to reassert itself.",
+                "The body on the floor was no longer his lover in that moment; it was resistance that hadn't cleared yet. Something still moving. Something still dangerous.",
+                "The blows were close, ugly, direct.",
+                "She felt the blows without being able to count them. Pain lost shape and became total. Breath failed. Awareness collapsed into sensation only. Pressure. Heat. The wrongness of a body that could no longer respond correctly.",
+                "There was no final thought. No clarity. No time for fear to become language. Force continued until it had nowhere left to go.",
+                "When he stopped, it wasn't because of mercy or realization. It was because there was nothing left to fight.",
+                "She died on the kitchen floor of a place she had stood in before, argued in before, survived in before. Killed by the same mechanism she had trusted her entire life.",
+                "Direct. Efficient. Unforgiving.",
+                "He did not flee. When the movement stopped and the room went quiet, what returned was not reason but recognition. The damage did not resolve into meaning. It resolved into permanence.",
+                "He sat there with the knife still in his hand. There was no prayer. No apology spoken aloud. No attempt to repair what could not be repaired.",
+                "He turned the blade inward. The same knife. The same directness. The same refusal of mediation.",
+                "He bled out on the same floor, blood rushing against and into blood, close enough that their bodies shared the same space, the same failure, the same silence. Blood becomes blood.",
+                "Two lives ended not as symbols, not as lessons, not as warnings. Just force applied until nothing remained to receive it.",
+                "This calamity does not generate meaning. That is the point.",
+                "If meaning appears, it is imposed afterward by observers who need distance from what actually happened. Meaning is a coping mechanism here, not a property of the event.",
+            ],
+        },
         'artifact_num': 'CASE FILE #V-909',
         'artifact_name': 'The Mirror Break Incident',
         'artifact_body': "Victim's skeleton fractures mirror the cracks in the walls. Symmetrical breaks across every bone. Phantom healing \u2014 tissue behaves as though the wound happened years ago. Photographs show wood grain where marrow should be.",
@@ -256,6 +289,7 @@ TEMPLATE = '''<!DOCTYPE html>
       <div class="body-text">
 {body_html}
       </div>
+{death_record_html}\
       <div class="artifact-block">
         <div class="artifact-label">Recovered &middot; {artifact_num}</div>
         <h3 class="artifact-title">{artifact_name}</h3>
@@ -279,6 +313,18 @@ all_names = [(s['name'], s['file']) for s in sisters]
 
 for s in sisters:
     body_html = '\n'.join(f'      <p>{p}</p>' for p in s['body'])
+    death_record_html = ''
+    if s.get('death_record'):
+        record = s['death_record']
+        death_body_html = '\n'.join(f'        <p>{p}</p>' for p in record['body'])
+        death_record_html = f'''      <section class="death-record" aria-labelledby="{s['file']}-death-title">
+        <div class="death-label">{record['label']}</div>
+        <h2 class="death-title" id="{s['file']}-death-title">{record['title']}</h2>
+        <div class="death-copy">
+{death_body_html}
+        </div>
+      </section>
+'''
     nav_links = []
     for name, fname in all_names:
         cls = ' class="is-current" aria-current="page"' if fname == s['file'] else ''
@@ -295,6 +341,7 @@ for s in sisters:
         image_height=s['image_height'],
         domain_intro=s['domain_intro'],
         body_html=body_html,
+        death_record_html=death_record_html,
         artifact_num=s['artifact_num'],
         artifact_name=s['artifact_name'],
         artifact_body=s['artifact_body'],

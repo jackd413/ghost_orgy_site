@@ -176,6 +176,47 @@ h1 {
   margin: 0 0 1.2rem;
 }
 
+.death-record {
+  margin: 3rem 0;
+  padding: clamp(1.2rem, 3vw, 1.75rem);
+  border: 1px solid rgba(196, 149, 106, 0.38);
+  background:
+    linear-gradient(180deg, rgba(12, 9, 8, 0.78), rgba(7, 9, 11, 0.97));
+  box-shadow: 0 28px 62px var(--shadow);
+}
+
+.death-label {
+  margin-bottom: 0.6rem;
+  color: var(--accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.death-title {
+  margin: 0 0 1rem;
+  color: var(--accent-warm);
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.death-copy {
+  color: rgba(240, 236, 230, 0.78);
+  font-size: 0.95rem;
+}
+
+.death-copy p {
+  margin: 0 0 1rem;
+}
+
+.death-copy p:last-child {
+  margin-bottom: 0;
+}
+
 .artifact-block {
   margin: 2.7rem 0;
   padding: 1.2rem 1.3rem;
