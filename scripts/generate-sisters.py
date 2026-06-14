@@ -170,8 +170,6 @@ sisters = [
                 "He turned the blade inward. The same knife. The same directness. The same refusal of mediation.",
                 "He bled out on the same floor, blood rushing against and into blood, close enough that their bodies shared the same space, the same failure, the same silence. Blood becomes blood.",
                 "Two lives ended not as symbols, not as lessons, not as warnings. Just force applied until nothing remained to receive it.",
-                "This calamity does not generate meaning. That is the point.",
-                "If meaning appears, it is imposed afterward by observers who need distance from what actually happened. Meaning is a coping mechanism here, not a property of the event.",
             ],
         },
         'artifact_num': 'CASE FILE #V-909',
