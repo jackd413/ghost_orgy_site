@@ -22,3 +22,4 @@ Thumbs.db
 # Local tools and scratch output.
 listmonk_*/
 tmp/
+.tmp.driveupload/
