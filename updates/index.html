@@ -59,7 +59,7 @@
     .shell,.site-header-inner { max-width:var(--site-max); margin:0 auto; padding-inline:var(--pad); }
     .site-header { position:sticky; top:0; z-index:10; background:rgba(4,4,5,.9); border-bottom:1px solid var(--line); backdrop-filter:blur(16px); }
     .site-header-inner { min-height:56px; display:flex; justify-content:space-between; align-items:center; gap:18px; }
-    .site-title,.site-nav,.kicker,.button,footer,.link-list a,.email-form { font-family:"IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.16em; }
+    .site-title,.site-nav,.kicker,.button,footer,.link-list a,.link-list button,.email-form { font-family:"IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.16em; }
     .site-title { font-size:.76rem; }
     .site-nav { display:flex; flex-wrap:wrap; gap:14px; color:var(--muted); font-size:.68rem; }
     .hero { padding-block:clamp(72px,10vw,140px); }
@@ -81,7 +81,7 @@
     .card p { color:var(--muted); line-height:1.58; overflow-wrap:anywhere; }
     .copy-field { width:100%; min-height:44px; margin-top:16px; border:1px solid var(--line); background:rgba(4,4,5,.72); color:var(--fg); padding:10px 12px; font-family:"IBM Plex Mono",monospace; font-size:.78rem; }
     .link-list { display:flex; flex-wrap:wrap; gap:10px 16px; margin-top:16px; }
-    .link-list a { color:var(--accent); border-bottom:1px solid rgba(138,255,193,.46); font-size:.72rem; overflow-wrap:anywhere; }
+    .link-list a,.link-list button { color:var(--accent); border:0; border-bottom:1px solid rgba(138,255,193,.46); background:transparent; padding:0; font-size:.72rem; overflow-wrap:anywhere; cursor:pointer; }
     footer { padding-block:28px 40px; color:var(--muted); font-size:.68rem; border-top:1px solid var(--line); }
     @media (max-width:820px){ .site-header-inner{align-items:flex-start;flex-direction:column;padding-block:14px}.hero-grid,.grid{grid-template-columns:1fr}.button{width:100%} h1{font-size:clamp(3.5rem,18vw,5.4rem);white-space:normal;overflow-wrap:anywhere;} }
   </style>
@@ -128,17 +128,17 @@
         <article class="card">
           <div class="kicker">Share</div>
           <h2>Start link</h2>
-          <p>Use this for first-time listeners, playlist notes, and press handoff.</p>
+          <p>A direct Salt start link for first-time listeners, playlist notes, and press sharing.</p>
           <input class="copy-field" id="updatesStartTrack" type="text" value="https://www.unholyghost.org/salt/#start" readonly aria-label="Share link for The Sky That Fears Us" />
           <div class="link-list">
             <a href="../salt/index.html#start">Open</a>
-            <a href="#copy" data-copy-target="updatesStartTrack" data-copy-label="Start link copied">Copy</a>
+            <button type="button" data-copy-target="updatesStartTrack" data-copy-label="Start link copied">Copy</button>
           </div>
         </article>
         <article class="card">
           <div class="kicker">Follow</div>
           <h2>Social</h2>
-          <p>Primary social channels for verification, posts, and future project movement.</p>
+          <p>Primary social channels for posts, clips, and future project movement.</p>
           <div class="link-list">
             <a href="https://www.instagram.com/ghostorgy.music/" target="_blank" rel="noopener noreferrer" data-track="updates_instagram">Instagram</a>
             <a href="https://www.youtube.com/@GhostOr9y" target="_blank" rel="noopener noreferrer" data-track="updates_youtube">YouTube</a>
@@ -150,7 +150,7 @@
         <article class="card">
           <div class="kicker">Listen / buy</div>
           <h2>Salt</h2>
-          <p>Music-first routes for listeners who want the record before the feed.</p>
+          <p>Album links for listeners who want the record before the feed.</p>
           <div class="link-list">
             <a href="https://ghostorgy.bandcamp.com/album/salt" target="_blank" rel="noopener noreferrer" data-track="updates_bandcamp">Bandcamp</a>
             <a href="https://open.spotify.com/album/7ICbOrsiIRThJOoHafvEOu" target="_blank" rel="noopener noreferrer" data-track="updates_spotify_album">Spotify</a>

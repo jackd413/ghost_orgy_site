@@ -68,6 +68,56 @@ DISALLOWED_COPY_SNIPPETS = [
     "Pre-save",
 ]
 
+DISALLOWED_PUBLIC_COPY_PATTERNS = [
+    (
+        "internal storefront directive",
+        re.compile(r"\bthe storefront should orbit the album\b", re.IGNORECASE),
+    ),
+    (
+        "internal merch/music directive",
+        re.compile(r"\bevery object should send people back to the music\b", re.IGNORECASE),
+    ),
+    (
+        "internal artifact directive",
+        re.compile(r"\bartifacts should send people back to the music\b", re.IGNORECASE),
+    ),
+    (
+        "internal shop-object directive",
+        re.compile(r"\bshop objects\b[^.?!<]*\bshould read\b", re.IGNORECASE),
+    ),
+    (
+        "repo-approved public copy leak",
+        re.compile(r"\brepo-approved\b", re.IGNORECASE),
+    ),
+    (
+        "approved-object public copy leak",
+        re.compile(r"\bapproved objects\b", re.IGNORECASE),
+    ),
+    (
+        "public-facing/internal framing leak",
+        re.compile(r"\bpublic-facing breach\b|\boperating principle\b", re.IGNORECASE),
+    ),
+    (
+        "internal routing instruction",
+        re.compile(
+            r"\buse this page as\b|\buse these as\b|\buse the updates route\b|\bshop now routes\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "internal handoff/copy-ready language",
+        re.compile(
+            r"\bcopy-ready\b|\bhandoff\b|\bclean album destination\b|\bsocial verification\b|"
+            r"\bpress kit first\b|\bworld second\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "internal product-world framing",
+        re.compile(r"\bproduct world\b|\bdisconnected storefront\b", re.IGNORECASE),
+    ),
+]
+
 REQUIRED_DOWNLOADS = [
     ROOT / "press" / "assets" / "ghost-orgy-one-sheet.pdf",
     ROOT / "press" / "assets" / "ghost-orgy-salt-cover-3000.jpg",
@@ -148,6 +198,9 @@ def main() -> int:
         for snippet in DISALLOWED_COPY_SNIPPETS:
             if snippet in text:
                 errors.append(f"{page.relative_to(ROOT)} contains disallowed copy/reference `{snippet}`.")
+        for label, pattern in DISALLOWED_PUBLIC_COPY_PATTERNS:
+            if pattern.search(text):
+                errors.append(f"{page.relative_to(ROOT)} contains {label}; rewrite it as visitor-facing copy.")
 
     for draft in DRAFT_PAGES:
         if not draft.is_file():
