@@ -84,6 +84,9 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Run live header check
+        run: npm run check:headers
+
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
