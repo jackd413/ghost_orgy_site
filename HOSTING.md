@@ -4,17 +4,40 @@
 sitting in front as DNS + CDN. The repo has no `_headers`, `netlify.toml`, or
 `wrangler.toml` — none of those formats apply to this stack.
 
+## Deployment path
+
+GitHub Pages is configured in **GitHub Actions workflow** mode, not legacy
+branch-deploy mode. The production deploy path is:
+
+- `.github/workflows/deploy-pages.yml` runs on every push to `main` and can be
+  run manually with `workflow_dispatch`.
+- The `build` job runs local QA with `npm run check:all`, prepares a clean
+  Pages artifact in `_site`, preserves dotfiles such as `.nojekyll` and
+  `.well-known`, then uploads the artifact.
+- The `deploy` job publishes the artifact with `actions/deploy-pages` and then
+  runs `npm run check:live` against `https://unholyghost.org/`.
+- `.github/workflows/site-qa.yml` runs the same local QA on pull requests and
+  pushes.
+- `.github/workflows/live-smoke.yml` runs the live smoke test twice daily and
+  can also be run manually.
+
+If the final GitHub Pages deploy step fails with `Deployment failed, try again
+later`, rerun the failed job first. That failure has previously come from the
+GitHub Pages backend after a valid artifact was already built and uploaded.
+Do not switch back to legacy branch deploy unless intentionally reverting the
+workflow-mode setup.
+
 ## Where cache headers live
 
 Cache headers are configured in the **Cloudflare dashboard** for the
 `unholyghost.org` zone, not in this repo. Current setup:
 
-- **Caching → Configuration → Browser Cache TTL** → `Respect Existing Headers`
-  (HTML inherits GitHub Pages' default ~10 minutes, so copy edits propagate
-  quickly to returning visitors).
+- Browser cache behavior should be verified live before cache-sensitive launches.
+  During this update, live responses returned `Cache-Control: max-age=86400` for
+  HTML and `.well-known` JSON.
 - **Caching → Cache Rules → "Long cache for static assets"**:
   - Match: URI Path starts with `/images/` **or** `/fonts/`
-  - Browser TTL: **1 year**
+  - Current live browser TTL: **1 year** (`Cache-Control: max-age=31536000`)
   - Edge TTL: **1 month**
 
 This is what cut the Lighthouse "efficient cache lifetimes" warning.

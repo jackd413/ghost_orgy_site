@@ -1,22 +1,19 @@
-name: Site QA
+name: Live Smoke
 
 on:
-  pull_request:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "17 6,18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  validate:
+  live:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -30,5 +27,5 @@ jobs:
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
-      - name: Run local QA
-        run: npm run check:all
+      - name: Run live smoke test
+        run: npm run check:live
