@@ -18,5 +18,20 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
       - name: Run static site checks
         run: python scripts/check-site.py
+
+      - name: Run player smoke test
+        run: npm run check:player
