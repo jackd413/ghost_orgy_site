@@ -243,18 +243,18 @@ TEMPLATE = '''<!DOCTYPE html>
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#050608" />
   <meta name="color-scheme" content="dark" />
-  <link rel="canonical" href="https://www.unholyghost.org/sisters/{file}.html" />
+  <link rel="canonical" href="https://unholyghost.org/sisters/{file}.html" />
   <meta property="og:site_name" content="Ghost Orgy" />
   <meta property="og:title" content="{name} — The Nine Sisters — Ghost Orgy" />
   <meta property="og:description" content="{name}: {aspect}. {domain_intro} One of the Nine Sisters of the Orchard of Unmaking." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.unholyghost.org/sisters/{file}.html" />
-  <meta property="og:image" content="https://www.unholyghost.org/images/{image}" />
+  <meta property="og:url" content="https://unholyghost.org/sisters/{file}.html" />
+  <meta property="og:image" content="https://unholyghost.org/images/{image}" />
   <meta property="og:image:alt" content="{name}, one of the Nine Sisters of Ghost Orgy" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{name} — The Nine Sisters — Ghost Orgy" />
   <meta name="twitter:description" content="{name}: {aspect}. {domain_intro} One of the Nine Sisters of the Orchard of Unmaking." />
-  <meta name="twitter:image" content="https://www.unholyghost.org/images/{image}" />
+  <meta name="twitter:image" content="https://unholyghost.org/images/{image}" />
   <meta name="twitter:image:alt" content="{name}, one of the Nine Sisters of Ghost Orgy" />
   <meta name="apple-mobile-web-app-title" content="Ghost Orgy" />
   <link rel="icon" type="image/png" href="../images/go-sigil-white.png" />

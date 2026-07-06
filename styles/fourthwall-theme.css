@@ -13,10 +13,10 @@
     Theme settings → Buttons         → square corners, no border (already default)
     Site settings  → Logo            → upload source-assets/site-legacy-images/go-sigil-white-1024.png (high-res master; the 256px favicon at images/go-sigil-white.png is too small for the shop header)
     Announcement   → Text            → Hear Salt before the artifacts
-    Announcement   → Link            → https://www.unholyghost.org/listen/
-    Navigation     → Add links       → Listen https://www.unholyghost.org/listen/
-                                      → Salt https://www.unholyghost.org/salt/
-                                      → Updates https://www.unholyghost.org/updates/
+    Announcement   → Link            → https://unholyghost.org/listen/
+    Navigation     → Add links       → Listen https://unholyghost.org/listen/
+                                      → Salt https://unholyghost.org/salt/
+                                      → Updates https://unholyghost.org/updates/
 
   The override targets two surfaces:
     1. Fourthwall :root CSS variables (documented; safest, theme-agnostic).
@@ -29,8 +29,8 @@
 @font-face {
   font-family: "IBM Plex Sans";
   src:
-    url("https://www.unholyghost.org/fonts/ibm-plex-sans-400.woff") format("woff"),
-    url("https://www.unholyghost.org/fonts/ibm-plex-sans-400.ttf") format("truetype");
+    url("https://unholyghost.org/fonts/ibm-plex-sans-400.woff") format("woff"),
+    url("https://unholyghost.org/fonts/ibm-plex-sans-400.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -38,8 +38,8 @@
 @font-face {
   font-family: "IBM Plex Sans";
   src:
-    url("https://www.unholyghost.org/fonts/ibm-plex-sans-500.woff") format("woff"),
-    url("https://www.unholyghost.org/fonts/ibm-plex-sans-500.ttf") format("truetype");
+    url("https://unholyghost.org/fonts/ibm-plex-sans-500.woff") format("woff"),
+    url("https://unholyghost.org/fonts/ibm-plex-sans-500.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -47,8 +47,8 @@
 @font-face {
   font-family: "IBM Plex Sans";
   src:
-    url("https://www.unholyghost.org/fonts/ibm-plex-sans-600.woff") format("woff"),
-    url("https://www.unholyghost.org/fonts/ibm-plex-sans-600.ttf") format("truetype");
+    url("https://unholyghost.org/fonts/ibm-plex-sans-600.woff") format("woff"),
+    url("https://unholyghost.org/fonts/ibm-plex-sans-600.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -56,15 +56,15 @@
 @font-face {
   font-family: "IBM Plex Mono";
   src:
-    url("https://www.unholyghost.org/fonts/ibm-plex-mono-400.woff") format("woff"),
-    url("https://www.unholyghost.org/fonts/ibm-plex-mono-400.ttf") format("truetype");
+    url("https://unholyghost.org/fonts/ibm-plex-mono-400.woff") format("woff"),
+    url("https://unholyghost.org/fonts/ibm-plex-mono-400.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "They Perished";
-  src: url("https://www.unholyghost.org/fonts/they-perished.woff2") format("woff2");
+  src: url("https://unholyghost.org/fonts/they-perished.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -97,7 +97,7 @@
   /* Typography — match the homepage */
   --font-family-base: "IBM Plex Sans", system-ui, sans-serif;
   --font-family-base-name: "IBM Plex Sans";
-  --font-family-base-url: https://www.unholyghost.org/fonts/ibm-plex-sans-400.woff;
+  --font-family-base-url: https://unholyghost.org/fonts/ibm-plex-sans-400.woff;
   --font-family-heading: "They Perished", "IBM Plex Sans", sans-serif;
   --font-weight-base: 400;
   --font-weight-base-bold: 600;

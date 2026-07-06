@@ -20,6 +20,7 @@ Thumbs.db
 .wrangler/
 
 # Local tools and scratch output.
+node_modules/
 listmonk_*/
 tmp/
 .tmp.driveupload/

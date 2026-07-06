@@ -8,4 +8,4 @@ Allow: /
 # crawlers skip the line and AI-aware crawlers honor it. Do not remove.
 Content-Signal: ai-train=no, search=yes, ai-input=yes
 
-Sitemap: https://www.unholyghost.org/sitemap.xml
+Sitemap: https://unholyghost.org/sitemap.xml

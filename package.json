@@ -1,0 +1,22 @@
+{
+  "name": "ghost_orgy_site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site for Ghost Orgy.",
+  "scripts": {
+    "check:site": "python scripts/check-site.py",
+    "check:player": "node scripts/check-player.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackd413/ghost_orgy_site.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jackd413/ghost_orgy_site/issues"
+  },
+  "homepage": "https://github.com/jackd413/ghost_orgy_site#readme",
+  "devDependencies": {
+    "playwright": "^1.61.1"
+  }
+}

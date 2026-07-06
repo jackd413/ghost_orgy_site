@@ -1,6 +1,6 @@
 # Hosting and Caching
 
-`https://www.unholyghost.org/` is served by **GitHub Pages** with **Cloudflare**
+`https://unholyghost.org/` is served by **GitHub Pages** with **Cloudflare**
 sitting in front as DNS + CDN. The repo has no `_headers`, `netlify.toml`, or
 `wrangler.toml` — none of those formats apply to this stack.
 
