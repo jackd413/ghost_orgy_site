@@ -27,6 +27,44 @@ GitHub Pages backend after a valid artifact was already built and uploaded.
 Do not switch back to legacy branch deploy unless intentionally reverting the
 workflow-mode setup.
 
+## Security headers
+
+Security headers must be applied in Cloudflare, not in this repo, because this
+site is GitHub Pages behind Cloudflare rather than a platform that reads
+checked-in header files.
+
+Desired Cloudflare response-header transform configuration lives in
+`cloudflare/security-headers-transform-ruleset.json`. It sets:
+
+- `Strict-Transport-Security`
+- `X-Content-Type-Options`
+- `Referrer-Policy`
+- `Permissions-Policy`
+- `Content-Security-Policy-Report-Only`
+
+The CSP is intentionally report-only first because the live site uses
+Google Tag Manager plus Spotify and SoundCloud embeds. After the report-only
+policy has been observed cleanly, move toward an enforcing CSP in a separate
+change.
+
+To apply the Cloudflare rule by API:
+
+```powershell
+$env:CLOUDFLARE_API_TOKEN = "<token with Zone Transform Rules Write>"
+.\scripts\apply-cloudflare-security-headers.ps1
+```
+
+The Wrangler OAuth token on this machine can read the account and zone, but it
+does not currently have Rulesets access for response header transforms. If the
+script reports an authentication error, create a Cloudflare API token with
+Zone Transform Rules Write permission for `unholyghost.org` and rerun it.
+
+To verify the live headers after applying:
+
+```powershell
+npm run check:headers
+```
+
 ## Where cache headers live
 
 Cache headers are configured in the **Cloudflare dashboard** for the

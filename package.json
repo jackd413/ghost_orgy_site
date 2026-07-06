@@ -5,6 +5,7 @@
   "description": "Static site for Ghost Orgy.",
   "scripts": {
     "check:all": "npm run check:site && npm run check:player",
+    "check:headers": "node scripts/check-headers.js",
     "check:live": "node scripts/check-live.js",
     "check:site": "python scripts/check-site.py",
     "check:player": "node scripts/check-player.js"
