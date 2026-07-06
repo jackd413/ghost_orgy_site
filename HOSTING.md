@@ -47,6 +47,10 @@ Google Tag Manager plus Spotify and SoundCloud embeds. After the report-only
 policy has been observed cleanly, move toward an enforcing CSP in a separate
 change.
 
+Current live state: the response-header transform ruleset has been applied in
+Cloudflare as ruleset `ce9f430a974b4f008f276374f9fb3363`. `npm run
+check:headers` verifies the live headers on `https://unholyghost.org/`.
+
 To apply the Cloudflare rule by API:
 
 ```powershell
@@ -55,9 +59,9 @@ $env:CLOUDFLARE_API_TOKEN = "<token with Zone Transform Rules Write>"
 ```
 
 The Wrangler OAuth token on this machine can read the account and zone, but it
-does not currently have Rulesets access for response header transforms. If the
-script reports an authentication error, create a Cloudflare API token with
-Zone Transform Rules Write permission for `unholyghost.org` and rerun it.
+did not have Rulesets access for response header transforms during setup. Use a
+Cloudflare API token with Zone Transform Rules Write permission for
+`unholyghost.org`.
 
 To verify the live headers after applying:
 
