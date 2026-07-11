@@ -9,3 +9,4 @@ Allow: /
 Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 Sitemap: https://unholyghost.org/sitemap.xml
+Sitemap: https://unholyghost.org/image-sitemap.xml

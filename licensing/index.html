@@ -39,10 +39,36 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "name": "Licensing | Ghost Orgy",
-      "url": "https://unholyghost.org/licensing/",
-      "about": { "@type": "MusicGroup", "name": "Ghost Orgy", "url": "https://unholyghost.org/", "sameAs": ["https://www.youtube.com/@GhostOr9y"] }
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ghost Orgy", "item": "https://unholyghost.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Licensing", "item": "https://unholyghost.org/licensing/" }
+          ]
+        },
+        {
+          "@type": "ContactPage",
+          "name": "Licensing | Ghost Orgy",
+          "url": "https://unholyghost.org/licensing/",
+          "about": { "@id": "https://unholyghost.org/#artist" },
+          "mainEntity": { "@id": "https://unholyghost.org/#licensing-contact" }
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://unholyghost.org/#artist",
+          "name": "Ghost Orgy",
+          "url": "https://unholyghost.org/",
+          "sameAs": ["https://www.youtube.com/@GhostOr9y"],
+          "contactPoint": {
+            "@id": "https://unholyghost.org/#licensing-contact",
+            "@type": "ContactPoint",
+            "contactType": "licensing",
+            "email": "info@unholyghost.org",
+            "availableLanguage": "en"
+          }
+        }
+      ]
     }
   </script>
   <link rel="stylesheet" href="../styles/fonts.css" />

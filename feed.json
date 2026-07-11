@@ -1,0 +1,31 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Ghost Orgy Updates",
+  "home_page_url": "https://unholyghost.org/",
+  "feed_url": "https://unholyghost.org/feed.json",
+  "description": "Release notes, press notes, and site updates from Ghost Orgy.",
+  "language": "en-US",
+  "items": [
+    {
+      "id": "https://unholyghost.org/press/",
+      "url": "https://unholyghost.org/press/",
+      "title": "Ghost Orgy press kit",
+      "content_text": "Press assets, bios, artwork, links, and licensing contact for Ghost Orgy.",
+      "date_published": "2026-07-05T00:00:00Z"
+    },
+    {
+      "id": "https://unholyghost.org/listen/",
+      "url": "https://unholyghost.org/listen/",
+      "title": "Listen to Ghost Orgy",
+      "content_text": "Start with Salt and The Sky That Fears Us, then follow Ghost Orgy on the main listening platforms.",
+      "date_published": "2026-07-05T00:00:00Z"
+    },
+    {
+      "id": "https://unholyghost.org/salt/",
+      "url": "https://unholyghost.org/salt/",
+      "title": "Salt is available",
+      "content_text": "Salt is the debut album by Ghost Orgy, a Phoenix-based experimental post-hardcore project by Jack Dyer.",
+      "date_published": "2026-05-29T00:00:00Z"
+    }
+  ]
+}

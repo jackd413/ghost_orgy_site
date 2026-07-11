@@ -45,6 +45,9 @@ jobs:
       - name: Generate sitemap for artifact
         run: npm run generate:sitemap
 
+      - name: Generate feeds for artifact
+        run: npm run generate:feeds
+
       - name: Prepare Pages artifact
         run: npm run build:artifact
 

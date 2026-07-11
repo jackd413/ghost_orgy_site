@@ -5,13 +5,15 @@
   "description": "Static site for Ghost Orgy.",
   "scripts": {
     "build:artifact": "python scripts/build-pages-artifact.py _site",
-    "check:all": "npm run check:site && npm run check:sitemap && npm run check:artifact && npm run check:player",
+    "check:all": "npm run check:site && npm run check:sitemap && npm run check:feeds && npm run check:artifact && npm run check:player",
     "check:artifact": "python scripts/build-pages-artifact.py --check",
     "check:external": "node scripts/check-external-links.js",
+    "check:feeds": "python scripts/generate-feeds.py --check",
     "check:headers": "node scripts/check-headers.js",
     "check:live": "node scripts/check-live.js",
     "check:site": "python scripts/check-site.py",
     "check:sitemap": "python scripts/generate-sitemap.py --check",
+    "generate:feeds": "python scripts/generate-feeds.py",
     "generate:sitemap": "python scripts/generate-sitemap.py",
     "check:player": "node scripts/check-player.js"
   },

@@ -24,16 +24,12 @@ const EXPECTED_HEADERS = [
         value.toLowerCase().includes(item),
       ),
   },
-  {
-    name: "content-security-policy-report-only",
-    label: "Content-Security-Policy-Report-Only",
-    validate: (value) =>
-      [
-        "default-src 'self'",
-        "object-src 'none'",
-        "frame-src https://open.spotify.com https://w.soundcloud.com https://www.googletagmanager.com",
-      ].every((item) => value.includes(item)),
-  },
+];
+
+const EXPECTED_CSP_DIRECTIVES = [
+  "default-src 'self'",
+  "object-src 'none'",
+  "frame-src https://open.spotify.com https://w.soundcloud.com https://www.googletagmanager.com",
 ];
 
 async function main() {
@@ -63,6 +59,17 @@ async function main() {
     if (!expected.validate(value)) {
       failures.push(`${expected.label} header has unexpected value: ${value}`);
     }
+  }
+
+  const csp = response.headers.get("content-security-policy") || "";
+  const reportOnlyCsp = response.headers.get("content-security-policy-report-only") || "";
+  observed["content-security-policy"] = csp;
+  observed["content-security-policy-report-only"] = reportOnlyCsp;
+  const activeCsp = csp || reportOnlyCsp;
+  if (!activeCsp) {
+    failures.push("Content-Security-Policy or Content-Security-Policy-Report-Only header is missing.");
+  } else if (!EXPECTED_CSP_DIRECTIVES.every((item) => activeCsp.includes(item))) {
+    failures.push(`Content-Security-Policy header has unexpected value: ${activeCsp}`);
   }
 
   if (failures.length) {

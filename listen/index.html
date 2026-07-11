@@ -40,16 +40,54 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Listen | Ghost Orgy",
-      "url": "https://unholyghost.org/listen/",
-      "about": {
-        "@type": "MusicGroup",
-        "name": "Ghost Orgy",
-        "url": "https://unholyghost.org/",
-        "genre": ["Experimental post-hardcore", "Art-damaged hardcore", "Literary heavy music", "Die-fi"],
-        "sameAs": ["https://www.youtube.com/@GhostOr9y"]
-      }
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ghost Orgy", "item": "https://unholyghost.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Listen", "item": "https://unholyghost.org/listen/" }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Listen | Ghost Orgy",
+          "url": "https://unholyghost.org/listen/",
+          "about": { "@id": "https://unholyghost.org/#artist" },
+          "mainEntity": { "@id": "https://unholyghost.org/salt/#album" }
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://unholyghost.org/#artist",
+          "name": "Ghost Orgy",
+          "url": "https://unholyghost.org/",
+          "genre": ["Experimental post-hardcore", "Art-damaged hardcore", "Literary heavy music", "Die-fi"],
+          "sameAs": [
+            "https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB",
+            "https://music.apple.com/us/artist/ghost-orgy/1863228828",
+            "https://ghostorgy.bandcamp.com/album/salt",
+            "https://soundcloud.com/ghostorgymusic",
+            "https://www.youtube.com/@GhostOr9y"
+          ],
+          "album": { "@id": "https://unholyghost.org/salt/#album" }
+        },
+        {
+          "@type": "MusicAlbum",
+          "@id": "https://unholyghost.org/salt/#album",
+          "name": "Salt",
+          "url": "https://unholyghost.org/salt/",
+          "image": "https://unholyghost.org/images/cover-salt-final-20260526-1500.webp",
+          "datePublished": "2026-05-29",
+          "byArtist": { "@id": "https://unholyghost.org/#artist" },
+          "track": {
+            "@type": "MusicRecording",
+            "@id": "https://unholyghost.org/salt/#the-sky-that-fears-us",
+            "name": "The Sky That Fears Us",
+            "url": "https://unholyghost.org/salt/#start",
+            "byArtist": { "@id": "https://unholyghost.org/#artist" },
+            "inAlbum": { "@id": "https://unholyghost.org/salt/#album" }
+          }
+        }
+      ]
     }
   </script>
 

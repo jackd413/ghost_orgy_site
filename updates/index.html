@@ -36,13 +36,31 @@
   <link rel="manifest" href="../site.webmanifest" />
   <link rel="service-desc" href="/.well-known/agent-service.json" type="application/json" />
   <link rel="service-desc" href="/.well-known/agent-skills/index.json" type="application/json" />
+  <link rel="alternate" type="application/rss+xml" title="Ghost Orgy Updates" href="https://unholyghost.org/feed.xml" />
+  <link rel="alternate" type="application/feed+json" title="Ghost Orgy Updates" href="https://unholyghost.org/feed.json" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Updates | Ghost Orgy",
-      "url": "https://unholyghost.org/updates/",
-      "about": { "@type": "MusicGroup", "name": "Ghost Orgy", "url": "https://unholyghost.org/", "sameAs": ["https://www.youtube.com/@GhostOr9y"] }
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ghost Orgy", "item": "https://unholyghost.org/" },
+            { "@type": "ListItem", "position": 2, "name": "Updates", "item": "https://unholyghost.org/updates/" }
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "name": "Updates | Ghost Orgy",
+          "url": "https://unholyghost.org/updates/",
+          "about": { "@type": "MusicGroup", "name": "Ghost Orgy", "url": "https://unholyghost.org/", "sameAs": ["https://www.youtube.com/@GhostOr9y"] },
+          "mainEntity": {
+            "@type": "DataFeed",
+            "name": "Ghost Orgy Updates",
+            "url": "https://unholyghost.org/feed.xml"
+          }
+        }
+      ]
     }
   </script>
   <link rel="stylesheet" href="../styles/fonts.css" />

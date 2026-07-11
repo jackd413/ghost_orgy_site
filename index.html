@@ -43,6 +43,8 @@
   <link rel="service-desc" href="/.well-known/agent-skills/index.json" type="application/json" />
   <link rel="service-doc" href="/press/" type="text/html" />
   <link rel="describedby" href="/sitemap.xml" type="application/xml" />
+  <link rel="alternate" type="application/rss+xml" title="Ghost Orgy Updates" href="https://unholyghost.org/feed.xml" />
+  <link rel="alternate" type="application/feed+json" title="Ghost Orgy Updates" href="https://unholyghost.org/feed.json" />
   <link rel="alternate" type="application/rss+xml" title="Ghost Orgy RSS" href="https://feeds.soundcloud.com/users/soundcloud:users:12663938/sounds.rss" />
   <link rel="preload" as="image" type="image/webp" href="images/hero-orchard-watcher.webp" imagesrcset="images/hero-orchard-watcher-800.webp 800w, images/hero-orchard-watcher-1280.webp 1280w, images/hero-orchard-watcher.webp 2048w" imagesizes="100vw" fetchpriority="high" />
   <link rel="preload" href="fonts/they-perished.woff2" as="font" type="font/woff2" crossorigin />
@@ -54,30 +56,60 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "MusicGroup",
-      "name": "Ghost Orgy",
-      "url": "https://unholyghost.org/",
-      "description": "Phoenix-based experimental post-hardcore by Jack Dyer, blending art-damaged hardcore, horror-mythic world-building, and die-fi ritual audio.",
-      "genre": ["Experimental post-hardcore", "Art-damaged hardcore", "Literary heavy music", "Die-fi"],
-      "album": {
-        "@type": "MusicAlbum",
-        "name": "Salt",
-        "datePublished": "2026-05-29",
-        "byArtist": { "@type": "MusicGroup", "name": "Ghost Orgy" },
-        "url": "https://unholyghost.org/salt/"
-      },
-      "sameAs": [
-        "https://soundcloud.com/ghostorgymusic",
-        "https://ghostorgy.bandcamp.com/album/salt",
-        "https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB",
-        "https://music.apple.com/us/artist/ghost-orgy/1863228828",
-        "https://www.amazon.com/music/player/artists/B0GBPCWM1V/ghost-orgy",
-        "https://www.youtube.com/@GhostOr9y",
-        "https://www.tiktok.com/@ghostorgy.music",
-        "https://www.instagram.com/ghostorgy.music/",
-        "https://www.facebook.com/9ghostlysisters/",
-        "https://www.pinterest.com/GhostOrgy/",
-        "https://shop.unholyghost.org"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://unholyghost.org/#website",
+          "name": "Ghost Orgy",
+          "url": "https://unholyghost.org/",
+          "publisher": { "@id": "https://unholyghost.org/#artist" }
+        },
+        {
+          "@type": "MusicGroup",
+          "@id": "https://unholyghost.org/#artist",
+          "name": "Ghost Orgy",
+          "url": "https://unholyghost.org/",
+          "description": "Phoenix-based experimental post-hardcore by Jack Dyer, blending art-damaged hardcore, horror-mythic world-building, and die-fi ritual audio.",
+          "genre": ["Experimental post-hardcore", "Art-damaged hardcore", "Literary heavy music", "Die-fi"],
+          "album": { "@id": "https://unholyghost.org/salt/#album" },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "@id": "https://unholyghost.org/#press-contact",
+              "contactType": "press",
+              "email": "info@unholyghost.org",
+              "availableLanguage": "en"
+            },
+            {
+              "@type": "ContactPoint",
+              "@id": "https://unholyghost.org/#licensing-contact",
+              "contactType": "licensing",
+              "email": "info@unholyghost.org",
+              "availableLanguage": "en"
+            }
+          ],
+          "sameAs": [
+            "https://soundcloud.com/ghostorgymusic",
+            "https://ghostorgy.bandcamp.com/album/salt",
+            "https://open.spotify.com/artist/1SslPfozi6GhP2JbSNoLTB",
+            "https://music.apple.com/us/artist/ghost-orgy/1863228828",
+            "https://www.amazon.com/music/player/artists/B0GBPCWM1V/ghost-orgy",
+            "https://www.youtube.com/@GhostOr9y",
+            "https://www.tiktok.com/@ghostorgy.music",
+            "https://www.instagram.com/ghostorgy.music/",
+            "https://www.facebook.com/9ghostlysisters/",
+            "https://www.pinterest.com/GhostOrgy/",
+            "https://shop.unholyghost.org"
+          ]
+        },
+        {
+          "@type": "MusicAlbum",
+          "@id": "https://unholyghost.org/salt/#album",
+          "name": "Salt",
+          "datePublished": "2026-05-29",
+          "byArtist": { "@id": "https://unholyghost.org/#artist" },
+          "url": "https://unholyghost.org/salt/"
+        }
       ]
     }
   </script>
