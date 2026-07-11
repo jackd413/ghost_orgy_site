@@ -42,6 +42,9 @@ jobs:
       - name: Run local QA
         run: npm run check:all
 
+      - name: Generate sitemap for artifact
+        run: npm run generate:sitemap
+
       - name: Prepare Pages artifact
         run: npm run build:artifact
 

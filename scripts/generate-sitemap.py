@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
 from xml.sax.saxutils import escape
@@ -80,20 +81,32 @@ def render_sitemap() -> str:
     return "\n".join(lines) + "\n"
 
 
+def check_urls() -> int:
+    current = SITEMAP.read_text(encoding="utf-8")
+    root = ET.fromstring(current)
+    namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    observed = [node.text or "" for node in root.findall("sm:url/sm:loc", namespace)]
+    expected = [entry.loc for entry in ENTRIES]
+    if observed != expected:
+        print("sitemap.xml URL set/order is stale. Run `python scripts/generate-sitemap.py`.", file=sys.stderr)
+        return 1
+    print("Sitemap URL check passed.")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate or check sitemap.xml from tracked public pages.")
-    parser.add_argument("--check", action="store_true", help="Fail if sitemap.xml is not up to date.")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Fail if sitemap.xml does not contain the expected URL set and order.",
+    )
     args = parser.parse_args()
 
-    generated = render_sitemap()
     if args.check:
-        current = SITEMAP.read_text(encoding="utf-8")
-        if current != generated:
-            print("sitemap.xml is stale. Run `python scripts/generate-sitemap.py`.", file=sys.stderr)
-            return 1
-        print("Sitemap check passed.")
-        return 0
+        return check_urls()
 
+    generated = render_sitemap()
     SITEMAP.write_text(generated, encoding="utf-8", newline="\n")
     print("sitemap.xml updated.")
     return 0
