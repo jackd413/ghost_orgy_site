@@ -12,8 +12,11 @@ branch-deploy mode. The production deploy path is:
 - `.github/workflows/deploy-pages.yml` runs on every push to `main` and can be
   run manually with `workflow_dispatch`.
 - The `build` job runs local QA with `npm run check:all`, prepares a clean
-  Pages artifact in `_site`, preserves dotfiles such as `.nojekyll` and
-  `.well-known`, then uploads the artifact.
+  Pages artifact in `_site` from an explicit public allowlist, preserves
+  dotfiles such as `.nojekyll` and `.well-known`, then uploads the artifact.
+  Repo-only docs, CI/tooling scripts, Cloudflare API config, local sync config,
+  and authoring/source folders are intentionally excluded from the published
+  artifact.
 - The `deploy` job publishes the artifact with `actions/deploy-pages` and then
   runs `npm run check:live` against `https://unholyghost.org/`.
 - `.github/workflows/site-qa.yml` runs the same local QA on pull requests and

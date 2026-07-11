@@ -32,3 +32,6 @@ jobs:
 
       - name: Run live smoke test
         run: npm run check:live
+
+      - name: Run external link smoke test
+        run: npm run check:external

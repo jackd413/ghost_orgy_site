@@ -43,14 +43,7 @@ jobs:
         run: npm run check:all
 
       - name: Prepare Pages artifact
-        run: |
-          mkdir _site
-          rsync -a --delete \
-            --exclude='.git/' \
-            --exclude='.github/' \
-            --exclude='node_modules/' \
-            --exclude='_site/' \
-            ./ _site/
+        run: npm run build:artifact
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v6
@@ -92,3 +85,6 @@ jobs:
 
       - name: Run live smoke test
         run: npm run check:live
+
+      - name: Run external link smoke test
+        run: npm run check:external
