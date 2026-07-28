@@ -117,13 +117,13 @@ sisters = [
         'domain_intro': 'Stitched mouth. Burning eye socket. Charred black habit.',
         'body': [
             'Heresy is the Sister of Counter-Doctrine. She does not argue with faith \u2014 she makes faith forget its own words. Doctrine softens around her. Systems of belief lose the ability to distribute their own weight.',
-            'She manifests in sacred spaces. Bells ring with no sound. Scripture reorders itself on the page \u2014 "THE FIRST SIN WAS NAMING IT HOLY." Crucifix expressions change from suffering to resentment. Mouths on statues appear as heavy stitching. Prayer, rather than defending against her, becomes fuel for the manifestation.',
+            'She manifests in sacred spaces. Bells ring with no sound. Scripture reorders itself on the page \u2014 "THE FIRST SIN WAS NAMING IT HOLY." Crucifix expressions change from suffering to resentment. Mouths on statues appear as heavy stitching. Prayer, rather than defending against her, collapses into contradiction.',
             'She appears as a nun in a charred black habit. One eye socket holds a contained ember. The other is empty. She points but does not speak. Priests in her presence report forgetting sacred words mid-sentence \u2014 not losing them, but watching them leave, as if the words themselves decided to go.',
             'Her domain is the space where belief collapses under its own examination. She governs all doctrine that cannot survive being questioned.',
         ],
         'artifact_num': 'ECCLESIASTICAL INQUIRY LOG #H-331',
         'artifact_name': 'The Silent Mass',
-        'artifact_body': 'Bell rings with no sound. Scripture reorders on the page: "THE FIRST SIN WAS NAMING IT HOLY." Priest\'s eye burns inside the socket. A nun with no right eye appears at the altar, pointing. Prayer becomes fuel.',
+        'artifact_body': 'Bell rings with no sound. Scripture reorders on the page: "THE FIRST SIN WAS NAMING IT HOLY." Priest\'s eye burns inside the socket. A nun with no right eye appears at the altar, pointing. Prayer collapses into contradiction.',
         'trace': 'silent bells / burning socket / rewritten text',
     },
     {

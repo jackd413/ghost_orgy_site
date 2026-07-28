@@ -81,6 +81,38 @@ DISALLOWED_COPY_SNIPPETS = [
 
 DISALLOWED_PUBLIC_COPY_PATTERNS = [
     (
+        "retired pre-v1.1 Orchard origin",
+        re.compile(r"\bsalt opened the orchard\b", re.IGNORECASE),
+    ),
+    (
+        "human-like Orchard agency forbidden by Canon Lock v1.1",
+        re.compile(
+            r"\bthe orchard\s+(?:prefers|preferred|chooses|chose|sends|sent|plans|planned|"
+            r"bargains|resented|resents|celebrates|wants(?!\s+for\s+nothing\s+but\s+souls\b))\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "retired Orchard preference language",
+        re.compile(r"\bthe orchard's preferred\b", re.IGNORECASE),
+    ),
+    (
+        "retired non-soul fuel language",
+        re.compile(r"\bprayer becomes fuel\b|\bprayer[^.?!<]*becomes fuel\b", re.IGNORECASE),
+    ),
+    (
+        "retired non-human origin language for the Nine",
+        re.compile(r"\bnine bodies grown around nine failures of the self\b", re.IGNORECASE),
+    ),
+    (
+        "retired Hell-claim language",
+        re.compile(r"\bhuman once,\s*taken by hell\b", re.IGNORECASE),
+    ),
+    (
+        "retired always-active Orchard language",
+        re.compile(r"\bnever built but has always been growing\b", re.IGNORECASE),
+    ),
+    (
         "internal storefront directive",
         re.compile(r"\bthe storefront should orbit the album\b", re.IGNORECASE),
     ),
