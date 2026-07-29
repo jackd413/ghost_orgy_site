@@ -85,7 +85,7 @@ DISALLOWED_PUBLIC_COPY_PATTERNS = [
         re.compile(r"\bsalt opened the orchard\b", re.IGNORECASE),
     ),
     (
-        "human-like Orchard agency forbidden by Canon Lock v1.1",
+        "human-like Orchard agency forbidden by Canon Lock v2.0",
         re.compile(
             r"\bthe orchard\s+(?:prefers|preferred|chooses|chose|sends|sent|plans|planned|"
             r"bargains|resented|resents|celebrates|wants(?!\s+for\s+nothing\s+but\s+souls\b))\b",
@@ -109,8 +109,20 @@ DISALLOWED_PUBLIC_COPY_PATTERNS = [
         re.compile(r"\bhuman once,\s*taken by hell\b", re.IGNORECASE),
     ),
     (
-        "retired always-active Orchard language",
-        re.compile(r"\bnever built but has always been growing\b", re.IGNORECASE),
+        "retired dormant-Orchard model",
+        re.compile(r"\bdormant\s+(?:primordial\s+|theological\s+)*orchard\b", re.IGNORECASE),
+    ),
+    (
+        "retired Orchard-awakening model",
+        re.compile(
+            r"\b(?:their|the nine(?:'s)?)\s+passage\s+awakened\s+the\s+orchard\b|"
+            r"\bfirst\s+soul[^.?!<]*\bawakened\s+(?:its|the orchard's)\s+(?:appetite|growth)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "retired Orchard-consciousness model",
+        re.compile(r"\bthe orchard is a consciousness\b|\bconsciousness-of-will\b", re.IGNORECASE),
     ),
     (
         "internal storefront directive",
