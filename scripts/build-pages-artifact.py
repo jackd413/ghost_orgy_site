@@ -2,7 +2,9 @@
 from __future__ import annotations
 
 import argparse
+import re
 import shutil
+import stat
 import sys
 import tempfile
 from pathlib import Path
@@ -46,6 +48,37 @@ SCRIPT_PATHS = [
 EXPECTED_TOP_LEVEL = {Path(path).parts[0] for path in PUBLIC_PATHS}
 EXPECTED_TOP_LEVEL.add("scripts")
 
+PUBLIC_TEXT_SUFFIXES = {
+    ".css",
+    ".html",
+    ".js",
+    ".json",
+    ".md",
+    ".txt",
+    ".webmanifest",
+    ".xml",
+}
+
+TECHNICAL_CANONICAL_LINK = re.compile(
+    r"""<link\b[^>]*\brel=["']canonical["'][^>]*>""",
+    re.IGNORECASE | re.DOTALL,
+)
+
+FORBIDDEN_PUBLIC_GOVERNANCE_PATTERNS = [
+    (
+        "editorial canon language",
+        re.compile(r"\bcanon(?:ical|ically)?\b", re.IGNORECASE),
+    ),
+    (
+        "internal authority framing",
+        re.compile(
+            r"\b(?:governing source|authority reference|source of truth|tier [0-3])\b|"
+            r"\bRef:\s*(?:Canon|Volume)",
+            re.IGNORECASE,
+        ),
+    ),
+]
+
 
 def resolve_inside_root(path: Path) -> Path:
     resolved = path.resolve()
@@ -57,6 +90,8 @@ def resolve_inside_root(path: Path) -> Path:
 def remove_existing(path: Path, *, require_inside_root: bool) -> None:
     resolved = resolve_inside_root(path) if require_inside_root else path.resolve()
     if resolved.exists():
+        for candidate in [resolved, *resolved.rglob("*")]:
+            candidate.chmod(candidate.stat().st_mode | stat.S_IWRITE)
         shutil.rmtree(resolved)
 
 
@@ -103,6 +138,22 @@ def validate_artifact(destination_root: Path) -> list[str]:
     ]:
         if (destination_root / forbidden).exists():
             errors.append(f"Artifact includes forbidden repo-only path `{forbidden}`.")
+
+    for path in destination_root.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in PUBLIC_TEXT_SUFFIXES:
+            continue
+        text = path.read_text(encoding="utf-8")
+        if path.suffix.lower() == ".html":
+            text = TECHNICAL_CANONICAL_LINK.sub("", text)
+        for label, pattern in FORBIDDEN_PUBLIC_GOVERNANCE_PATTERNS:
+            match = pattern.search(text)
+            if not match:
+                continue
+            line_number = text.count("\n", 0, match.start()) + 1
+            errors.append(
+                f"Artifact `{path.relative_to(destination_root)}` contains {label} "
+                f"at line {line_number}: `{match.group(0)}`."
+            )
 
     return errors
 

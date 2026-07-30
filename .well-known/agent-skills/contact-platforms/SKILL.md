@@ -10,7 +10,7 @@ Use this skill when a request needs official public Ghost Orgy links or outreach
 
 ## Primary sources
 
-- `/press/` is the canonical page for public contact and platform links.
+- `/press/` is the primary page for public contact and platform links.
 - `/` may surface release links and listening entry points.
 
 ## Official routes to check

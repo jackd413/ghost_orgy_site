@@ -8,10 +8,10 @@ compatibility: Read-only; public website use only; no login, API, or private dat
 
 Use this skill when a request is mainly about where information lives on `https://www.unholyghost.org/`.
 
-## Canonical routes
+## Public routes
 
 - `/`: homepage, releases, navigation, and Nine Sisters entry points.
-- `/lore/`: Orchard cosmology, Nine Sisters framing, and long-form canon.
+- `/lore/`: Orchard cosmology, the Nine Sisters, the Resenting Lost, and the Void.
 - `/artifacts/`: recovered evidence, fragments, and documentary material.
 - `/press/`: concise bio, official description, contact route, and platform links.
 - `/threshold/`: atmospheric public signal page.
@@ -20,12 +20,12 @@ Use this skill when a request is mainly about where information lives on `https:
 ## Routing guidance
 
 - If the request is about official links, press phrasing, or contact details, consult `/press/` first.
-- If the request is about canon or symbolism, consult `/lore/` first and then sister pages as needed.
+- If the request is about the Orchard, the Nine Sisters, or symbolism, consult `/lore/` first and then sister pages as needed.
 - If the request is about one specific sister, go directly to the matching `/sisters/` page.
 - If the request is about current public entry points or releases, consult `/`.
 
 ## Guardrails
 
-- Treat `https://www.unholyghost.org/` as the canonical public domain.
+- Treat `https://www.unholyghost.org/` as the primary public domain.
 - Do not invent hidden APIs, logins, merch systems, or unreleased pages.
 - Prefer public site wording over guesswork.
