@@ -13,7 +13,8 @@ branch-deploy mode. The production deploy path is:
   run manually with `workflow_dispatch`.
 - The `build` job runs local QA with `npm run check:all`, prepares a clean
   Pages artifact in `_site` from an explicit public allowlist, preserves
-  dotfiles such as `.nojekyll` and `.well-known`, then uploads the artifact.
+  `.nojekyll`, then uploads the artifact. Public agent-discovery documents and
+  the Fourthwall-only theme stylesheet are intentionally excluded.
   Repo-only docs, CI/tooling scripts, Cloudflare API config, local sync config,
   and authoring/source folders are intentionally excluded from the published
   artifact.
@@ -79,7 +80,7 @@ Cache headers are configured in the **Cloudflare dashboard** for the
 
 - Browser cache behavior should be verified live before cache-sensitive launches.
   During this update, live responses returned `Cache-Control: max-age=86400` for
-  HTML and `.well-known` JSON.
+  HTML.
 - **Caching → Cache Rules → "Long cache for static assets"**:
   - Match: URI Path starts with `/images/` **or** `/fonts/`
   - Current live browser TTL: **1 year** (`Cache-Control: max-age=31536000`)

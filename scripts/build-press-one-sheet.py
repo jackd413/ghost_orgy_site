@@ -93,8 +93,8 @@ def main() -> None:
 
     c.setFont("PlexSans", 11.5)
     set_rgb(c, MUTED)
-    c.drawString(x, top - 55, "Phoenix experimental post-hardcore by Jack Dyer")
-    c.drawString(x, top - 72, "Art-damaged hardcore / literary heavy music / die-fi")
+    c.drawString(x, top - 55, "Salt by Jack Dyer")
+    c.drawString(x, top - 72, "Nine sinners / one Orchard / Creation ends")
 
     box_w = 278
     draw_box(c, x, 488, box_w, 78)
@@ -140,8 +140,8 @@ def main() -> None:
     c.setFont("PlexSansBold", 10.8)
     set_rgb(c, FG)
     for line in [
-        "Phoenix heavy music with an unusually built world.",
-        "Art-damaged hardcore shaped into horror-mythic album architecture.",
+        "Nine mortal sinners expelled from Hell.",
+        "One Orchard fed toward the end of Creation.",
         "Select licensing and collaborations when the context can carry the work.",
     ]:
         c.drawString(x, y, line)
@@ -151,10 +151,10 @@ def main() -> None:
     draw_label(c, "Short Bio", x, y)
     y -= 15
     bio = (
-        "Ghost Orgy is a Phoenix-based experimental post-hardcore project by Jack Dyer. "
-        "The sound sits near Refused, Give Up the Ghost, The Blood Brothers, early "
-        "mewithoutYou, Modern Life Is War, and The Sound of Animals Fighting, then folds "
-        "that pressure into horror-mythic world-building and damaged, die-fi texture."
+        "Ghost Orgy is the project of Jack Dyer. Its debut record, Salt, follows nine "
+        "mortal sinners expelled from Hell when their namesake sins destabilized it. "
+        "They feed an ancient Orchard toward the end of Creation. Songs, sister portraits, "
+        "recovered records, and damaged ritual audio form a single body of work."
     )
     draw_wrapped(c, bio, x, y, 86, 11.5, "PlexSans", 9.5, MUTED)
 

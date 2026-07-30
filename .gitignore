@@ -21,6 +21,7 @@ Thumbs.db
 
 # Local tools and scratch output.
 node_modules/
+_site/
 listmonk_*/
 tmp/
 .tmp.driveupload/

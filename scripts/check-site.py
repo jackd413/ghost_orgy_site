@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import hashlib
 from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
 import sys
 from urllib.parse import unquote, urlparse
+
+from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -58,6 +59,33 @@ DISALLOWED_METADATA_PATTERNS = [
     (
         "generic location-and-genre boilerplate",
         re.compile(r"\bPhoenix(?:-based)?\s+experimental post-hardcore\b", re.IGNORECASE),
+    ),
+]
+
+PUBLIC_PDF_FILES = [
+    ROOT / "press" / "assets" / "ghost-orgy-one-sheet.pdf",
+]
+
+DISALLOWED_NON_HTML_COPY_PATTERNS = [
+    (
+        "editorial governance language",
+        re.compile(r"\bcanon(?:ical|ically)?\b", re.IGNORECASE),
+    ),
+    (
+        "retired genre language",
+        re.compile(r"\b(?:horrorcore|experimental post-rock)\b", re.IGNORECASE),
+    ),
+    (
+        "generic location-and-genre boilerplate",
+        re.compile(r"\bPhoenix(?:-based)?\s+experimental post-hardcore\b", re.IGNORECASE),
+    ),
+    (
+        "internal instruction scaffolding",
+        re.compile(
+            r"\b(?:routing guidance|source order|guardrails?)\b|"
+            r"agent-service|agent-skills|Fourthwall dashboard|source-assets/",
+            re.IGNORECASE,
+        ),
     ),
 ]
 
@@ -279,10 +307,6 @@ def read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def read_json(path: Path) -> object:
-    return json.loads(read_text(path))
-
-
 def parse_page(path: Path) -> PageReferenceParser:
     parser = PageReferenceParser()
     parser.feed(read_text(path))
@@ -472,6 +496,25 @@ def check_metadata_contracts(errors: list[str]) -> None:
                     )
 
 
+def check_pdf_copy(errors: list[str]) -> None:
+    for pdf_path in PUBLIC_PDF_FILES:
+        if not pdf_path.is_file():
+            errors.append(f"Required public PDF is missing: {pdf_path.relative_to(ROOT)}.")
+            continue
+        try:
+            reader = PdfReader(pdf_path)
+            text = "\n".join(page.extract_text() or "" for page in reader.pages)
+        except Exception as exc:
+            errors.append(f"Could not extract copy from {pdf_path.relative_to(ROOT)}: {exc}.")
+            continue
+        if not text.strip():
+            errors.append(f"{pdf_path.relative_to(ROOT)} has no extractable copy.")
+            continue
+        for label, pattern in DISALLOWED_NON_HTML_COPY_PATTERNS:
+            if pattern.search(text):
+                errors.append(f"{pdf_path.relative_to(ROOT)} contains {label}.")
+
+
 def main() -> int:
     errors: list[str] = []
     referenced_assets: set[Path] = set()
@@ -514,6 +557,7 @@ def main() -> int:
     check_links_and_anchors(errors)
     check_social_previews(errors)
     check_metadata_contracts(errors)
+    check_pdf_copy(errors)
 
     if not (ROOT / "404.html").is_file():
         errors.append("404.html is missing.")
@@ -526,76 +570,14 @@ def main() -> int:
             errors.append(f"Required press download is missing: {download.relative_to(ROOT)}.")
 
     if not (ROOT / ".nojekyll").is_file():
-        errors.append(".nojekyll is missing; GitHub Pages may skip dot-directories like /.well-known/.")
-
-    if not (ROOT / ".well-known" / "agent-service.json").is_file():
-        errors.append(".well-known/agent-service.json is missing.")
+        errors.append(".nojekyll is missing; GitHub Pages processing should remain disabled.")
 
     robots = read_text(ROOT / "robots.txt")
     if "Content-Signal:" not in robots:
         errors.append("robots.txt is missing a `Content-Signal:` directive.")
 
-    agent_skills_index = ROOT / ".well-known" / "agent-skills" / "index.json"
-    if not agent_skills_index.is_file():
-        errors.append(".well-known/agent-skills/index.json is missing.")
-    else:
-        try:
-            index_data = read_json(agent_skills_index)
-        except json.JSONDecodeError as exc:
-            errors.append(f".well-known/agent-skills/index.json is not valid JSON: {exc}.")
-        else:
-            expected_schema = "https://schemas.agentskills.io/discovery/0.2.0/schema.json"
-            if index_data.get("$schema") != expected_schema:
-                errors.append(
-                    ".well-known/agent-skills/index.json should use "
-                    f"`{expected_schema}` as its `$schema`."
-                )
-
-            skills = index_data.get("skills")
-            if not isinstance(skills, list) or not skills:
-                errors.append(".well-known/agent-skills/index.json should contain a non-empty `skills` array.")
-            else:
-                for idx, skill in enumerate(skills, start=1):
-                    if not isinstance(skill, dict):
-                        errors.append(f"Skill entry #{idx} in agent-skills index is not an object.")
-                        continue
-
-                    for field in ("name", "type", "description", "url", "digest"):
-                        if field not in skill:
-                            errors.append(f"Skill entry #{idx} is missing `{field}`.")
-
-                    if skill.get("type") != "skill-md":
-                        errors.append(
-                            f"Skill `{skill.get('name', f'#{idx}')}` should use `type: \"skill-md\"` for a standalone SKILL.md file."
-                        )
-                        continue
-
-                    raw_url = skill.get("url")
-                    if not isinstance(raw_url, str) or not raw_url.startswith("/"):
-                        errors.append(f"Skill `{skill.get('name', f'#{idx}')}` should use a path-absolute `url`.")
-                        continue
-
-                    artifact = (ROOT / raw_url.lstrip("/")).resolve()
-                    try:
-                        artifact.relative_to(ROOT)
-                    except ValueError:
-                        errors.append(f"Skill `{skill.get('name', f'#{idx}')}` points outside the repo: `{raw_url}`.")
-                        continue
-
-                    if not artifact.is_file():
-                        errors.append(f"Skill `{skill.get('name', f'#{idx}')}` points to a missing artifact: `{raw_url}`.")
-                        continue
-
-                    digest = hashlib.sha256(artifact.read_bytes()).hexdigest()
-                    expected_digest = f"sha256:{digest}"
-                    if skill.get("digest") != expected_digest:
-                        errors.append(
-                            f"Skill `{skill.get('name', f'#{idx}')}` has digest `{skill.get('digest')}`, "
-                            f"expected `{expected_digest}`."
-                        )
-
     homepage = read_text(ROOT / "index.html")
-    for rel_name in ("service-desc", "service-doc", "describedby"):
+    for rel_name in ("service-doc", "describedby"):
         if f'rel="{rel_name}"' not in homepage:
             errors.append(f'index.html is missing a `<link rel="{rel_name}">` discovery hint.')
 

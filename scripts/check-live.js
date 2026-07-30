@@ -42,7 +42,6 @@ async function checkHttp(baseUrl, wwwUrl) {
   for (const [label, needle] of [
     ["Spotify embed", SPOTIFY_EMBED],
     ["SoundCloud user embed", SOUNDCLOUD_USER_TOKEN],
-    [".well-known discovery link", "/.well-known/agent-service.json"],
   ]) {
     if (!homepage.includes(needle)) {
       throw new Error(`Homepage is missing ${label}: ${needle}`);
@@ -63,14 +62,18 @@ async function checkHttp(baseUrl, wwwUrl) {
     throw new Error(`www redirect points to ${location || "(empty)"}, expected ${baseUrl}`);
   }
 
-  const agentServiceUrl = new URL("/.well-known/agent-service.json", baseUrl).toString();
-  const { text: agentService } = await fetchText(agentServiceUrl, ".well-known/agent-service.json");
-  JSON.parse(agentService);
+  const retiredDiscoveryUrls = [
+    new URL("/.well-known/agent-service.json", baseUrl).toString(),
+    new URL("/.well-known/agent-skills/index.json", baseUrl).toString(),
+  ];
+  for (const retiredUrl of retiredDiscoveryUrls) {
+    await fetchText(cacheBust(retiredUrl, "retired"), retiredUrl, { expected: [404] });
+  }
 
   return {
     homepageUrl,
     wwwCheckUrl,
-    agentServiceUrl,
+    retiredDiscoveryUrls,
   };
 }
 

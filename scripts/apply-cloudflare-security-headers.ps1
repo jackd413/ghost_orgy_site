@@ -62,6 +62,27 @@ function Invoke-CfApi {
     return $response.result
 }
 
+function Test-RetiredAgentDiscoveryRule {
+    param([object]$Rule)
+
+    if ($Rule.description -eq "Add Link response header for agent service discovery") {
+        return $true
+    }
+
+    if ($Rule.action_parameters.headers) {
+        foreach ($property in $Rule.action_parameters.headers.PSObject.Properties) {
+            if (
+                $property.Name -eq "Link" -and
+                $property.Value.value -match "/\.well-known/agent-service\.json"
+            ) {
+                return $true
+            }
+        }
+    }
+
+    return $false
+}
+
 if (-not $ZoneId) {
     $zones = Invoke-CfApi -Method Get -Path "/zones?name=$ZoneName"
     $zone = @($zones) | Select-Object -First 1
@@ -82,12 +103,17 @@ $phaseRuleset = @($rulesets) | Where-Object { $_.phase -eq "http_response_header
 
 if ($phaseRuleset) {
     $current = Invoke-CfApi -Method Get -Path "/zones/$ZoneId/rulesets/$($phaseRuleset.id)"
-    $mergedRules = @($current.rules | Where-Object { $_.ref -ne "ghost_orgy_security_headers_v1" })
+    $mergedRules = @(
+        $current.rules | Where-Object {
+            $_.ref -ne "ghost_orgy_security_headers_v1" -and
+            -not (Test-RetiredAgentDiscoveryRule -Rule $_)
+        }
+    )
     $mergedRules += $desiredRule
 
     $payload = [ordered]@{
-        name = $current.name
-        description = $current.description
+        name = $desired.name
+        description = $desired.description
         kind = "zone"
         phase = "http_response_headers_transform"
         rules = $mergedRules

@@ -14,7 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 
 PUBLIC_PATHS = [
     ".nojekyll",
-    ".well-known",
     "404.html",
     "CNAME",
     "artifacts",
@@ -36,7 +35,9 @@ PUBLIC_PATHS = [
     "sisters",
     "site.webmanifest",
     "sitemap.xml",
-    "styles",
+    "styles/core.css",
+    "styles/fonts.css",
+    "styles/sisters.css",
     "threshold",
     "updates",
 ]
@@ -54,6 +55,7 @@ PUBLIC_TEXT_SUFFIXES = {
     ".js",
     ".json",
     ".md",
+    ".svg",
     ".txt",
     ".webmanifest",
     ".xml",
@@ -64,7 +66,7 @@ TECHNICAL_CANONICAL_LINK = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 
-FORBIDDEN_PUBLIC_GOVERNANCE_PATTERNS = [
+FORBIDDEN_PUBLIC_TEXT_PATTERNS = [
     (
         "editorial canon language",
         re.compile(r"\bcanon(?:ical|ically)?\b", re.IGNORECASE),
@@ -74,6 +76,22 @@ FORBIDDEN_PUBLIC_GOVERNANCE_PATTERNS = [
         re.compile(
             r"\b(?:governing source|authority reference|source of truth|tier [0-3])\b|"
             r"\bRef:\s*(?:Canon|Volume)",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "retired genre language",
+        re.compile(r"\b(?:horrorcore|experimental post-rock)\b", re.IGNORECASE),
+    ),
+    (
+        "generic location-and-genre boilerplate",
+        re.compile(r"\bPhoenix(?:-based)?\s+experimental post-hardcore\b", re.IGNORECASE),
+    ),
+    (
+        "internal instruction scaffolding",
+        re.compile(
+            r"\b(?:routing guidance|source order|guardrails?)\b|"
+            r"Fourthwall dashboard|source-assets/",
             re.IGNORECASE,
         ),
     ),
@@ -124,6 +142,7 @@ def validate_artifact(destination_root: Path) -> list[str]:
         ".git",
         ".github",
         ".claude",
+        ".well-known",
         ".wrangler",
         "cloudflare",
         "node_modules",
@@ -135,6 +154,7 @@ def validate_artifact(destination_root: Path) -> list[str]:
         "HOSTING.md",
         "LOCAL_ASSETS.md",
         "REPO_RULES.md",
+        "styles/fourthwall-theme.css",
     ]:
         if (destination_root / forbidden).exists():
             errors.append(f"Artifact includes forbidden repo-only path `{forbidden}`.")
@@ -145,7 +165,7 @@ def validate_artifact(destination_root: Path) -> list[str]:
         text = path.read_text(encoding="utf-8")
         if path.suffix.lower() == ".html":
             text = TECHNICAL_CANONICAL_LINK.sub("", text)
-        for label, pattern in FORBIDDEN_PUBLIC_GOVERNANCE_PATTERNS:
+        for label, pattern in FORBIDDEN_PUBLIC_TEXT_PATTERNS:
             match = pattern.search(text)
             if not match:
                 continue

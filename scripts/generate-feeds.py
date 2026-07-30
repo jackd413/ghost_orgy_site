@@ -30,19 +30,19 @@ ITEMS = [
         "Salt is available",
         f"{SITE_URL}/salt/",
         "2026-05-29",
-        "Salt is the debut album by Ghost Orgy, a Phoenix-based experimental post-hardcore project by Jack Dyer.",
+        "Salt is Ghost Orgy's debut record: nine mortal sinners expelled from Hell, feeding an ancient Orchard toward the end of Creation.",
     ),
     FeedItem(
         "Ghost Orgy press kit",
         f"{SITE_URL}/press/",
         "2026-07-05",
-        "Press assets, bios, artwork, links, and licensing contact for Ghost Orgy.",
+        "Press materials for Salt: bios, images, release details, coverage angles, links, and licensing contact.",
     ),
     FeedItem(
         "Listen to Ghost Orgy",
         f"{SITE_URL}/listen/",
         "2026-07-05",
-        "Start with Salt and The Sky That Fears Us, then follow Ghost Orgy on the main listening platforms.",
+        "Begin with Salt and The Sky That Fears Us, then follow the Nine into the Orchard.",
     ),
 ]
 
@@ -60,7 +60,7 @@ def render_rss() -> str:
         "  <channel>",
         "    <title>Ghost Orgy Updates</title>",
         f"    <link>{SITE_URL}/updates/</link>",
-        "    <description>Release notes, press notes, and site updates from Ghost Orgy.</description>",
+        "    <description>Release notes, recovered signals, artifact drops, and transmissions from Ghost Orgy.</description>",
         "    <language>en-us</language>",
         f"    <lastBuildDate>{rfc_2822(latest)}</lastBuildDate>",
     ]
@@ -86,7 +86,7 @@ def render_json_feed() -> str:
         "title": "Ghost Orgy Updates",
         "home_page_url": f"{SITE_URL}/",
         "feed_url": f"{SITE_URL}/feed.json",
-        "description": "Release notes, press notes, and site updates from Ghost Orgy.",
+        "description": "Release notes, recovered signals, artifact drops, and transmissions from Ghost Orgy.",
         "language": "en-US",
         "items": [
             {
