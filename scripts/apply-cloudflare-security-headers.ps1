@@ -112,8 +112,8 @@ if ($phaseRuleset) {
     $mergedRules += $desiredRule
 
     $payload = [ordered]@{
-        name = $desired.name
-        description = $desired.description
+        name = $current.name
+        description = $current.description
         kind = "zone"
         phase = "http_response_headers_transform"
         rules = $mergedRules
