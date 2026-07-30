@@ -21,6 +21,7 @@ sisters = [
             'Witnesses report a woman in a grey habit visible only in reflections \u2014 never when looked at directly. Vestibular collapse. A wind that sounds like sideways breath. The persistent sensation that the world is leaving you behind.',
             'Her domain is the space between departure and arrival. She governs all things that accelerate without reaching, all orbits that never close, all eyes that cannot shut.',
         ],
+        'taking': 'She accelerates non-landing until movement itself becomes unbearable, then offers the end of motion. Her fixed Orchard threshold appears as the first place that might finally hold. The victim crosses for relief. The Orchard consumes the soul.',
         'artifact_num': 'DOT INCIDENT REPORT #L-770',
         'artifact_name': 'The Infinite Mile',
         'artifact_body': 'Driver clocked at 85 mph. Vehicle stationary. Dashboard clock returns to the same minute. Sound arrives three seconds late and echoes twice. Woman in a grey habit visible in the rearview mirror. The world leaving you behind.',
@@ -41,6 +42,7 @@ sisters = [
             'She moves in bruise-purple shadow edged with rose-gold. When she resolves, the subject steps into the shadow willingly. The room warps to forest. The floor becomes roots. The subject is described in every case file as "solved" \u2014 not rescued, not recovered. Solved.',
             'Her domain is the annihilation of self through wanting. She governs all fixations that outlast the person who holds them.',
         ],
+        'taking': 'She magnifies a desire already present until every alternate self has fallen away. At the threshold, Lust lays the desired ending over fixed Orchard architecture; the victim sees consummation and enters willingly. The Orchard consumes the soul, not the longing that led it there.',
         'artifact_num': 'DIGITAL FORENSICS REPORT #L-212',
         'artifact_name': 'The Recursive Muse',
         'artifact_body': 'Architect vanishes into design obsession. Thermal blooms independent of temperature. Violet condensation on mirrors. A voice that wraps the listener in their own pulse. Subject steps into a bruise-colored shadow. Floor warps to forest. Subject "solved."',
@@ -61,6 +63,7 @@ sisters = [
             'Officers entering her contact zones report profound meaninglessness \u2014 not sadness, but the absence of any reason to name what they feel. A fist closing in the stomach. Dull colors. The persistent sense that oxygen has been replaced with something thinner.',
             'Her domain is the pit that never fills. She governs all hunger that survives its own feeding.',
         ],
+        'taking': 'She drains the meaning from every attempted fulfillment until hunger is the only sensation the victim still trusts. Her fixed threshold appears as the only honest end to reaching. The victim steps down. The Orchard consumes the soul; the ache does not feed it.',
         'artifact_num': 'CLINICAL SESSION LOG #GL-889',
         'artifact_name': 'The Zero-Point Success',
         'artifact_body': 'CEO enters depressive anhedonia at peak success. Colors drain from the room. Awards consumed symbolically \u2014 subject inhales their essence, objects turn grey. Pit-shaped shadow opens in the floor. Oxygen-starved air. The ache becomes the ritual.',
@@ -74,16 +77,17 @@ sisters = [
         'image': 'sister-greed.jpg',
         'image_width': 600,
         'image_height': 900,
-        'domain_intro': 'She audits souls like a cosmic ledger.',
+        'domain_intro': 'Every bond becomes collateral. Every soul becomes a debt.',
         'body': [
-            'Greed is the Sister of Value Extraction. She does not hoard \u2014 she redefines worth until everything real becomes worthless and everything worthless becomes priceless. She is the accountant of the Orchard.',
+            'Greed is the Sister of Value Extraction. She does not hoard \u2014 she redefines worth until everything real becomes worthless and everything worthless becomes priceless. The ledger is hers, not the Orchard\'s.',
             'Her manifestations are economic in structure. Worthless items marked as millions. Real gold marked as decoy. A copper taste in the mouth. Involuntary hand-clenching. Officers at her contact scenes develop compulsive hoarding behavior from proximity alone \u2014 the effect persists for weeks.',
-            'The space around her creates what investigators call a "metaphysical vacuum" \u2014 hunger feeding on hunger. Nothing in the room has value, but everything feels like it should be taken. The air smells like old coins. Colors dull. The only asset that appreciates is the hunger itself.',
+            'The space around her creates what investigators call a "metaphysical vacuum." Nothing in the room has value, but everything feels like it should be taken. The air smells like old coins. Colors dull. The account never closes.',
             'Her domain is the inversion of worth. She governs all grasping that outlasts the thing being held.',
         ],
+        'taking': 'She makes the victim price every bond and possession until the soul itself appears to be the final debt. Her fixed threshold resembles a vault of safety, restitution, or overdue payment. The victim enters to settle the account. The Orchard consumes the soul; nothing else in the ledger has value to it.',
         'artifact_num': 'ASSET FORFEITURE LOG #G-204',
         'artifact_name': 'The Zero-Point Audit',
-        'artifact_body': 'Worthless objects marked as millions. Real gold marked as decoy. Officers develop compulsive hoarding from proximity alone. Copper taste. Involuntary hand-clenching. Hunger becomes the only appreciating asset.',
+        'artifact_body': 'Worthless objects marked as millions. Real gold marked as decoy. Officers develop compulsive hoarding from proximity alone. Copper taste. Involuntary hand-clenching. The account never closes.',
         'trace': 'copper mouth / clutching hands / hollowed worth',
     },
     {
@@ -94,13 +98,14 @@ sisters = [
         'image': 'sister-wrath.jpg',
         'image_width': 600,
         'image_height': 466,
-        'domain_intro': 'Selective thermal execution. She does not rage \u2014 she delivers.',
+        'domain_intro': 'Zero-gap retaliation. The wound strikes before thought can intervene.',
         'body': [
-            'Wrath is the Sister of Judgment. She does not rage \u2014 she executes. Her violence is not chaotic. It is precise, thermal, and deeply personal. She burns from the inside out, and she only burns what she means to burn.',
-            'Her manifestations are heat-based but selective. Victims burn internally while bedding stays cold. Ash falls from nothing. Shadows flicker against steady light. A scorched female voice \u2014 layered, as if multiple women are speaking through the same throat \u2014 emanates from the bodies of those nearby. Officers become gloves for a force they cannot name.',
-            'Reaction time under her influence drops to 0.4 seconds \u2014 faster than human perception allows. Force generation exceeds 1000 lbs from a standing position. Hands measured at 600 degrees Fahrenheit. The heat is not environmental. It is moral. It manifests as guilt made physical.',
-            'Her domain is judgment that cannot be appealed. She governs all force that knows exactly where it lands.',
+            'Wrath is the Sister of Zero-Gap Retaliation. She is not judgment and she is not measured execution. She removes the interval between wound and response until punishment outlives its cause and every reaction exceeds what provoked it.',
+            'Her manifestations begin in pre-ignition: narrowed vision, adrenal overload, air that tastes of ozone and sulfur, ash falling from nowhere, and shadows flickering against steady light. The heat is indiscriminate. It moves through the guilty, the innocent, and anything standing near the grievance.',
+            'Reaction time under her influence drops to 0.4 seconds \u2014 faster than conscious choice. Force generation exceeds 1000 lbs from a standing position. Hands measure at 600 degrees Fahrenheit. The victim becomes a witness to their own retaliation, watching the body strike before the mind knows why.',
+            'Her domain is the annihilation of measure. She governs the blow that arrives before the sentence and continues after there is nothing left to answer it.',
         ],
+        'taking': 'She removes the interval between wound and retaliation until the victim has burned through target, room, relationship, and refuge. In the ash, her fixed scorched threshold is the only path left. She drives the victim across it. The Orchard consumes the soul; guilt is not its fuel.',
         'artifact_num': 'CRITICAL INCIDENT REVIEW #W-991',
         'artifact_name': 'The Zero-Gap Event',
         'artifact_body': "Officer's lethal response in 0.4 seconds \u2014 faster than human perception. Force generation of 1000+ lbs from standing position. Hands measured at 600\u00b0F. A layered female voice speaks through the officer's body. Nothing is going back how it was.",
@@ -121,6 +126,7 @@ sisters = [
             'She appears as a nun in a charred black habit. One eye socket holds a contained ember. The other is empty. She points but does not speak. Priests in her presence report forgetting sacred words mid-sentence \u2014 not losing them, but watching them leave, as if the words themselves decided to go.',
             'Her domain is the space where belief collapses under its own examination. She governs all doctrine that cannot survive being questioned.',
         ],
+        'taking': 'She dismantles every safe doctrine until the soul stands without creed or covenant. Her fixed threshold appears as the only place that does not disguise Creation\'s contradiction. She leads the victim across. The Orchard consumes the soul, not the belief she broke.',
         'artifact_num': 'ECCLESIASTICAL INQUIRY LOG #H-331',
         'artifact_name': 'The Silent Mass',
         'artifact_body': 'Bell rings with no sound. Scripture reorders on the page: "THE FIRST SIN WAS NAMING IT HOLY." Priest\'s eye burns inside the socket. A nun with no right eye appears at the altar, pointing. Prayer collapses into contradiction.',
@@ -136,11 +142,12 @@ sisters = [
         'image_height': 466,
         'domain_intro': 'Harm that mirrors itself across bodies and rooms.',
         'body': [
-            "Violence is the Sister of Structural Resonance. She does not strike \u2014 she establishes a pattern, and then everything in the environment repeats it. Harm becomes grammar. Wounds become architecture.",
+            "Violence is cruelty given language and form. She does not argue, justify, or correct. She collapses the distance between thought and act until damage can no longer be mistaken for accident or abstraction.",
             "Her manifestations are symmetrical. Victim's skeleton fractures mirror the cracks in the walls. Every bone breaks along the same stress vector. Phantom healing occurs \u2014 tissue behaves as though the wound happened years ago, even when it is fresh. Photographs taken at her contact sites show wood grain where marrow should be.",
             "The atmospheric pressure changes in her presence. Rooms feel tight around the ribs. Sound develops a metallic echo. The air itself seems to carry the memory of impact \u2014 not the event, but the structure of it, repeated and refined.",
             "Her domain is cruelty made into pattern. She governs all harm that, through repetition, becomes indistinguishable from design.",
         ],
+        'taking': 'She accumulates pressure, localizes cruelty, and collapses mediation until reaction crystallizes into action. Once harm has become the only language left, she delivers the soul to the threshold. Her function ends there. The Orchard consumes the soul.',
         'death_record': {
             'label': 'Origin record &middot; life and death',
             'title': 'The story of her death',
@@ -192,6 +199,7 @@ sisters = [
             'She appears wearing the victim\'s face and coat, walking as if she lives there. Her mask is porcelain. Beneath it, the eyes are frantic. The lie was holding the subject together \u2014 "the porcelain cracked" is how one witness described the moment of contact.',
             "Her domain is the replacement of truth with function. She governs all selves that were edited into existence and all originals that were quietly removed.",
         ],
+        'taking': 'She replaces reality piece by piece until one false conclusion can explain everything. Her fixed threshold appears to complete that story; the victim enters willingly, believing the lie has resolved. The Orchard consumes the soul, not the belief that carried it there.',
         'artifact_num': 'EMERGENCY TRANSCRIPT #F-882',
         'artifact_name': 'The Overwrite Call',
         'artifact_body': "911 caller's identity shifts mid-sentence. Memories invert. A woman wearing the victim's face answers the door. Sound of a mirror shattering, sustained for twelve seconds. Only one identity remains.",
@@ -212,6 +220,7 @@ sisters = [
             "She appears with a stitched-flesh face and broken rings on every finger. She does not speak. She does not need to \u2014 by the time she is visible, the subject has already decided that love was always a trap and the only safe response is to strike first.",
             "Her domain is trust converted into weaponry. She governs all vows that became ammunition and all love that was murdered by the person who held it.",
         ],
+        'taking': 'She makes betrayal feel inevitable until the victim strikes first and destroys the bond they meant to protect. Her fixed threshold appears as the place where the betrayal can finally be justified or undone. The victim enters. The Orchard consumes the soul, not the wound.',
         'artifact_num': 'HOME ASSISTANT AUDIO CAPTURE #T-404',
         'artifact_name': 'The Mercy Killing',
         'artifact_body': 'Caregiver murders spouse after perception inversion. Raw audio: "Rest and be free." Perceived audio: "Confess and bleed." 19 Hz hum. Forty-degree temperature drop. Frost on the weapon in a tropical climate.',
@@ -287,6 +296,11 @@ TEMPLATE = '''<!DOCTYPE html>
       <div class="body-text">
 {body_html}
       </div>
+      <section class="taking-block" aria-labelledby="{file}-taking-title">
+        <div class="taking-label">Threshold record</div>
+        <h2 class="taking-title" id="{file}-taking-title">The taking</h2>
+        <p class="taking-copy">{taking}</p>
+      </section>
 {death_record_html}\
       <div class="artifact-block">
         <div class="artifact-label">Recovered &middot; {artifact_num}</div>
@@ -339,6 +353,7 @@ for s in sisters:
         image_height=s['image_height'],
         domain_intro=s['domain_intro'],
         body_html=body_html,
+        taking=s['taking'],
         death_record_html=death_record_html,
         artifact_num=s['artifact_num'],
         artifact_name=s['artifact_name'],

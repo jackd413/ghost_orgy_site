@@ -133,7 +133,31 @@ DISALLOWED_PUBLIC_COPY_PATTERNS = [
     ),
     (
         "retired non-soul fuel language",
-        re.compile(r"\bprayer becomes fuel\b|\bprayer[^.?!<]*becomes fuel\b", re.IGNORECASE),
+        re.compile(
+            r"\bprayer becomes fuel\b|\bprayer[^.?!<]*becomes fuel\b|"
+            r"\bfear of loss becomes (?:raw fuel|(?:its|the orchard's) nourishment)\b|"
+            r"\b(?:residual )?ache[^.?!<]*roots can drink\b|"
+            r"\bharvest(?:s|ed|ing)? the energy of broken trust\b|"
+            r"\b(?:desire|belief|guilt|betrayal)[^.?!<]{0,80}"
+            r"(?:feeds?|fuels?|nourishes?) the orchard\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "retired Orchard office or growth language",
+        re.compile(
+            r"\baccountant of the orchard\b|\baccelerator of orchard expansion\b|"
+            r"\bforce rapid growth\b|\bthe orchard stirs\b",
+            re.IGNORECASE,
+        ),
+    ),
+    (
+        "retired Wrath-as-selective-judgment language",
+        re.compile(
+            r"\bwrath is the sister of judgment\b|\bselective thermal execution\b|"
+            r"\bshe only burns what she means to burn\b|\bguilt made physical\b",
+            re.IGNORECASE,
+        ),
     ),
     (
         "retired non-human origin language for the Nine",
