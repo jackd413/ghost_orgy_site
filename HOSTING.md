@@ -44,12 +44,14 @@ Desired Cloudflare response-header transform configuration lives in
 - `X-Content-Type-Options`
 - `Referrer-Policy`
 - `Permissions-Policy`
-- `Content-Security-Policy-Report-Only`
+- `Content-Security-Policy`
 
-The CSP is intentionally report-only first because the live site uses
-Google Tag Manager plus Spotify and SoundCloud embeds. After the report-only
-policy has been observed cleanly, move toward an enforcing CSP in a separate
-change.
+The CSP is enforced. It permits Google Tag Manager and Google Analytics,
+Spotify and SoundCloud embeds, and the automatically injected Cloudflare Web
+Analytics beacon. Cloudflare Web Analytics is allowed from
+`static.cloudflareinsights.com` and may report to `cloudflareinsights.com` (or
+the same-origin `/cdn-cgi/rum` endpoint). Facebook Pixel remains blocked unless
+it is deliberately enabled in a separate change.
 
 Current live state: the response-header transform ruleset has been applied in
 Cloudflare as ruleset `ce9f430a974b4f008f276374f9fb3363`. `npm run
