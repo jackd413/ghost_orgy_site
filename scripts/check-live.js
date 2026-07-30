@@ -5,6 +5,25 @@ const DEFAULT_WWW_URL = "https://www.unholyghost.org/";
 const SPOTIFY_EMBED = "https://open.spotify.com/embed/album/7ICbOrsiIRThJOoHafvEOu";
 const SOUNDCLOUD_EMBED = "https://w.soundcloud.com/player/";
 const SOUNDCLOUD_USER_TOKEN = "api.soundcloud.com%2Fusers%2F12663938";
+const LIVE_BROWSER_USER_AGENT =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+  "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36";
+const RETIRED_ANALYTICS_MARKERS = [
+  "googletagmanager.com",
+  "google-analytics.com",
+  "GTM-KQVXQND4",
+  "google_tags_first_party",
+  "connect.facebook.net",
+  "facebook.com/tr",
+  "/mipz/",
+];
+const RETIRED_ANALYTICS_URL_MARKERS = [
+  "googletagmanager.com",
+  "google-analytics.com",
+  "connect.facebook.net",
+  "facebook.com/tr",
+  "/mipz/",
+];
 
 function normalizeUrl(rawUrl) {
   const url = new URL(rawUrl);
@@ -24,11 +43,23 @@ function requireStatus(response, expected, label) {
   }
 }
 
+function requireNoRetiredAnalytics(text, label) {
+  const matches = RETIRED_ANALYTICS_MARKERS.filter((marker) => text.includes(marker));
+  if (matches.length) {
+    throw new Error(`${label} contains retired analytics markers: ${matches.join(", ")}`);
+  }
+}
+
+function isRetiredAnalyticsUrl(url) {
+  const normalized = url.toLowerCase();
+  return RETIRED_ANALYTICS_URL_MARKERS.some((marker) => normalized.includes(marker.toLowerCase()));
+}
+
 async function fetchText(url, label, options = {}) {
   const response = await fetch(url, {
     redirect: options.redirect || "follow",
     headers: {
-      "User-Agent": "ghost-orgy-live-smoke/1.0",
+      "User-Agent": options.userAgent || LIVE_BROWSER_USER_AGENT,
     },
   });
   requireStatus(response, options.expected || [200], label);
@@ -38,6 +69,7 @@ async function fetchText(url, label, options = {}) {
 async function checkHttp(baseUrl, wwwUrl) {
   const homepageUrl = cacheBust(baseUrl, "home");
   const { text: homepage } = await fetchText(homepageUrl, "homepage");
+  requireNoRetiredAnalytics(homepage, "Homepage response");
 
   for (const [label, needle] of [
     ["Spotify embed", SPOTIFY_EMBED],
@@ -52,7 +84,7 @@ async function checkHttp(baseUrl, wwwUrl) {
   const wwwResponse = await fetch(wwwCheckUrl, {
     redirect: "manual",
     headers: {
-      "User-Agent": "ghost-orgy-live-smoke/1.0",
+      "User-Agent": LIVE_BROWSER_USER_AGENT,
     },
   });
   requireStatus(wwwResponse, [301, 302, 307, 308], "www redirect");
@@ -80,10 +112,16 @@ async function checkHttp(baseUrl, wwwUrl) {
 async function checkPlayer(baseUrl) {
   const browser = await chromium.launch({ headless: true });
   const failures = [];
+  const retiredAnalyticsRequests = [];
   const pageUrl = cacheBust(baseUrl, "player");
 
   try {
     const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
+    page.on("request", (request) => {
+      if (isRetiredAnalyticsUrl(request.url())) {
+        retiredAnalyticsRequests.push(request.url());
+      }
+    });
     page.on("requestfailed", (request) => {
       const url = request.url();
       if (url.startsWith(baseUrl) || url.startsWith(SPOTIFY_EMBED) || url.startsWith(SOUNDCLOUD_EMBED)) {
@@ -95,6 +133,7 @@ async function checkPlayer(baseUrl) {
     if (!response || response.status() !== 200) {
       throw new Error(`Player page returned HTTP ${response ? response.status() : "(no response)"}.`);
     }
+    requireNoRetiredAnalytics(await page.content(), "Browser-rendered homepage");
 
     await page.locator(".player-shell").waitFor({ timeout: 10000 });
     await page.waitForTimeout(2500);
@@ -128,11 +167,16 @@ async function checkPlayer(baseUrl) {
       throw new Error(`Live player request failures:\n${failures.join("\n")}`);
     }
 
+    if (retiredAnalyticsRequests.length) {
+      throw new Error(`Retired analytics requests observed:\n${retiredAnalyticsRequests.join("\n")}`);
+    }
+
     return {
       pageUrl,
       spotifySrc,
       soundcloudSrc,
       activePanel,
+      retiredAnalyticsRequests,
     };
   } finally {
     await browser.close();

@@ -52,7 +52,11 @@ Analytics is allowed from `static.cloudflareinsights.com` and may report to
 `cloudflareinsights.com` (or the same-origin `/cdn-cgi/rum` endpoint). Google
 Tag Manager and Google Analytics are intentionally not allowed. The retired GTM
 container was published empty in Version 4 after its Meta Pixel tag was
-deleted; Facebook Pixel endpoints remain blocked.
+deleted; Facebook Pixel endpoints remain blocked. Cloudflare Google Tag Gateway
+is disabled for the zone so it cannot inject the retired container at the edge.
+The live smoke test checks both the browser-like HTML response and browser
+network requests for retired GTM, Google Analytics, Meta Pixel, and `/mipz/`
+gateway markers.
 
 Current live state: the response-header transform ruleset has been applied in
 Cloudflare as ruleset `ce9f430a974b4f008f276374f9fb3363`. `npm run
