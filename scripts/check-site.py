@@ -54,6 +54,13 @@ REQUIRED_SOCIAL_PREVIEW_FIELDS = [
     "twitter:image:alt",
 ]
 
+DISALLOWED_METADATA_PATTERNS = [
+    (
+        "generic location-and-genre boilerplate",
+        re.compile(r"\bPhoenix(?:-based)?\s+experimental post-hardcore\b", re.IGNORECASE),
+    ),
+]
+
 PLACEHOLDER_SNIPPETS = [
     "YOUR_SOUNDCLOUD_TRACK_URL",
     "TODO",
@@ -206,6 +213,11 @@ class PageReferenceParser(HTMLParser):
         self.references: list[tuple[str, str, str]] = []
         self.meta: dict[str, str] = {}
         self.anchors: set[str] = set()
+        self.title_parts: list[str] = []
+        self.json_ld_blocks: list[str] = []
+        self._in_title = False
+        self._in_json_ld = False
+        self._json_ld_parts: list[str] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attr_map = {name.lower(): value for name, value in attrs if value is not None}
@@ -229,6 +241,13 @@ class PageReferenceParser(HTMLParser):
                 if candidate:
                     self.references.append((tag, attr, candidate))
 
+        if tag == "title":
+            self._in_title = True
+
+        if tag == "script" and attr_map.get("type", "").lower() == "application/ld+json":
+            self._in_json_ld = True
+            self._json_ld_parts = []
+
         if tag != "meta":
             return
 
@@ -236,6 +255,24 @@ class PageReferenceParser(HTMLParser):
         content = attr_map.get("content")
         if key and content:
             self.meta[key.lower()] = content
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "title":
+            self._in_title = False
+        if tag == "script" and self._in_json_ld:
+            self.json_ld_blocks.append("".join(self._json_ld_parts))
+            self._in_json_ld = False
+            self._json_ld_parts = []
+
+    def handle_data(self, data: str) -> None:
+        if self._in_title:
+            self.title_parts.append(data)
+        if self._in_json_ld:
+            self._json_ld_parts.append(data)
+
+    @property
+    def title(self) -> str:
+        return " ".join("".join(self.title_parts).split())
 
 
 def read_text(path: Path) -> str:
@@ -377,6 +414,64 @@ def check_social_previews(errors: list[str]) -> None:
                 errors.append(f"{page.relative_to(ROOT)} points `{field}` to non-image media `{value}`.")
 
 
+def iter_json_objects(value: object):
+    if isinstance(value, dict):
+        yield value
+        for child in value.values():
+            yield from iter_json_objects(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from iter_json_objects(child)
+
+
+def check_metadata_contracts(errors: list[str]) -> None:
+    for page in TAGGED_PAGES:
+        parser = parse_page(page)
+        relative = page.relative_to(ROOT)
+        title = parser.title
+        description = parser.meta.get("description", "")
+
+        for field in ("og:title", "twitter:title"):
+            value = parser.meta.get(field, "")
+            if value != title:
+                errors.append(f"{relative} metadata `{field}` does not match the document title.")
+
+        for field in ("og:description", "twitter:description"):
+            value = parser.meta.get(field, "")
+            if value != description:
+                errors.append(f"{relative} metadata `{field}` does not match the meta description.")
+
+        metadata_text = " ".join(
+            value
+            for value in (
+                title,
+                description,
+                parser.meta.get("og:title", ""),
+                parser.meta.get("og:description", ""),
+                parser.meta.get("twitter:title", ""),
+                parser.meta.get("twitter:description", ""),
+            )
+            if value
+        )
+        for label, pattern in DISALLOWED_METADATA_PATTERNS:
+            if pattern.search(metadata_text):
+                errors.append(f"{relative} contains {label} in indexed metadata.")
+
+        for raw_block in parser.json_ld_blocks:
+            try:
+                block = json.loads(raw_block)
+            except json.JSONDecodeError:
+                continue
+            for item in iter_json_objects(block):
+                if item.get("@type") not in {"WebPage", "ContactPage", "CollectionPage"}:
+                    continue
+                schema_name = item.get("name")
+                if schema_name and schema_name != title:
+                    errors.append(
+                        f"{relative} structured-data name `{schema_name}` does not match the document title."
+                    )
+
+
 def main() -> int:
     errors: list[str] = []
     referenced_assets: set[Path] = set()
@@ -418,6 +513,7 @@ def main() -> int:
 
     check_links_and_anchors(errors)
     check_social_previews(errors)
+    check_metadata_contracts(errors)
 
     if not (ROOT / "404.html").is_file():
         errors.append("404.html is missing.")
