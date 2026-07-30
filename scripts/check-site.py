@@ -13,7 +13,6 @@ from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[1]
 MAX_PUBLIC_ASSET_BYTES = 5 * 1024 * 1024
-TAG_MANAGER_CONTAINER_ID = "GTM-KQVXQND4"
 
 PUBLIC_PAGES = [
     ROOT / "index.html",
@@ -31,12 +30,12 @@ PUBLIC_PAGES = [
 ]
 
 DRAFT_PAGES: list[Path] = []
-TAGGED_PAGES = [
+SITE_PAGES = [
     *PUBLIC_PAGES,
     ROOT / "404.html",
 ]
-LINK_CHECK_PAGES = TAGGED_PAGES
-SOCIAL_PREVIEW_PAGES = TAGGED_PAGES
+LINK_CHECK_PAGES = SITE_PAGES
+SOCIAL_PREVIEW_PAGES = SITE_PAGES
 SAME_SITE_HOSTS = {"unholyghost.org", "www.unholyghost.org"}
 
 REQUIRED_PATTERNS = [
@@ -100,6 +99,11 @@ DISALLOWED_PAGE_SNIPPETS = [
     "fonts.googleapis.com",
     "fonts.gstatic.com",
     "db.onlinewebfonts.com",
+]
+
+RETIRED_INTEGRATION_SNIPPETS = [
+    "googletagmanager.com",
+    "GTM-KQVXQND4",
 ]
 
 DISALLOWED_COPY_SNIPPETS = [
@@ -473,7 +477,7 @@ def iter_json_objects(value: object):
 
 
 def check_metadata_contracts(errors: list[str]) -> None:
-    for page in TAGGED_PAGES:
+    for page in SITE_PAGES:
         parser = parse_page(page)
         relative = page.relative_to(ROOT)
         title = parser.title
@@ -543,14 +547,13 @@ def main() -> int:
     errors: list[str] = []
     referenced_assets: set[Path] = set()
 
-    for page in TAGGED_PAGES:
+    for page in SITE_PAGES:
         text = read_text(page)
-        gtm_script = f"googletagmanager.com/gtm.js?id='+i+dl"
-        gtm_noscript = f"googletagmanager.com/ns.html?id={TAG_MANAGER_CONTAINER_ID}"
-        if TAG_MANAGER_CONTAINER_ID not in text or gtm_script not in text:
-            errors.append(f"{page.relative_to(ROOT)} is missing Google Tag Manager container `{TAG_MANAGER_CONTAINER_ID}`.")
-        if gtm_noscript not in text:
-            errors.append(f"{page.relative_to(ROOT)} is missing the Google Tag Manager noscript iframe.")
+        for snippet in RETIRED_INTEGRATION_SNIPPETS:
+            if snippet in text:
+                errors.append(
+                    f"{page.relative_to(ROOT)} still references retired integration `{snippet}`."
+                )
 
     for page in PUBLIC_PAGES:
         text = read_text(page)

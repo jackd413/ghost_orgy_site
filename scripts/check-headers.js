@@ -29,14 +29,16 @@ const EXPECTED_HEADERS = [
 const EXPECTED_CSP_DIRECTIVES = [
   "default-src 'self'",
   "object-src 'none'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com",
-  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://cloudflareinsights.com",
-  "frame-src https://open.spotify.com https://w.soundcloud.com https://www.googletagmanager.com",
+  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
+  "connect-src 'self' https://cloudflareinsights.com",
+  "frame-src https://open.spotify.com https://w.soundcloud.com",
 ];
 
 const FORBIDDEN_CSP_SOURCES = [
-  "connect.facebook.net",
-  "facebook.com/tr",
+  { source: "connect.facebook.net", label: "Facebook Pixel" },
+  { source: "facebook.com/tr", label: "Facebook Pixel" },
+  { source: "googletagmanager.com", label: "retired Google Tag Manager" },
+  { source: "google-analytics.com", label: "unused Google Analytics" },
 ];
 
 async function main() {
@@ -78,8 +80,12 @@ async function main() {
   } else if (!EXPECTED_CSP_DIRECTIVES.every((item) => activeCsp.includes(item))) {
     failures.push(`Content-Security-Policy header has unexpected value: ${activeCsp}`);
   }
-  if (FORBIDDEN_CSP_SOURCES.some((source) => activeCsp.includes(source))) {
-    failures.push(`Content-Security-Policy unexpectedly enables Facebook Pixel: ${activeCsp}`);
+  for (const forbidden of FORBIDDEN_CSP_SOURCES) {
+    if (activeCsp.includes(forbidden.source)) {
+      failures.push(
+        `Content-Security-Policy unexpectedly enables ${forbidden.label}: ${activeCsp}`,
+      );
+    }
   }
 
   if (failures.length) {
