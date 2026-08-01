@@ -5,6 +5,8 @@ const DEFAULT_WWW_URL = "https://www.unholyghost.org/";
 const SPOTIFY_EMBED = "https://open.spotify.com/embed/album/7ICbOrsiIRThJOoHafvEOu";
 const SOUNDCLOUD_EMBED = "https://w.soundcloud.com/player/";
 const SOUNDCLOUD_USER_TOKEN = "api.soundcloud.com%2Fusers%2F12663938";
+const SPOTIFY_LINK = "https://open.spotify.com/album/7ICbOrsiIRThJOoHafvEOu";
+const SOUNDCLOUD_LINK = "https://soundcloud.com/ghostorgymusic";
 const LIVE_BROWSER_USER_AGENT =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
   "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36";
@@ -72,8 +74,8 @@ async function checkHttp(baseUrl, wwwUrl) {
   requireNoRetiredAnalytics(homepage, "Homepage response");
 
   for (const [label, needle] of [
-    ["Spotify embed", SPOTIFY_EMBED],
-    ["SoundCloud user embed", SOUNDCLOUD_USER_TOKEN],
+    ["Spotify album link", SPOTIFY_LINK],
+    ["SoundCloud profile link", SOUNDCLOUD_LINK],
   ]) {
     if (!homepage.includes(needle)) {
       throw new Error(`Homepage is missing ${label}: ${needle}`);
@@ -135,32 +137,69 @@ async function checkPlayer(baseUrl) {
     }
     requireNoRetiredAnalytics(await page.content(), "Browser-rendered homepage");
 
-    await page.locator(".player-shell").waitFor({ timeout: 10000 });
-    await page.waitForTimeout(2500);
+    const playerShell = page.locator(".player-shell");
+    const playerShellCount = await playerShell.count();
 
-    const spotifySrc = await page.locator("#playerSpotify iframe").getAttribute("src");
-    const soundcloudDataSrc = await page.locator("#playerSoundcloud iframe").getAttribute("data-src");
+    const playerResult = {
+      pageUrl,
+      retiredAnalyticsRequests,
+    };
 
-    await page.locator("#tabSoundcloud").click({ timeout: 5000 });
-    await page.waitForTimeout(2500);
+    if (playerShellCount > 0) {
+      await page.locator(".player-shell").waitFor({ timeout: 10000 });
+      await page.waitForTimeout(2500);
 
-    const soundcloudSrc = await page.locator("#playerSoundcloud iframe").getAttribute("src");
-    const activePanel = await page.locator(".player-embed.is-active").getAttribute("id");
+      const spotifySrc = await page.locator("#playerSpotify iframe").getAttribute("src");
+      const soundcloudDataSrc = await page.locator("#playerSoundcloud iframe").getAttribute("data-src");
 
-    if (!spotifySrc || !spotifySrc.startsWith(SPOTIFY_EMBED)) {
-      throw new Error(`Spotify iframe did not have the expected src. Found: ${spotifySrc || "(empty)"}`);
+      await page.locator("#tabSoundcloud").click({ timeout: 5000 });
+      await page.waitForTimeout(2500);
+
+      const soundcloudSrc = await page.locator("#playerSoundcloud iframe").getAttribute("src");
+      const activePanel = await page.locator(".player-embed.is-active").getAttribute("id");
+
+      if (!spotifySrc || !spotifySrc.startsWith(SPOTIFY_EMBED)) {
+        throw new Error(`Spotify iframe did not have the expected src. Found: ${spotifySrc || "(empty)"}`);
+      }
+
+      if (!soundcloudDataSrc || !soundcloudDataSrc.includes(SOUNDCLOUD_USER_TOKEN)) {
+        throw new Error(`SoundCloud iframe did not have the expected data-src. Found: ${soundcloudDataSrc || "(empty)"}`);
+      }
+
+      if (!soundcloudSrc || !soundcloudSrc.startsWith(SOUNDCLOUD_EMBED)) {
+        throw new Error(`SoundCloud iframe did not load after tab click. Found: ${soundcloudSrc || "(empty)"}`);
+      }
+
+      if (activePanel !== "playerSoundcloud") {
+        throw new Error(`SoundCloud tab did not become active. Active panel: ${activePanel || "(none)"}`);
+      }
+
+      playerResult.mode = "embedded";
+      playerResult.spotifySrc = spotifySrc;
+      playerResult.soundcloudSrc = soundcloudSrc;
+      playerResult.activePanel = activePanel;
+
+      if (failures.length) {
+        throw new Error(`Live player request failures:\n${failures.join("\n")}`);
+      }
+
+      if (retiredAnalyticsRequests.length) {
+        throw new Error(`Retired analytics requests observed:\n${retiredAnalyticsRequests.join("\n")}`);
+      }
+
+      return playerResult;
     }
 
-    if (!soundcloudDataSrc || !soundcloudDataSrc.includes(SOUNDCLOUD_USER_TOKEN)) {
-      throw new Error(`SoundCloud iframe did not have the expected data-src. Found: ${soundcloudDataSrc || "(empty)"}`);
-    }
+    const spotifyLink = page.locator(`a[href*="${SPOTIFY_LINK}"]`).first();
+    const soundcloudLink = page.locator(`a[href*="${SOUNDCLOUD_LINK}"]`).first();
+    const spotifyHref = await spotifyLink.getAttribute("href");
+    const soundcloudHref = await soundcloudLink.getAttribute("href");
 
-    if (!soundcloudSrc || !soundcloudSrc.startsWith(SOUNDCLOUD_EMBED)) {
-      throw new Error(`SoundCloud iframe did not load after tab click. Found: ${soundcloudSrc || "(empty)"}`);
+    if (!spotifyHref || !spotifyHref.startsWith(SPOTIFY_LINK)) {
+      throw new Error(`Homepage is missing expected Spotify album link. Found: ${spotifyHref || "(empty)"}`);
     }
-
-    if (activePanel !== "playerSoundcloud") {
-      throw new Error(`SoundCloud tab did not become active. Active panel: ${activePanel || "(none)"}`);
+    if (!soundcloudHref || !soundcloudHref.startsWith(SOUNDCLOUD_LINK)) {
+      throw new Error(`Homepage is missing expected SoundCloud profile link. Found: ${soundcloudHref || "(empty)"}`);
     }
 
     if (failures.length) {
@@ -171,13 +210,10 @@ async function checkPlayer(baseUrl) {
       throw new Error(`Retired analytics requests observed:\n${retiredAnalyticsRequests.join("\n")}`);
     }
 
-    return {
-      pageUrl,
-      spotifySrc,
-      soundcloudSrc,
-      activePanel,
-      retiredAnalyticsRequests,
-    };
+    playerResult.mode = "links";
+    playerResult.spotifyHref = spotifyHref;
+    playerResult.soundcloudHref = soundcloudHref;
+    return playerResult;
   } finally {
     await browser.close();
   }

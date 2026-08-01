@@ -6,6 +6,8 @@ const { chromium } = require("playwright");
 const ROOT = path.resolve(__dirname, "..");
 const SPOTIFY_EMBED = "https://open.spotify.com/embed/album/7ICbOrsiIRThJOoHafvEOu";
 const SOUNDCLOUD_EMBED = "https://w.soundcloud.com/player/";
+const SPOTIFY_LINK = "https://open.spotify.com/album/7ICbOrsiIRThJOoHafvEOu";
+const SOUNDCLOUD_LINK = "https://soundcloud.com/ghostorgymusic";
 
 const MIME_TYPES = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -74,30 +76,65 @@ async function main() {
     });
 
     await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 30000 });
-    await page.locator(".player-shell").waitFor({ timeout: 5000 });
+    const playerShell = page.locator(".player-shell");
+    const playerShellVisible = await playerShell.count();
 
-    const initialSpotifySrc = await page.locator("#playerSpotify iframe").getAttribute("src");
-    if (!initialSpotifySrc || !initialSpotifySrc.startsWith(SPOTIFY_EMBED)) {
-      throw new Error(`Spotify iframe did not have an immediate src. Found: ${initialSpotifySrc || "(empty)"}`);
+    if (playerShellVisible > 0) {
+      let soundcloudSrc = null;
+      let activePanel = null;
+      await playerShell.waitFor({ timeout: 5000 });
+      await page.locator(".player-shell").scrollIntoViewIfNeeded();
+      await page.waitForFunction(
+        (spotifyEmbed) => window.frames.length > 1 && Array.from(document.querySelectorAll("iframe")).some((frame) => frame.src.startsWith(spotifyEmbed)),
+        SPOTIFY_EMBED,
+        { timeout: 10000 },
+      );
+
+      const initialSpotifySrc = await page.locator("#playerSpotify iframe").getAttribute("src");
+      if (!initialSpotifySrc || !initialSpotifySrc.startsWith(SPOTIFY_EMBED)) {
+        throw new Error(`Spotify iframe did not have an immediate src. Found: ${initialSpotifySrc || "(empty)"}`);
+      }
+
+      await page.locator("#tabSoundcloud").click();
+      await page.waitForFunction(
+        (soundcloudEmbed) => document.querySelector("#playerSoundcloud iframe")?.src.startsWith(soundcloudEmbed),
+        SOUNDCLOUD_EMBED,
+        { timeout: 10000 },
+      );
+
+      soundcloudSrc = await page.locator("#playerSoundcloud iframe").getAttribute("src");
+      activePanel = await page.locator(".player-embed.is-active").getAttribute("id");
+      if (activePanel !== "playerSoundcloud") {
+        throw new Error(`SoundCloud tab did not become active. Active panel: ${activePanel || "(none)"}`);
+      }
+      if (!soundcloudSrc || !soundcloudSrc.startsWith(SOUNDCLOUD_EMBED)) {
+        throw new Error(`SoundCloud iframe did not load after tab click. Found: ${soundcloudSrc || "(empty)"}`);
+      }
+
+      if (failures.length) {
+        throw new Error(`Player request failures:\n${failures.join("\n")}`);
+      }
+      console.log(`Player smoke passed (embedded mode).`);
+      return;
     }
 
-    await page.locator(".player-shell").scrollIntoViewIfNeeded();
-    await page.waitForFunction(
-      (spotifyEmbed) => window.frames.length > 1 && Array.from(document.querySelectorAll("iframe")).some((frame) => frame.src.startsWith(spotifyEmbed)),
-      SPOTIFY_EMBED,
-      { timeout: 10000 },
-    );
+    const spotifyLink = page.locator(`a[href*="${SPOTIFY_LINK}"]`).first();
+    const soundcloudLink = page.locator(`a[href*="${SOUNDCLOUD_LINK}"]`).first();
+    const spotifyHref = await spotifyLink.getAttribute("href");
+    const soundcloudHref = await soundcloudLink.getAttribute("href");
 
-    await page.locator("#tabSoundcloud").click();
-    await page.waitForFunction(
-      (soundcloudEmbed) => document.querySelector("#playerSoundcloud iframe")?.src.startsWith(soundcloudEmbed),
-      SOUNDCLOUD_EMBED,
-      { timeout: 10000 },
-    );
+    if (!spotifyHref || !spotifyHref.startsWith("http")) {
+      throw new Error(`Homepage is missing a Spotify album link. Found: ${spotifyHref || "(empty)"}`);
+    }
+    if (!soundcloudHref || !soundcloudHref.startsWith("http")) {
+      throw new Error(`Homepage is missing a SoundCloud profile link. Found: ${soundcloudHref || "(empty)"}`);
+    }
 
-    const activePanel = await page.locator(".player-embed.is-active").getAttribute("id");
-    if (activePanel !== "playerSoundcloud") {
-      throw new Error(`SoundCloud tab did not become active. Active panel: ${activePanel || "(none)"}`);
+    if (!spotifyHref.startsWith(SPOTIFY_LINK)) {
+      throw new Error(`Homepage Spotify link does not match expected album URL. Found: ${spotifyHref}`);
+    }
+    if (!soundcloudHref.startsWith(SOUNDCLOUD_LINK)) {
+      throw new Error(`Homepage SoundCloud link does not match expected profile URL. Found: ${soundcloudHref}`);
     }
 
     if (failures.length) {
