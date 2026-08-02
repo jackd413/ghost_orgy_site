@@ -1,6 +1,7 @@
 :root {
   color-scheme: dark;
   --focus-ring: #8affc1;
+  --header-font-family: "They Perished", "IBM Plex Sans", sans-serif;
 }
 
 body {
@@ -11,6 +12,24 @@ body {
 :focus-visible {
   outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
+}
+
+.site-header,
+.site-header *,
+.site-nav,
+.site-nav *,
+.nav,
+.nav *,
+.topbar,
+.topbar *,
+.page-header,
+.page-header *,
+.nav-brand,
+.nav-back,
+.brand,
+.brand-name,
+.brand-signal {
+  font-family: var(--header-font-family) !important;
 }
 
 .skip-link {
