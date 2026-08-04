@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/jackd413/ghost_orgy_site#readme",
   "devDependencies": {
-    "playwright": "^1.61.1"
+    "playwright": "^1.62.1"
   }
 }
