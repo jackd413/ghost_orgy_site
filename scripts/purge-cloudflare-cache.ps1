@@ -49,13 +49,33 @@ function Invoke-CfApi {
 $purgeBody = @{
     files = @(
         "https://$ZoneName/",
-        "https://$ZoneName/index.html"
+        "https://$ZoneName/index.html",
+        "https://$ZoneName/404.html",
+        "https://$ZoneName/artifacts/",
+        "https://$ZoneName/licensing/",
+        "https://$ZoneName/listen/",
+        "https://$ZoneName/lore/",
+        "https://$ZoneName/nine-sisters/",
+        "https://$ZoneName/press/",
+        "https://$ZoneName/salt/",
+        "https://$ZoneName/shop/",
+        "https://$ZoneName/threshold/",
+        "https://$ZoneName/updates/",
+        "https://$ZoneName/sisters/limbo.html",
+        "https://$ZoneName/sisters/lust.html",
+        "https://$ZoneName/sisters/gluttony.html",
+        "https://$ZoneName/sisters/greed.html",
+        "https://$ZoneName/sisters/wrath.html",
+        "https://$ZoneName/sisters/heresy.html",
+        "https://$ZoneName/sisters/violence.html",
+        "https://$ZoneName/sisters/fraud.html",
+        "https://$ZoneName/sisters/treachery.html"
     )
 }
 
 try {
     Invoke-CfApi -Method Post -Path "/zones/$ZoneId/purge_cache" -Body $purgeBody | Out-Null
-    Write-Output "Purged Cloudflare cache for $ZoneName root and index.html."
+    Write-Output "Purged Cloudflare cache for $($purgeBody.files.Count) public $ZoneName URLs."
 } catch {
     Write-Error "Cloudflare cache purge failed: $($_.Exception.Message)"
     throw

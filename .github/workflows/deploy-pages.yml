@@ -98,7 +98,7 @@ jobs:
       - name: Run external link smoke test
         run: npm run check:external
 
-      - name: Purge Cloudflare cache for site root
+      - name: Purge Cloudflare cache for public site pages
         shell: pwsh
         continue-on-error: true
         env:
