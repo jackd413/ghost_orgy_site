@@ -1,29 +1,4 @@
-/*
-  Ghost Orgy x Fourthwall — Custom CSS
-  Storefront theme override for https://shop.unholyghost.org
-
-  HOW TO APPLY (Fourthwall dashboard):
-    Site → Customize → Custom code → CSS
-    Paste the entire contents of this file into the "Custom CSS" box and save.
-    Fourthwall injects this AFTER its own stylesheets, so :root overrides win.
-
-  BEFORE PASTING — set these in the Fourthwall dashboard for cleaner results:
-    Theme settings → Colors          → Background #040405, Text #efe9e1, Accent #91ffd2
-    Theme settings → Typography      → leave as-is; fonts are overridden below
-    Theme settings → Buttons         → square corners, no border (already default)
-    Site settings  → Logo            → upload source-assets/site-legacy-images/go-sigil-white-1024.png (high-res master; the 256px favicon at images/go-sigil-white.png is too small for the shop header)
-    Announcement   → Text            → Hear Salt before the artifacts
-    Announcement   → Link            → https://unholyghost.org/listen/
-    Navigation     → Add links       → Listen https://unholyghost.org/listen/
-                                      → Salt https://unholyghost.org/salt/
-                                      → Updates https://unholyghost.org/updates/
-
-  The override targets two surfaces:
-    1. Fourthwall :root CSS variables (documented; safest, theme-agnostic).
-    2. Fourthwall BEM classes (.tile, .button, .header__link, .footer__list, etc.)
-       observed on https://shop.unholyghost.org. Tied to the current theme;
-       if you switch Fourthwall themes, expect to revisit selectors below.
-*/
+/* Ghost Orgy storefront runtime theme for https://shop.unholyghost.org. */
 
 /* ── Fonts pulled from the main site (GitHub Pages serves them with CORS) ── */
 @font-face {
@@ -141,13 +116,14 @@ body,
 body.index,
 body.body--background-image {
   background: #040405 !important;
+  background-image: none !important;
   color: var(--color-on-background);
   font-family: var(--font-family-base);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Ambient grain — fixed overlay so it stays during scroll, like the homepage */
+/* Current Salt artwork replaces the retired storefront background. */
 body::before {
   content: "";
   position: fixed;
@@ -155,11 +131,10 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(circle at 70% 12%, rgba(145, 255, 210, 0.04), transparent 22%),
-    radial-gradient(circle at 10% 24%, rgba(157, 86, 60, 0.10), transparent 24%),
-    repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255, 255, 255, 0.012) 3px, rgba(255, 255, 255, 0.012) 4px),
-    linear-gradient(180deg, #050506 0%, #040405 44%, #020203 100%);
+    linear-gradient(180deg, rgba(4, 4, 5, 0.42) 0%, rgba(4, 4, 5, 0.76) 54%, #040405 100%),
+    url("https://unholyghost.org/images/cover-salt-final-20260526-1500.webp") center 8% / cover no-repeat;
   mix-blend-mode: normal;
+  opacity: 0.56;
 }
 
 body::after {

@@ -37,12 +37,14 @@ PUBLIC_PATHS = [
     "sitemap.xml",
     "styles/core.css",
     "styles/fonts.css",
+    "styles/fourthwall-theme.css",
     "styles/sisters.css",
     "threshold",
     "updates",
 ]
 
 SCRIPT_PATHS = [
+    "scripts/fourthwall-fixes.js",
     "scripts/site.js",
 ]
 
@@ -154,7 +156,6 @@ def validate_artifact(destination_root: Path) -> list[str]:
         "HOSTING.md",
         "LOCAL_ASSETS.md",
         "REPO_RULES.md",
-        "styles/fourthwall-theme.css",
     ]:
         if (destination_root / forbidden).exists():
             errors.append(f"Artifact includes forbidden repo-only path `{forbidden}`.")

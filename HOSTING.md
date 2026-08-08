@@ -13,13 +13,14 @@ branch-deploy mode. The production deploy path is:
   run manually with `workflow_dispatch`.
 - The `build` job runs local QA with `npm run check:all`, prepares a clean
   Pages artifact in `_site` from an explicit public allowlist, preserves
-  `.nojekyll`, then uploads the artifact. Public agent-discovery documents and
-  the Fourthwall-only theme stylesheet are intentionally excluded.
+  `.nojekyll`, then uploads the artifact. Public agent-discovery documents are
+  intentionally excluded. The hosted shop depends on the published
+  `styles/fourthwall-theme.css` and `scripts/fourthwall-fixes.js` runtime assets.
   Repo-only docs, CI/tooling scripts, Cloudflare API config, local sync config,
   and authoring/source folders are intentionally excluded from the published
   artifact.
-- The `deploy` job publishes the artifact with `actions/deploy-pages` and then
-  runs `npm run check:live` against `https://unholyghost.org/`.
+- The `deploy` job publishes the artifact, purges the public Cloudflare URLs,
+  and then runs `npm run check:live` against `https://unholyghost.org/`.
 - `.github/workflows/site-qa.yml` runs the same local QA on pull requests and
   pushes.
 - `.github/workflows/live-smoke.yml` runs the live smoke test twice daily and
@@ -30,6 +31,19 @@ later`, rerun the failed job first. That failure has previously come from the
 GitHub Pages backend after a valid artifact was already built and uploaded.
 Do not switch back to legacy branch deploy unless intentionally reverting the
 workflow-mode setup.
+
+## Hosted shop runtime
+
+`https://shop.unholyghost.org/` is a separate Fourthwall storefront. Its custom
+code loads these two public assets from this Pages deployment:
+
+- `https://unholyghost.org/styles/fourthwall-theme.css`
+- `https://unholyghost.org/scripts/fourthwall-fixes.js`
+
+The theme suppresses Fourthwall's uploaded page background and supplies the
+current Ghost Orgy storefront art. Keep both paths in the Pages artifact and in
+the live smoke test; a 404 on either path leaves the storefront partially or
+completely unthemed.
 
 ## Security headers
 

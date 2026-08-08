@@ -1,15 +1,9 @@
 const CRITICAL_LINKS = [
   {
-    label: "Fourthwall storefront",
+    label: "Ghost Orgy shop",
     url: "https://shop.unholyghost.org/",
     expected: [200],
     requiredText: "Ghost Orgy",
-  },
-  {
-    label: "Fourthwall featured product",
-    url: "https://shop.unholyghost.org/products/this-is-not-a-warning",
-    expected: [200],
-    requiredText: "This Is Not A Warning",
   },
   {
     label: "Bandcamp Salt album",

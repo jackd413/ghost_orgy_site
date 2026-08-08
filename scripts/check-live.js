@@ -2,6 +2,9 @@ const { chromium } = require("playwright");
 
 const DEFAULT_BASE_URL = "https://unholyghost.org/";
 const DEFAULT_WWW_URL = "https://www.unholyghost.org/";
+const STOREFRONT_URL = "https://shop.unholyghost.org/";
+const STOREFRONT_THEME_PATH = "styles/fourthwall-theme.css";
+const STOREFRONT_FIXES_PATH = "scripts/fourthwall-fixes.js";
 const SPOTIFY_EMBED = "https://open.spotify.com/embed/album/7ICbOrsiIRThJOoHafvEOu";
 const SOUNDCLOUD_EMBED = "https://w.soundcloud.com/player/";
 const SOUNDCLOUD_USER_TOKEN = "api.soundcloud.com%2Fusers%2F12663938";
@@ -108,6 +111,34 @@ async function checkHttp(baseUrl, wwwUrl) {
     homepageUrl,
     wwwCheckUrl,
     retiredDiscoveryUrls,
+  };
+}
+
+async function checkStorefrontRuntime(baseUrl) {
+  const themeUrl = cacheBust(new URL(STOREFRONT_THEME_PATH, baseUrl).toString(), "shop-theme");
+  const fixesUrl = cacheBust(new URL(STOREFRONT_FIXES_PATH, baseUrl).toString(), "shop-fixes");
+  const storefrontUrl = cacheBust(STOREFRONT_URL, "shop-runtime");
+
+  const { text: theme } = await fetchText(themeUrl, "storefront theme stylesheet");
+  const { text: fixes } = await fetchText(fixesUrl, "storefront fallback script");
+  const { text: storefront } = await fetchText(storefrontUrl, "Fourthwall storefront");
+
+  for (const [label, haystack, needle] of [
+    ["Storefront theme", theme, "cover-salt-final-20260526-1500.webp"],
+    ["Storefront theme", theme, "background-image: none !important"],
+    ["Storefront fixes", fixes, "markBrokenSocialMedia"],
+    ["Fourthwall storefront", storefront, STOREFRONT_THEME_PATH],
+    ["Fourthwall storefront", storefront, STOREFRONT_FIXES_PATH],
+  ]) {
+    if (!haystack.includes(needle)) {
+      throw new Error(`${label} is missing expected runtime marker: ${needle}`);
+    }
+  }
+
+  return {
+    storefrontUrl,
+    themeUrl,
+    fixesUrl,
   };
 }
 
@@ -224,6 +255,7 @@ async function main() {
   const wwwUrl = normalizeUrl(process.env.LIVE_WWW_URL || DEFAULT_WWW_URL).toString();
 
   const http = await checkHttp(baseUrl, wwwUrl);
+  const storefront = await checkStorefrontRuntime(baseUrl);
   const player = await checkPlayer(baseUrl);
 
   console.log(
@@ -233,6 +265,7 @@ async function main() {
         baseUrl,
         wwwUrl,
         http,
+        storefront,
         player,
       },
       null,

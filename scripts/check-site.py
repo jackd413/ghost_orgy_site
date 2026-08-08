@@ -99,6 +99,7 @@ DISALLOWED_PAGE_SNIPPETS = [
     "fonts.googleapis.com",
     "fonts.gstatic.com",
     "db.onlinewebfonts.com",
+    "products/this-is-not-a-warning",
 ]
 
 RETIRED_INTEGRATION_SNIPPETS = [
@@ -119,6 +120,10 @@ DISALLOWED_COPY_SNIPPETS = [
 ]
 
 DISALLOWED_PUBLIC_COPY_PATTERNS = [
+    (
+        "vendor-branded shop call to action",
+        re.compile(r"\b(?:open\s+)?fourthwall\s+shop\b", re.IGNORECASE),
+    ),
     (
         "retired pre-v1.1 Orchard origin",
         re.compile(r"\bsalt opened the orchard\b", re.IGNORECASE),
