@@ -86,6 +86,14 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Purge Cloudflare cache for public site pages and shop assets
+        shell: pwsh
+        continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        run: ./scripts/purge-cloudflare-cache.ps1
+
       - name: Run live header check
         run: npm run check:headers
 
@@ -97,11 +105,3 @@ jobs:
 
       - name: Run external link smoke test
         run: npm run check:external
-
-      - name: Purge Cloudflare cache for public site pages
-        shell: pwsh
-        continue-on-error: true
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-        run: ./scripts/purge-cloudflare-cache.ps1

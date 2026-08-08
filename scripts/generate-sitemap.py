@@ -100,7 +100,7 @@ IMAGE_ENTRIES = [
     ),
     ImageSitemapEntry(
         "https://unholyghost.org/shop/",
-        ("https://unholyghost.org/images/shop-this-is-not-a-warning.webp",),
+        ("https://unholyghost.org/images/cover-salt-final-20260526-1500.webp",),
     ),
 ]
 
