@@ -1,0 +1,4 @@
+name = "ghost-orgy-meta-webhook"
+main = "src/index.js"
+compatibility_date = "2026-08-20"
+workers_dev = true
