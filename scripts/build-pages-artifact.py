@@ -28,6 +28,7 @@ PUBLIC_PATHS = [
     "listen",
     "lore",
     "nine-sisters",
+    "privacy",
     "press",
     "robots.txt",
     "salt",
@@ -38,9 +39,12 @@ PUBLIC_PATHS = [
     "styles/core.css",
     "styles/fonts.css",
     "styles/fourthwall-theme.css",
+    "styles/legal.css",
     "styles/sisters.css",
+    "terms",
     "threshold",
     "updates",
+    "data-deletion",
 ]
 
 SCRIPT_PATHS = [
