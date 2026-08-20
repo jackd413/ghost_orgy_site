@@ -1,0 +1,24 @@
+:root { --bg:#040405; --fg:#f1ece6; --muted:#aaa096; --line:rgba(255,255,255,.12); --accent:#8affc1; --pad:clamp(20px,4vw,52px); --site-max:900px; }
+* { box-sizing:border-box; }
+html, body { margin:0; background:var(--bg); color:var(--fg); font-family:"IBM Plex Sans",system-ui,sans-serif; }
+body::before { content:""; position:fixed; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(4,4,5,.62),rgba(4,4,5,.96)),url("../images/hero-orchard-watcher-1280.webp") center/cover; filter:saturate(.75) contrast(1.04); }
+a { color:inherit; }
+header, main, footer { position:relative; z-index:1; }
+.shell { width:min(100% - (var(--pad) * 2),var(--site-max)); margin:0 auto; }
+.site-header { border-bottom:1px solid var(--line); background:rgba(4,4,5,.84); backdrop-filter:blur(16px); }
+.site-header .shell { min-height:62px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+.site-title, nav, .eyebrow, footer { font-family:"IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.13em; }
+.site-title { font-size:.76rem; text-decoration:none; }
+nav { display:flex; flex-wrap:wrap; gap:14px; color:var(--muted); font-size:.68rem; }
+main { padding-block:clamp(64px,10vw,128px); }
+.eyebrow { color:var(--accent); font-size:.68rem; margin:0 0 14px; }
+h1 { margin:0; font-family:"They Perished","IBM Plex Sans",sans-serif; font-size:clamp(3.6rem,10vw,7rem); font-weight:400; letter-spacing:.03em; line-height:.9; text-transform:uppercase; }
+.intro { max-width:680px; color:rgba(241,236,230,.9); font-size:1.12rem; line-height:1.58; }
+.content { max-width:760px; margin-top:58px; border-top:1px solid var(--line); }
+.section { padding-block:30px; border-bottom:1px solid var(--line); }
+h2 { margin:0 0 10px; font-family:"IBM Plex Mono",monospace; font-size:.84rem; font-weight:500; letter-spacing:.11em; text-transform:uppercase; }
+p, li { color:var(--muted); line-height:1.62; }
+ul { padding-left:1.25rem; }
+.contact { color:var(--fg); }
+footer { padding-block:26px 38px; color:var(--muted); font-size:.66rem; }
+@media (max-width:640px) { .site-header .shell { align-items:flex-start; flex-direction:column; padding-block:16px; } }

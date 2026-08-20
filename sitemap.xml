@@ -6,11 +6,15 @@
   </url>
   <url>
     <loc>https://shop.unholyghost.org/</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-08-07</lastmod>
   </url>
   <url>
     <loc>https://unholyghost.org/artifacts/</loc>
     <lastmod>2026-08-03</lastmod>
+  </url>
+  <url>
+    <loc>https://unholyghost.org/data-deletion/</loc>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
     <loc>https://unholyghost.org/listen/</loc>
@@ -33,16 +37,24 @@
     <lastmod>2026-08-03</lastmod>
   </url>
   <url>
+    <loc>https://unholyghost.org/privacy/</loc>
+    <lastmod>2026-08-20</lastmod>
+  </url>
+  <url>
     <loc>https://unholyghost.org/salt/</loc>
     <lastmod>2026-08-03</lastmod>
   </url>
   <url>
     <loc>https://unholyghost.org/shop/</loc>
-    <lastmod>2026-08-03</lastmod>
+    <lastmod>2026-08-07</lastmod>
   </url>
   <url>
     <loc>https://unholyghost.org/threshold/</loc>
     <lastmod>2026-08-03</lastmod>
+  </url>
+  <url>
+    <loc>https://unholyghost.org/terms/</loc>
+    <lastmod>2026-08-20</lastmod>
   </url>
   <url>
     <loc>https://unholyghost.org/updates/</loc>

@@ -17,14 +17,17 @@ MAX_PUBLIC_ASSET_BYTES = 5 * 1024 * 1024
 PUBLIC_PAGES = [
     ROOT / "index.html",
     ROOT / "artifacts" / "index.html",
+    ROOT / "data-deletion" / "index.html",
     ROOT / "licensing" / "index.html",
     ROOT / "listen" / "index.html",
     ROOT / "lore" / "index.html",
     ROOT / "nine-sisters" / "index.html",
     ROOT / "press" / "index.html",
+    ROOT / "privacy" / "index.html",
     ROOT / "salt" / "index.html",
     ROOT / "shop" / "index.html",
     ROOT / "threshold" / "index.html",
+    ROOT / "terms" / "index.html",
     ROOT / "updates" / "index.html",
     *sorted((ROOT / "sisters").glob("*.html")),
 ]
